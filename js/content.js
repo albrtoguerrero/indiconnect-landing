@@ -174,11 +174,6 @@ window.CONTENT = {
       },
       {
         kind: "Riesgo",
-        title: "Código generado por IA",
-        text: "Podría incorporarse código generado por IA que el equipo no comprenda ni haya probado."
-      },
-      {
-        kind: "Riesgo",
         title: "Fragilidad del modelo agregador",
         text: "Según la prensa del sector, Lyst fue adquirida en 2025 por mucho menos de su valoración de 2021. Los agregadores pueden ser negocios frágiles."
       }
