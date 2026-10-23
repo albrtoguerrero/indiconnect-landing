@@ -82,13 +82,42 @@
   function renderHero() {
     var host = document.getElementById("inicio");
     host.setAttribute("aria-labelledby", "inicio-title");
-    host.appendChild(el("div", { "class": "container" }, [
-      el("p", { "class": "eyebrow", text: C.brand.tagline }),
-      el("h1", { id: "inicio-title", text: C.hero.title }),
-      el("p", { "class": "lead", text: C.hero.value }),
-      el("a", { "class": "btn", href: C.hero.cta.href, text: C.hero.cta.label }),
-      el("p", { "class": "legal legal--hero", text: C.legal })
+    host.appendChild(el("div", { "class": "container hero-grid" }, [
+      el("div", { "class": "hero-text" }, [
+        el("p", { "class": "eyebrow", text: C.brand.tagline }),
+        el("h1", { id: "inicio-title", text: C.hero.title }),
+        el("p", { "class": "lead", text: C.hero.value }),
+        el("a", { "class": "btn", href: C.hero.cta.href, text: C.hero.cta.label }),
+        el("p", { "class": "legal legal--hero", text: C.legal })
+      ]),
+      renderSnapshot()
     ]));
+  }
+
+  // Resumen calculado a partir de los propios datos: nada de esto se escribe a mano.
+  function renderSnapshot() {
+    var s = C.ui.snapshot;
+    var sp = C.progress.sprints;
+    var current = sp.filter(function (x) { return x.status === "En curso"; })[0] || sp[sp.length - 1];
+    var delivered = sp.filter(function (x) { return x.status === "Entregado"; }).length;
+    var drafts = C.decisions.items.filter(function (d) { return d.status === "Borrador"; }).length;
+    var rows = [
+      [s.current, current.milestone + " · " + current.name, current.status],
+      [s.delivered, delivered + " de " + sp.length],
+      [s.decisions, drafts + " de " + C.decisions.items.length + " en Borrador"],
+      [s.needs, String(C.requirements.needs.rows.length)],
+      [s.criteria, String(C.traceability.rows.length)],
+      [s.updated, formatDate(C.lastUpdated)]
+    ];
+    return el("aside", { "class": "snapshot", "aria-labelledby": "snapshot-title" }, [
+      el("h2", { id: "snapshot-title", "class": "snapshot-title", text: s.title }),
+      el("dl", {}, rows.map(function (r) {
+        return el("div", {}, [
+          el("dt", { text: r[0] }),
+          el("dd", {}, [document.createTextNode(r[1] + (r[2] ? " " : "")), r[2] ? badge(r[2]) : null])
+        ]);
+      }))
+    ]);
   }
 
   function formatDate(iso) {
@@ -308,7 +337,7 @@
         return el("li", { "class": "card member" }, [
           el("div", { "class": "avatar", "aria-hidden": "true", text: m.name.replace(/[^\p{L}]/gu, "").charAt(0) || "?" }),
           el("h3", { text: m.name }),
-          el("p", { "class": "role", text: m.role })
+          m.role ? el("p", { "class": "role", text: m.role }) : null
         ]);
       })));
     });
@@ -339,8 +368,10 @@
     return tableWrap(t.caption, table);
   }
 
-  function subTitle(text) {
-    return el("h3", { "class": "sub-title", text: text });
+  function subTitle(text, id) {
+    var attrs = { "class": "sub-title", text: text };
+    if (id) { attrs.id = id; }
+    return el("h3", attrs);
   }
 
   function idList(items) {
@@ -359,20 +390,34 @@
       c.appendChild(heading(hid, r.title, badge(r.status)));
       c.appendChild(el("p", { "class": "lead", text: r.intro }));
 
-      c.appendChild(subTitle(r.sources.title));
+      var parts = [
+        ["req-fuentes", r.sources.title],
+        ["req-hipotesis", r.hypothesesTitle + " y " + r.constraintsTitle.toLowerCase()],
+        ["req-exclusiones", r.exclusionsTitle],
+        ["req-necesidades", r.needs.title],
+        ["req-funcionales", r.functional.title],
+        ["req-nofuncionales", r.nonFunctional.title]
+      ];
+      c.appendChild(el("nav", { "class": "pills", "aria-label": C.ui.reqNavLabel }, [
+        el("ul", {}, parts.map(function (pt) {
+          return el("li", {}, [el("a", { href: "#" + pt[0], text: pt[1] })]);
+        }))
+      ]));
+
+      c.appendChild(subTitle(r.sources.title, "req-fuentes"));
       c.appendChild(textTable(r.sources));
-      c.appendChild(subTitle(r.hypothesesTitle));
-      c.appendChild(idList(r.hypotheses));
-      c.appendChild(subTitle(r.constraintsTitle));
-      c.appendChild(idList(r.constraints));
-      c.appendChild(subTitle(r.exclusionsTitle));
+      c.appendChild(el("div", { "class": "two-col two-col--top", id: "req-hipotesis" }, [
+        el("div", {}, [subTitle(r.hypothesesTitle), idList(r.hypotheses)]),
+        el("div", {}, [subTitle(r.constraintsTitle), idList(r.constraints)])
+      ]));
+      c.appendChild(subTitle(r.exclusionsTitle, "req-exclusiones"));
       c.appendChild(el("div", { "class": "panel panel--out" }, [el("p", { text: r.exclusions })]));
 
-      c.appendChild(subTitle(r.needs.title));
+      c.appendChild(subTitle(r.needs.title, "req-necesidades"));
       c.appendChild(textTable(r.needs));
-      c.appendChild(subTitle(r.functional.title));
+      c.appendChild(subTitle(r.functional.title, "req-funcionales"));
       c.appendChild(textTable(r.functional));
-      c.appendChild(subTitle(r.nonFunctional.title));
+      c.appendChild(subTitle(r.nonFunctional.title, "req-nofuncionales"));
       c.appendChild(textTable(r.nonFunctional));
       c.appendChild(el("p", { "class": "note", text: r.scopeNote }));
     });
@@ -405,14 +450,11 @@
 
       c.appendChild(subTitle(t.asanaTitle));
       c.appendChild(el("p", { "class": "note", text: t.asanaNote }));
-      c.appendChild(el("ul", { "class": "cards" }, t.asana.map(function (a) {
+      c.appendChild(el("ul", { "class": "ref-list" }, t.asana.map(function (a) {
         var nameNode = a.url
           ? el("a", { href: a.url, text: a.name })
-          : el("span", { text: a.name });
-        return el("li", { "class": "card" }, [
-          el("h4", {}, [nameNode]),
-          el("p", { text: a.text })
-        ]);
+          : el("strong", { text: a.name });
+        return el("li", {}, [nameNode, el("span", { text: a.text })]);
       })));
     });
   }
@@ -488,6 +530,36 @@
     if (mq.addEventListener) { mq.addEventListener("change", onChange); }
   }
 
+  /* ---------- sección activa en la navegación ---------- */
+
+  function initNavSpy() {
+    if (!("IntersectionObserver" in window)) { return; }
+    var nav = document.getElementById("site-nav");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var links = {};
+    [].forEach.call(nav.querySelectorAll("a"), function (a) {
+      links[a.getAttribute("href").slice(1)] = a;
+    });
+    var current = null;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var link = links[en.target.id];
+        if (!en.isIntersecting || !link) { return; }
+        if (current) { current.removeAttribute("aria-current"); }
+        current = link;
+        current.setAttribute("aria-current", "true");
+        nav.scrollTo({
+          left: current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2,
+          behavior: reduce ? "auto" : "smooth"
+        });
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    Object.keys(links).forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (sec) { io.observe(sec); }
+    });
+  }
+
   /* ---------- arranque ---------- */
 
   renderChrome();
@@ -506,4 +578,5 @@
   renderTeam();
   renderFooter();
   initTheme();
+  initNavSpy();
 })();

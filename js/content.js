@@ -30,6 +30,16 @@ window.CONTENT = {
     updatedLabel: "Última actualización:",
     legalLabel: "Aviso legal",
     noscript: "Esta página necesita JavaScript para mostrar su contenido.",
+    snapshot: {
+      title: "Estado del proyecto",
+      current: "Hito actual",
+      delivered: "Hitos entregados",
+      decisions: "Decisiones de diseño",
+      needs: "Necesidades documentadas",
+      criteria: "Criterios de aceptación",
+      updated: "Actualizado"
+    },
+    reqNavLabel: "Contenido de esta sección",
     tableRegion: "Tabla desplazable",
     byLabel: "Responsable del cambio:",
     whatLabel: "Qué cambió",
@@ -39,7 +49,7 @@ window.CONTENT = {
 
   nav: [
     { id: "problema", label: "Problema" },
-    { id: "como-funciona", label: "Cómo funciona" },
+    { id: "como-funciona", label: "Solución" },
     { id: "negocio", label: "Negocio" },
     { id: "alcance", label: "Alcance" },
     { id: "decisiones", label: "Decisiones" },
@@ -240,11 +250,11 @@ window.CONTENT = {
 
   team: {
     title: "Equipo",
-    intro: "Equipo de 3 personas.",
+    intro: "Equipo de tres personas.",
     members: [
-      { name: "Alberto Guerrero", role: "Integrante del equipo" },
-      { name: "Lucía Guerra", role: "Integrante del equipo" },
-      { name: "Mikel Moriel", role: "Integrante del equipo" }
+      { name: "Alberto Guerrero" },
+      { name: "Lucía Guerra" },
+      { name: "Mikel Moriel" }
     ]
   }
   ,
