@@ -314,6 +314,144 @@
     });
   }
 
+  /* ---------- Hito 2: requisitos, trazabilidad, evolución, uso de IA ---------- */
+
+  function tableWrap(caption, table) {
+    return el("div", { "class": "panel" }, [
+      el("div", { "class": "table-wrap", tabindex: "0", role: "region", "aria-label": caption }, [table])
+    ]);
+  }
+
+  function textTable(t) {
+    var table = el("table", { "class": "table--text" }, [
+      el("caption", { text: t.caption }),
+      el("thead", {}, [el("tr", {}, t.headers.map(function (h) {
+        return el("th", { scope: "col", text: h });
+      }))]),
+      el("tbody", {}, t.rows.map(function (r) {
+        return el("tr", {}, r.map(function (cell, i) {
+          if (i === 0) { return el("th", { scope: "row", text: cell }); }
+          if (i === t.badgeCol) { return el("td", {}, [badge(cell)]); }
+          return el("td", { text: cell });
+        }));
+      }))
+    ]);
+    return tableWrap(t.caption, table);
+  }
+
+  function subTitle(text) {
+    return el("h3", { "class": "sub-title", text: text });
+  }
+
+  function idList(items) {
+    return el("ul", { "class": "id-list" }, items.map(function (it) {
+      return el("li", {}, [
+        el("strong", { text: it.id }),
+        el("span", { text: it.text }),
+        it.state ? badge(it.state) : null
+      ]);
+    }));
+  }
+
+  function renderRequirements() {
+    fill("requisitos", function (c, hid) {
+      var r = C.requirements;
+      c.appendChild(heading(hid, r.title, badge(r.status)));
+      c.appendChild(el("p", { "class": "lead", text: r.intro }));
+
+      c.appendChild(subTitle(r.sources.title));
+      c.appendChild(textTable(r.sources));
+      c.appendChild(subTitle(r.hypothesesTitle));
+      c.appendChild(idList(r.hypotheses));
+      c.appendChild(subTitle(r.constraintsTitle));
+      c.appendChild(idList(r.constraints));
+      c.appendChild(subTitle(r.exclusionsTitle));
+      c.appendChild(el("div", { "class": "panel panel--out" }, [el("p", { text: r.exclusions })]));
+
+      c.appendChild(subTitle(r.needs.title));
+      c.appendChild(textTable(r.needs));
+      c.appendChild(subTitle(r.functional.title));
+      c.appendChild(textTable(r.functional));
+      c.appendChild(subTitle(r.nonFunctional.title));
+      c.appendChild(textTable(r.nonFunctional));
+      c.appendChild(el("p", { "class": "note", text: r.scopeNote }));
+    });
+  }
+
+  function renderTraceability() {
+    fill("trazabilidad", function (c, hid) {
+      var t = C.traceability;
+      c.appendChild(heading(hid, t.title));
+      c.appendChild(el("p", { "class": "lead", text: t.intro }));
+
+      var table = el("table", { "class": "table--text" }, [
+        el("caption", { text: t.caption }),
+        el("thead", {}, [el("tr", {}, t.headers.map(function (h) {
+          return el("th", { scope: "col", text: h });
+        }))]),
+        el("tbody", {}, t.rows.map(function (r) {
+          return el("tr", {}, [
+            el("th", { scope: "row", text: r.need }),
+            el("td", { text: r.reqs }),
+            el("td", {}, [el("details", {}, [
+              el("summary", { text: r.id + " · " + r.title }),
+              el("pre", { "class": "gherkin", text: r.gherkin.join("\n") })
+            ])]),
+            el("td", { text: r.task })
+          ]);
+        }))
+      ]);
+      c.appendChild(tableWrap(t.caption, table));
+
+      c.appendChild(subTitle(t.asanaTitle));
+      c.appendChild(el("p", { "class": "note", text: t.asanaNote }));
+      c.appendChild(el("ul", { "class": "cards" }, t.asana.map(function (a) {
+        var nameNode = a.url
+          ? el("a", { href: a.url, text: a.name })
+          : el("span", { text: a.name });
+        return el("li", { "class": "card" }, [
+          el("h4", {}, [nameNode]),
+          el("p", { text: a.text })
+        ]);
+      })));
+    });
+  }
+
+  function renderEvolution() {
+    fill("evolucion", function (c, hid) {
+      var e = C.evolution;
+      c.appendChild(heading(hid, e.title));
+      c.appendChild(el("p", { "class": "lead", text: e.intro }));
+      c.appendChild(el("ol", { "class": "timeline" }, e.entries.map(function (en) {
+        return el("li", { "class": "tl-item" }, [
+          el("div", { "class": "card" }, [
+            el("h3", { text: en.title }),
+            el("p", { "class": "dates" }, [
+              el("time", { datetime: en.date, text: formatDate(en.date) }),
+              document.createTextNode(" · " + C.ui.byLabel + " " + en.who)
+            ]),
+            el("p", {}, [el("strong", { text: C.ui.whatLabel + ": " }), document.createTextNode(en.what)]),
+            el("p", {}, [el("strong", { text: C.ui.whyLabel + ": " }), document.createTextNode(en.why)])
+          ])
+        ]);
+      })));
+    });
+  }
+
+  function renderAiUse() {
+    fill("uso-ia", function (c, hid) {
+      var a = C.aiUse;
+      c.appendChild(heading(hid, a.title));
+      c.appendChild(el("p", { "class": "lead", text: a.intro }));
+      c.appendChild(el("ul", { "class": "cards" }, a.principles.map(function (p) {
+        return el("li", { "class": "card" }, [
+          el("h3", { text: p.title }),
+          el("p", { text: p.text })
+        ]);
+      })));
+    });
+  }
+
   /* ---------- tema claro/oscuro ---------- */
 
   function initTheme() {
@@ -360,7 +498,11 @@
   renderScope();
   renderDecisions();
   renderRisks();
+  renderRequirements();
+  renderTraceability();
   renderProgress();
+  renderEvolution();
+  renderAiUse();
   renderTeam();
   renderFooter();
   initTheme();

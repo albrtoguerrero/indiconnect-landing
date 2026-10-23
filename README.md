@@ -41,6 +41,11 @@ Edita **solo** `js/content.js`:
 | Fecha de última actualización | `lastUpdated` (formato `AAAA-MM-DD`) |
 | Nombres y roles del equipo | `team.members` |
 | Nuevas decisiones, riesgos, etc. | Añade un objeto a la lista correspondiente |
+| Necesidades, requisitos, fuentes, hipótesis, restricciones (Hito 2) | `requirements` (las tablas son listas de filas; la columna con insignia se indica en `badgeCol`) |
+| Matriz de trazabilidad y criterios de aceptación Gherkin | `traceability.rows` (cada criterio lleva sus líneas Dado/Cuando/Entonces) |
+| Referencias a tareas de Asana | `traceability.asana` (rellena `url` solo si el enlace es accesible para quien lea la web) |
+| Registro de cambios del proyecto (qué, quién, cuándo, por qué) | `evolution.entries` |
+| Declaración de uso de IA | `aiUse` |
 
 Los colores de estado se asignan solos a partir del texto del estado. Si inventas un estado nuevo, hay que añadirle su clase `.badge--<estado>` en `css/styles.css`.
 

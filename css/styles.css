@@ -285,3 +285,27 @@ td { font-variant-numeric: tabular-nums; }
 @media (forced-colors: active) {
   .badge, .card, .panel { border: 1px solid CanvasText; }
 }
+
+/* ===== Hito 2: tablas de texto, listas con ID, criterios ===== */
+.table--text { min-width: 36rem; }
+.table--text td:last-child, .table--text tfoot th:last-child { text-align: left; }
+.table--text th[scope="row"] { white-space: nowrap; }
+.table--text td { vertical-align: top; }
+.id-list { list-style: none; display: grid; gap: .5rem; margin-bottom: 1rem; }
+.id-list li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem;
+  padding: .6rem .9rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.id-list strong { color: var(--primary); min-width: 3.2rem; }
+.id-list span { flex: 1 1 14rem; }
+section.alt .id-list li { background: var(--surface); }
+details summary { cursor: pointer; font-weight: 600; color: var(--primary); }
+.gherkin {
+  margin: .5rem 0 0; padding: .6rem .8rem; white-space: pre-wrap;
+  font: .9rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
+  background: var(--surface-2); border-radius: 8px; color: var(--text);
+}
+.badge--sin-validar { background: var(--b-warn-bg); color: var(--b-warn-fg); }
+.badge--fase-1 { background: var(--b-info-bg); color: var(--b-info-fg); }
+.badge--fase-2 { background: var(--b-neu-bg); color: var(--b-neu-fg); }
+.card h4 a { color: var(--primary); }
