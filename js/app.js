@@ -67,7 +67,10 @@
 
     var brand = document.getElementById("brand-link");
     brand.appendChild(el("span", { "class": "brand-dot", "aria-hidden": "true" }));
-    brand.appendChild(el("span", { text: C.brand.name }));
+    brand.appendChild(el("span", { "class": "brand-text" }, [
+      el("span", { "class": "brand-name", text: C.brand.name }),
+      el("span", { "class": "brand-sub", text: C.brand.tagline })
+    ]));
 
     var nav = document.getElementById("site-nav");
     nav.setAttribute("aria-label", C.ui.navLabel);
@@ -549,7 +552,11 @@
         if (current) { current.removeAttribute("aria-current"); }
         current = link;
         current.setAttribute("aria-current", "true");
-        nav.scrollTo({
+        var vertical = nav.scrollHeight > nav.clientHeight && nav.scrollWidth <= nav.clientWidth;
+        nav.scrollTo(vertical ? {
+          top: current.offsetTop - (nav.clientHeight - current.offsetHeight) / 2,
+          behavior: reduce ? "auto" : "smooth"
+        } : {
           left: current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2,
           behavior: reduce ? "auto" : "smooth"
         });
