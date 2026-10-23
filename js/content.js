@@ -162,7 +162,22 @@ window.CONTENT = {
       {
         title: "Fallo parcial en el checkout",
         status: "Borrador",
-        text: "Confirmación atómica simulada: si falla un subpedido, no se confirma ninguno."
+        text: "Propuesta de la landing: confirmación atómica simulada, si falla un subpedido no se confirma ninguno. La documentación de Asana recoge tres formulaciones (pendiente, reembolso parcial y todo o nada). Hay que separar el fallo antes de cobrar del fallo posterior al cobro y fijar un único comportamiento."
+      },
+      {
+        title: "Duración de «Recordarme»",
+        status: "Borrador",
+        text: "Los requisitos de cuenta proponen 30 días y las historias de usuario 10. Falta elegir el valor, registrar el motivo y actualizar requisito, historia y criterios."
+      },
+      {
+        title: "Secuencia única de checkout",
+        status: "Borrador",
+        text: "La especificación web describe tres pasos en el requisito y cuatro en el diagrama. Falta publicar un único recorrido y comprobar que pantallas, reglas e historias lo siguen."
+      },
+      {
+        title: "Tema oscuro y contraste",
+        status: "Borrador",
+        text: "Los contrastes previstos para el tema oscuro no alcanzan el mínimo de 4,5:1 que exige el propio requisito de accesibilidad. Falta ajustar los colores o dejar el tema oscuro fuera de la primera versión."
       },
       {
         title: "Vendedor legal único frente al cliente",
@@ -173,7 +188,7 @@ window.CONTENT = {
         title: "Cuestiones pendientes",
         status: "Borrador",
         text: "Puntos aún sin decidir:",
-        list: ["Reserva de stock", "Estados del pedido", "Nombre del agrupador de subpedidos"]
+        list: ["Reserva de stock y última unidad concurrente", "Compra como invitado", "Estados del pedido", "Nombre del agrupador de subpedidos"]
       }
     ]
   },
@@ -221,8 +236,8 @@ window.CONTENT = {
         dates: "5 – 23 oct 2026",
         milestone: "Hito 2",
         text: "Necesidades, requisitos y criterios de aceptación.",
-        status: "En curso",
-        note: "Necesidades, requisitos, user stories, criterios de aceptación y matriz de trazabilidad consolidados en Asana; entrega al cierre del sprint (23 oct)."
+        status: "Entregado",
+        note: "Necesidades, requisitos, historias de usuario, criterios de aceptación y matriz de trazabilidad en Asana, entregados el 23 oct. Quedan decisiones abiertas y fuentes por validar (ver Decisiones y Necesidades)."
       },
       {
         name: "Sprint 3",
@@ -261,7 +276,7 @@ window.CONTENT = {
   requirements: {
     title: "Necesidades y requisitos",
     status: "Borrador",
-    intro: "Resultado del Hito 2. Todas las necesidades y requisitos están en estado Borrador y se revisarán en los siguientes sprints. Cada requisito indica la necesidad de la que procede.",
+    intro: "Resultado del Hito 2. Esta página muestra una selección priorizada del núcleo del proyecto; la documentación completa (necesidades, catálogo ampliado de requisitos, historias de usuario y matriz) está en Asana. Todo está en estado Borrador y ninguna necesidad está validada con usuarios: cada requisito indica la necesidad de la que procede y de dónde sale.",
     sources: {
       title: "Fuentes",
       caption: "Fuentes consultadas y descartadas",
@@ -293,7 +308,7 @@ window.CONTENT = {
       { id: "R-06", text: "Desarrollo asistido por IA: todo artefacto debe ser revisado y comprendido por el equipo." }
     ],
     exclusionsTitle: "Exclusiones relevantes",
-    exclusions: "Envío real, devoluciones, promociones complejas, atención al cliente, integración con tiendas reales, datos personales reales, datos reales de tarjeta y scraping (definidas en el Hito 1).",
+    exclusions: "Envío real, devoluciones, promociones complejas, atención al cliente, integración con tiendas reales, datos personales reales, datos reales de tarjeta y scraping (definidas en el Hito 1). Si el catálogo ampliado de Asana incluye funciones de esas áreas (devoluciones, seguimiento, atención al cliente, promociones), se consideran catálogo futuro o interfaz simulada y no forman parte del MVP.",
     needs: {
       title: "Necesidades identificadas",
       caption: "Necesidades por actor",
@@ -350,12 +365,12 @@ window.CONTENT = {
         ["RNF-59", "Pruebas del escenario de fallo atómico", "N-08", "Fase 1"]
       ]
     },
-    scopeNote: "Selección de los requisitos principales. El alcance propuesto por el equipo, todavía en revisión, mantiene dentro del proyecto 84 requisitos funcionales y 75 no funcionales, repartidos en Fase 1 (núcleo de la demo) y Fase 2 (ampliación)."
+    scopeNote: "Selección de los requisitos principales, con los identificadores del backlog del equipo (RF-xx, RNF-xx). Los documentos de Asana usan otros códigos (por ejemplo RF-BUS-01 o RF-02.1); la tabla de equivalencias entre niveles está pendiente. El alcance propuesto, todavía en revisión, mantiene dentro del proyecto 84 requisitos funcionales y 75 no funcionales, repartidos en Fase 1 (núcleo de la demo) y Fase 2 (ampliación); lo que queda fuera es catálogo futuro."
   },
 
   traceability: {
     title: "Trazabilidad y criterios de aceptación",
-    intro: "Cada necesidad se transforma en requisitos, cada requisito se verifica con un criterio de aceptación y cada criterio tiene una tarea en Asana. Es la primera versión de la matriz y se ampliará con el diseño en el Hito 3.",
+    intro: "Cada necesidad se transforma en requisitos, cada requisito se verifica con un criterio de aceptación y cada criterio tiene una tarea en Asana. Esta versión comprueba que existe la relación entre elementos; todavía no demuestra que las fuentes estén contrastadas ni que cada vínculo sea correcto. Se ampliará con el diseño en el Hito 3.",
     caption: "Matriz de trazabilidad inicial",
     headers: ["Necesidad", "Requisitos", "Criterio de aceptación", "Tarea en Asana"],
     rows: [
@@ -401,7 +416,7 @@ window.CONTENT = {
       { name: "[INDICONNECT] Hito 2 – Requisitos y Criterios de Aceptación", text: "Tarea principal del hito, en el Sprint 2.", url: "" },
       { name: "Necesidades identificadas", text: "Subtarea con el documento de necesidades.", url: "" },
       { name: "User stories", text: "Subtarea con las historias de usuario.", url: "" },
-      { name: "Requisitos funcionales", text: "Ocho categorías: búsqueda y navegación; cuenta y perfil; catálogo y productos; favoritos y tendencias; notificaciones, recomendaciones e IA; carrito, checkout y pagos; seguimiento, devoluciones y atención al cliente; pie de página, legales y administración.", url: "" },
+      { name: "Requisitos funcionales", text: "Ocho categorías: búsqueda y navegación; cuenta y perfil; catálogo y productos; favoritos y tendencias; notificaciones, recomendaciones e IA; carrito, checkout y pagos; seguimiento, devoluciones y atención al cliente (catálogo futuro, fuera del MVP); pie de página, legales y administración.", url: "" },
       { name: "Requisitos no funcionales", text: "Cuatro categorías: seguridad y privacidad; rendimiento y arquitectura; diseño, usabilidad y accesibilidad; mantenibilidad.", url: "" },
       { name: "Matriz de trazabilidad", text: "Subtarea con la matriz necesidad → requisito.", url: "" },
       { name: "Especificaciones de requisitos en la web", text: "Subtarea de actualización de esta landing.", url: "" }
@@ -447,6 +462,12 @@ window.CONTENT = {
         title: "Se restablece el riesgo de IA y se añade la sección de uso de IA",
         what: "Se volvió a incluir el riesgo de uso de IA sin comprensión ni revisión y se creó la sección «Uso de IA».",
         why: "El Hito 2 exige transparencia sobre el uso de IA, con revisión crítica del equipo y sin sustituir su responsabilidad."
+      },
+      {
+        date: "2026-10-23", who: "Alberto Guerrero",
+        title: "Revisión de la valoración docente",
+        what: "Se registraron las discrepancias detectadas entre documentos (Recordarme, fallo parcial, checkout, tema oscuro), se aclaró que la landing muestra una selección priorizada, que los identificadores difieren entre documentos y que lo relativo a devoluciones y atención es catálogo futuro. Se marcó el Sprint 2 como entregado.",
+        why: "Distinguir lo definido de lo validado y dejar visibles las decisiones abiertas, en lugar de presentar el expediente como cerrado."
       },
       {
         date: "2026-10-23", who: "Alberto Guerrero",

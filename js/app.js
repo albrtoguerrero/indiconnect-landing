@@ -98,7 +98,8 @@
   function renderSnapshot() {
     var s = C.ui.snapshot;
     var sp = C.progress.sprints;
-    var current = sp.filter(function (x) { return x.status === "En curso"; })[0] || sp[sp.length - 1];
+    var current = sp.filter(function (x) { return x.status === "En curso"; })[0] ||
+      sp.filter(function (x) { return x.status === "Pendiente"; })[0] || sp[sp.length - 1];
     var delivered = sp.filter(function (x) { return x.status === "Entregado"; }).length;
     var drafts = C.decisions.items.filter(function (d) { return d.status === "Borrador"; }).length;
     var rows = [
