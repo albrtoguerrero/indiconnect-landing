@@ -1,0 +1,102 @@
+/* =====================================================================
+   Animaciones de la landing comercial.
+   Todo se desactiva con prefers-reduced-motion (regla global de styles.css).
+   ===================================================================== */
+
+/* Barra de progreso de lectura */
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 70; transform-origin: left; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, var(--primary), var(--accent)); pointer-events: none; }
+
+/* Hero: manchas de color que derivan lentamente */
+.hero { position: relative; isolation: isolate; }
+.hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; }
+.hero::before { width: 22rem; height: 22rem; top: -6rem; right: 8%; background: color-mix(in srgb, var(--primary-2) 55%, transparent); animation: drift 14s ease-in-out infinite alternate; }
+.hero::after { width: 18rem; height: 18rem; bottom: -5rem; left: 4%; background: color-mix(in srgb, var(--accent) 40%, transparent); animation: drift 17s ease-in-out infinite alternate-reverse; }
+@keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-2.5rem, 2rem, 0) scale(1.15); } }
+
+/* Titular con degradado que respira */
+.hero .grad { background-size: 220% 100%; animation: sheen 7s ease-in-out infinite alternate; }
+@keyframes sheen { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+/* Maqueta del carrito: las filas entran en bucle y el botón late */
+.mock { animation: mockFloat 7s ease-in-out infinite; }
+@keyframes mockFloat { 0%, 100% { transform: rotate(-1.5deg) translateY(0); } 50% { transform: rotate(-1.5deg) translateY(-8px); } }
+.mock-row, .mock-total { animation: rowCycle 12s ease-in-out infinite both; }
+.mock-row:nth-of-type(2) { animation-delay: .1s; }
+.mock-row:nth-of-type(3) { animation-delay: .6s; }
+.mock-row:nth-of-type(4) { animation-delay: 1.1s; }
+.mock-total { animation-delay: 1.6s; }
+@keyframes rowCycle {
+  0% { opacity: 0; transform: translateX(-18px); }
+  6%, 88% { opacity: 1; transform: none; }
+  96%, 100% { opacity: 0; transform: translateX(10px); }
+}
+.mock-pay { animation: payPulse 2.4s ease-in-out infinite; }
+@keyframes payPulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 55%, transparent); } 50% { box-shadow: 0 0 0 10px transparent; } }
+.dot { animation: ping 2s ease-out infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 60%, transparent); } 80%, 100% { box-shadow: 0 0 0 8px transparent; } }
+
+/* Puertas y botones: destello y degradado que se desplaza */
+.door::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .22) 50%, transparent 65%); transform: translateX(-120%); pointer-events: none; }
+.door:hover::after { transform: translateX(120%); transition: transform .9s ease; }
+.btn:not(:disabled) { background-size: 180% 100%; }
+.btn:hover { background-position: 100% 0; }
+
+/* Marcas: cinta continua (JS duplica los elementos) */
+.brands .wrap { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.brands-list.marquee { flex-wrap: nowrap; justify-content: flex-start; gap: 0; width: max-content; animation: marquee 32s linear infinite; }
+.brands-list.marquee li { margin-right: 3rem; white-space: nowrap; }
+.brands:hover .marquee { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-33.3333%); } }
+
+/* Títulos: el subrayado se dibuja al aparecer */
+.h-sec::after { content: ""; display: block; width: 0; height: 4px; margin-top: .7rem; border-radius: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width .9s ease .25s; }
+.h-sec.in::after { width: 3.5rem; }
+
+/* Insignia de cada parte */
+.part-banner.in .part-num { animation: pop .8s cubic-bezier(.2, 1.4, .4, 1) both; }
+@keyframes pop { from { transform: scale(.4) rotate(-25deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Tarjetas y pasos: elevación suave (una vez revelados) */
+.card, .steps li, .need, .tr, .stat, .member, .rm { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.card:hover, .steps li:hover, .need:hover, .tr:hover, .stat:hover, .member:hover, .rm:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--primary) 55%, var(--border)); }
+.ico, .num, .svg-ico { transition: transform .3s ease; }
+.card:hover .ico, .steps li:hover .num { transform: scale(1.12) rotate(-6deg); }
+.card:hover .svg-ico { transform: scale(1.15); }
+
+/* Diagrama de flujo: flechas que laten y subpedidos que aparecen en cadena */
+.flow-arrow { animation: nudge 1.6s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateY(5px); opacity: .55; } }
+.flow-box--order { background-size: 200% 100%; animation: sheen 5s ease-in-out infinite alternate; }
+.js .flow .flow-box--sub { opacity: 0; transform: scale(.8) translateY(10px); }
+.js .flow.in .flow-box--sub { animation: subIn .6s cubic-bezier(.2, 1.3, .4, 1) forwards; }
+.js .flow.in .flow-box--sub:nth-child(1) { animation-delay: .5s; }
+.js .flow.in .flow-box--sub:nth-child(2) { animation-delay: .75s; }
+.js .flow.in .flow-box--sub:nth-child(3) { animation-delay: 1s; }
+@keyframes subIn { to { opacity: 1; transform: none; } }
+
+/* Hoja de ruta: la barra superior de cada hito se dibuja */
+.rm { position: relative; overflow: hidden; border-top-width: 1px; border-top-color: var(--border); }
+.rm::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--border); }
+.rm--done::before { background: var(--sw-c); }
+.rm--now::before { background: var(--primary); }
+.js .rm::before { transform: scaleX(0); transform-origin: left; transition: transform .9s ease .3s; }
+.js .rm.in::before { transform: scaleX(1); }
+.rm--now { animation: nowGlow 2.6s ease-in-out infinite; }
+@keyframes nowGlow { 50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 25%, transparent); } }
+
+/* Demo: feedback al añadir, al cambiar el total y al confirmar */
+.cart-line.new, .cart-brand.new { animation: lineIn .45s ease both; }
+@keyframes lineIn { from { opacity: 0; transform: translateX(14px); background: color-mix(in srgb, var(--primary) 18%, transparent); } to { opacity: 1; transform: none; background: transparent; } }
+#cart-total.bump { animation: bump .4s ease; }
+@keyframes bump { 40% { transform: scale(1.25); color: var(--primary); } }
+.prod.flash { animation: flash .5s ease; }
+@keyframes flash { 40% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 40%, transparent); } }
+.result-box { animation: resultIn .5s cubic-bezier(.2, 1.2, .4, 1) both; }
+@keyframes resultIn { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
+.result-box--ok li { animation: lineIn .45s ease both; animation-delay: calc(var(--i, 0) * 140ms + 250ms); }
+.tick-badge { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-right: .5rem; border-radius: 50%; background: currentColor; vertical-align: middle; animation: pop .6s cubic-bezier(.2, 1.4, .4, 1) both; }
+.tick-badge::before { content: "✓"; color: var(--ok-bg); font-weight: 800; font-size: .95rem; line-height: 1; }
+.result-box--bad .tick-badge::before { content: "✕"; color: var(--bad-bg); }
+
+/* Cifras: el número cuenta hasta su valor (JS) */
+.stat strong { font-variant-numeric: tabular-nums; }

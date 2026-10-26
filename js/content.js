@@ -30,6 +30,12 @@ window.CONTENT = {
     updatedLabel: "Última actualización:",
     legalLabel: "Aviso legal",
     noscript: "Esta página necesita JavaScript para mostrar su contenido.",
+    locale: "es-ES",
+    and: "y",
+    ofWord: "de",
+    inDraft: "en Borrador",
+    metaDescription: "Landing de un proyecto académico ficticio de Ingeniería del Software: carrito unificado con subpedidos por marca.",
+    langToggle: { label: "English", aria: "Cambiar el idioma a inglés" },
     snapshot: {
       title: "Estado del proyecto",
       current: "Hito actual",

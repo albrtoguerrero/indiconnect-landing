@@ -15,89 +15,98 @@
   <title>IndiConnect · Un solo carrito para todas las marcas</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="extras.css">
   <script>document.documentElement.className += " js";</script>
+  <script src="../js/lang.js"></script>
   <script src="../js/content.js"></script>
+  <script src="../js/content.en.js"></script>
+  <script src="i18n.js"></script>
+  <script src="art.js"></script>
   <script src="app.js" defer></script>
   <script src="demo.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
 
   <header class="top" id="top">
     <div class="wrap top-inner">
-      <a class="logo" href="#inicio" aria-label="IndiConnect, inicio">
+      <a class="logo" href="#inicio" aria-label="IndiConnect" data-i18n-aria="logoAria">
         <span class="logo-dot" aria-hidden="true"></span><span>IndiConnect</span>
       </a>
-      <nav id="top-nav" aria-label="Secciones de la página">
+      <nav id="top-nav" aria-label="Secciones de la página" data-i18n-aria="navAria">
         <ul>
-          <li><a href="#comprador">Soy comprador</a></li>
-          <li><a href="#empresario">Soy empresario</a></li>
-          <li><a href="#nosotros">Quiénes somos</a></li>
-          <li><a href="../" class="ext">Documentación</a></li>
+          <li><a href="#comprador" data-i18n="navBuy">Soy comprador</a></li>
+          <li><a href="#empresario" data-i18n="navBiz">Soy empresario</a></li>
+          <li><a href="#nosotros" data-i18n="navUs">Quiénes somos</a></li>
+          <li><a href="../" class="ext" data-i18n="navDocs">Documentación</a></li>
         </ul>
       </nav>
+      <button type="button" class="lang-btn" id="lang-toggle" aria-label="Cambiar el idioma a inglés">English</button>
     </div>
   </header>
 
   <div class="demo-banner" role="note">
-    <div class="wrap">Proyecto académico ficticio: catálogo sintético, pago simulado y ninguna marca real.</div>
+    <div class="wrap" data-i18n="banner">Proyecto académico ficticio: catálogo sintético, pago simulado y ninguna marca real.</div>
   </div>
 
   <main id="main" tabindex="-1">
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="inicio">
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="wrap hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Moda multimarca · un solo pedido</p>
-          <h1>Todas las marcas del grupo.<br><span class="grad">Un solo carrito.</span></h1>
-          <p class="lead">Quien compra paga una vez y ve todo junto. Quien vende recibe solo su parte del pedido y gana acceso a la demanda de todo el grupo.</p>
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">Moda multimarca · un solo pedido</p>
+          <h1><span data-i18n="h1a">Todas las marcas del grupo.</span><br><span class="grad" data-i18n="h1b">Un solo carrito.</span></h1>
+          <p class="lead" data-i18n="heroLead">Quien compra paga una vez y ve todo junto. Quien vende recibe solo su parte del pedido y gana acceso a la demanda de todo el grupo.</p>
           <div class="cta-row">
-            <a class="btn" href="#comprador">Soy comprador</a>
-            <a class="btn btn--ghost" href="#empresario">Soy empresario</a>
+            <a class="btn" href="#comprador" data-i18n="ctaBuy">Soy comprador</a>
+            <a class="btn btn--ghost" href="#empresario" data-i18n="ctaBiz">Soy empresario</a>
           </div>
-          <ul class="ticks" aria-label="Ventajas principales">
-            <li>Un único pago</li>
-            <li>Un subpedido por marca</li>
-            <li>Plazos y envíos a la vista</li>
+          <ul class="ticks">
+            <li data-i18n="tick1">Un único pago</li>
+            <li data-i18n="tick2">Un subpedido por marca</li>
+            <li data-i18n="tick3">Plazos y envíos a la vista</li>
           </ul>
         </div>
 
-        <div class="hero-visual reveal" aria-hidden="true">
-          <div class="mock">
-            <div class="mock-head"><span>Tu carrito</span><span class="chip">3 marcas</span></div>
-            <div class="mock-row"><i class="sw sw--a"></i><b>Marca A</b><span>Camiseta básica</span><em>19,95 €</em></div>
-            <div class="mock-row"><i class="sw sw--b"></i><b>Marca B</b><span>Chaqueta ligera</span><em>59,95 €</em></div>
-            <div class="mock-row"><i class="sw sw--c"></i><b>Marca C</b><span>Zapatillas</span><em>49,95 €</em></div>
-            <div class="mock-total"><span>Total</span><strong>129,85 €</strong></div>
-            <div class="mock-pay">Pagar una vez</div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbs" id="orbs"></div>
+          <div class="mock" id="mock">
+            <div class="mock-head"><span data-i18n="mockCart">Tu carrito</span><span class="chip" data-i18n="mockBrands">3 marcas</span></div>
+            <div class="mock-row"><span class="thumb bd-a" data-art="tee:#5b6cff"></span><b data-i18n="brandA">Marca A</b><span data-i18n="mockP1">Camiseta básica</span><em data-i18n="mockPr1">19,95 €</em></div>
+            <div class="mock-row"><span class="thumb bd-b" data-art="jacket:#e0673d"></span><b data-i18n="brandB">Marca B</b><span data-i18n="mockP2">Chaqueta ligera</span><em data-i18n="mockPr2">59,95 €</em></div>
+            <div class="mock-row"><span class="thumb bd-c" data-art="shoe:#2a9d8f"></span><b data-i18n="brandC">Marca C</b><span data-i18n="mockP3">Zapatillas</span><em data-i18n="mockPr3">49,95 €</em></div>
+            <div class="mock-total"><span data-i18n="total">Total</span><strong data-i18n="mockTotal">129,85 €</strong></div>
+            <div class="mock-pay" data-i18n="mockPay">Pagar una vez</div>
           </div>
-          <div class="float float--1"><span class="dot"></span>1 pedido</div>
-          <div class="float float--2"><span class="dot dot--2"></span>3 subpedidos</div>
+          <div class="float float--1"><span class="dot"></span><span data-i18n="chip1">1 pedido</span></div>
+          <div class="float float--2"><span class="dot dot--2"></span><span data-i18n="chip2">3 subpedidos</span></div>
         </div>
       </div>
 
       <div class="wrap doors">
         <a class="door door--buy reveal" href="#comprador">
-          <span class="door-tag">Parte 1</span>
-          <h2>Para compradores</h2>
-          <p>Un carrito, un pago, plazos y condiciones de todas las marcas en una pantalla. Pruébalo con la demo.</p>
-          <span class="door-go">Ver la parte del comprador <b aria-hidden="true">→</b></span>
+          <span class="door-tag" data-i18n="part1">Parte 1</span>
+          <h2 data-i18n="doorBuyT">Para compradores</h2>
+          <p data-i18n="doorBuyP">Un carrito, un pago, plazos y condiciones de todas las marcas en una pantalla. Pruébalo con la demo.</p>
+          <span class="door-go"><span data-i18n="doorBuyGo">Ver la parte del comprador</span> <b aria-hidden="true">→</b></span>
         </a>
         <a class="door door--biz reveal" href="#empresario">
-          <span class="door-tag">Parte 2</span>
-          <h2>Para empresarios</h2>
-          <p>Modelo de negocio, alcance, riesgos, requisitos y trazabilidad: lo que hay que saber antes de apostar por esta plataforma.</p>
-          <span class="door-go">Ver la parte del empresario <b aria-hidden="true">→</b></span>
+          <span class="door-tag" data-i18n="part2">Parte 2</span>
+          <h2 data-i18n="doorBizT">Para empresarios</h2>
+          <p data-i18n="doorBizP">Modelo de negocio, alcance, riesgos, requisitos y trazabilidad: lo que hay que saber antes de apostar por esta plataforma.</p>
+          <span class="door-go"><span data-i18n="doorBizGo">Ver la parte del empresario</span> <b aria-hidden="true">→</b></span>
         </a>
       </div>
     </section>
 
-    <section class="brands" aria-label="Marcas de ejemplo">
+    <section class="brands" aria-label="Marcas de ejemplo" data-i18n-aria="brandsAria">
       <div class="wrap">
-        <p class="brands-label">Un grupo, muchas marcas · marcas de ejemplo, ficticias</p>
+        <p class="brands-label" data-i18n="brandsLabel">Un grupo, muchas marcas · marcas de ejemplo, ficticias</p>
         <ul class="brands-list">
-          <li>MARCA&nbsp;A</li><li>Marca&nbsp;B</li><li>MARCA&nbsp;C</li><li>Marca&nbsp;D</li><li>MARCA&nbsp;E</li>
+          <li data-i18n="bl1">MARCA A</li><li data-i18n="bl2">Marca B</li><li data-i18n="bl3">MARCA C</li><li data-i18n="bl4">Marca D</li><li data-i18n="bl5">MARCA E</li>
         </ul>
       </div>
     </section>
@@ -108,17 +117,17 @@
         <header class="part-banner reveal">
           <span class="part-num">1</span>
           <div>
-            <p class="eyebrow">Parte 1 · Para compradores</p>
-            <h2>Comprar en varias marcas, sin repetirlo todo</h2>
+            <p class="eyebrow" data-i18n="p1Eyebrow">Parte 1 · Para compradores</p>
+            <h2 data-i18n="p1Title">Comprar en varias marcas, sin repetirlo todo</h2>
           </div>
         </header>
-        <nav class="pills" aria-label="Contenido de la parte del comprador">
+        <nav class="pills" aria-label="Contenido de la parte del comprador" data-i18n-aria="p1Nav">
           <ul>
-            <li><a href="#c-problema">El problema</a></li>
-            <li><a href="#c-como">Cómo funciona</a></li>
-            <li><a href="#demo">Demo</a></li>
-            <li><a href="#c-ventajas">Ventajas</a></li>
-            <li><a href="#c-faq">Preguntas</a></li>
+            <li><a href="#c-problema" data-i18n="p1a">El problema</a></li>
+            <li><a href="#c-como" data-i18n="p1b">Cómo funciona</a></li>
+            <li><a href="#demo" data-i18n="p1c">Demo</a></li>
+            <li><a href="#c-ventajas" data-i18n="p1d">Ventajas</a></li>
+            <li><a href="#c-faq" data-i18n="p1e">Preguntas</a></li>
           </ul>
         </nav>
       </div>
@@ -133,60 +142,60 @@
 
       <section class="block block--alt" id="c-como">
         <div class="wrap">
-          <h3 class="h-sec reveal">De un carrito a un pedido, y de un pedido a un subpedido por marca</h3>
+          <h3 class="h-sec reveal" data-i18n="howTitle">De un carrito a un pedido, y de un pedido a un subpedido por marca</h3>
           <ol class="steps" id="c-como-list"></ol>
         </div>
       </section>
 
       <section class="block" id="demo">
         <div class="wrap">
-          <h3 class="h-sec reveal">Llena el carrito y mira cómo se divide el pedido</h3>
-          <p class="sub reveal">Catálogo y precios sintéticos. Añade prendas de distintas marcas y paga con un clic (simulado).</p>
+          <h3 class="h-sec reveal" data-i18n="demoTitle">Llena el carrito y mira cómo se divide el pedido</h3>
+          <p class="sub reveal" data-i18n="demoSub">Catálogo y precios sintéticos. Añade prendas de distintas marcas y paga con un clic (simulado).</p>
 
           <div class="demo">
             <div class="demo-shop">
-              <h4 class="demo-title">Catálogo de ejemplo</h4>
+              <h4 class="demo-title" data-i18n="demoCatalog">Catálogo de ejemplo</h4>
               <ul id="catalog" class="catalog"></ul>
             </div>
             <aside class="demo-cart" aria-labelledby="cart-title">
-              <h4 id="cart-title" class="demo-title">Tu carrito</h4>
+              <h4 id="cart-title" class="demo-title"><span data-i18n="mockCart">Tu carrito</span> <span class="count" id="cart-count">0</span></h4>
               <div id="cart" aria-live="polite"></div>
-              <div class="cart-total"><span>Total</span><strong id="cart-total">0,00 €</strong></div>
+              <div class="cart-total"><span data-i18n="total">Total</span><strong id="cart-total">0,00 €</strong></div>
               <label class="check">
                 <input type="checkbox" id="sim-fail">
-                <span>Simular que una marca no confirma</span>
+                <span data-i18n="simFail">Simular que una marca no confirma</span>
               </label>
-              <button type="button" class="btn btn--block" id="pay" disabled>Pagar (simulado)</button>
+              <button type="button" class="btn btn--block" id="pay" disabled data-i18n="pay">Pagar (simulado)</button>
               <div id="result" class="result" aria-live="polite"></div>
             </aside>
           </div>
-          <p class="fine">Plazos, envíos y precios de la demo son valores inventados para ilustrar. Si falla una marca no se confirma ninguna: es el comportamiento propuesto actualmente y sigue en revisión (ver <a href="#e-decisiones">decisiones abiertas</a>).</p>
+          <p class="fine"><span data-i18n="demoFine1">Plazos, envíos y precios de la demo son valores inventados para ilustrar. Si falla una marca no se confirma ninguna: es el comportamiento propuesto actualmente y sigue en revisión (ver</span> <a href="#e-decisiones" data-i18n="demoFineLink">decisiones abiertas</a><span data-i18n="demoFine2">).</span></p>
         </div>
       </section>
 
       <section class="block block--alt" id="c-ventajas">
         <div class="wrap">
-          <h3 class="h-sec reveal">Menos pasos, más claridad</h3>
+          <h3 class="h-sec reveal" data-i18n="advTitle">Menos pasos, más claridad</h3>
           <ul class="cards4">
             <li class="card reveal">
               <svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/></svg>
-              <h4>Carrito único</h4>
-              <p>Productos de varias marcas juntos, con subtotal por marca y total general.</p>
+              <h4 data-i18n="adv1t">Carrito único</h4>
+              <p data-i18n="adv1p">Productos de varias marcas juntos, con subtotal por marca y total general.</p>
             </li>
             <li class="card reveal">
               <svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
-              <h4>Un solo pago</h4>
-              <p>Un checkout para todo el carrito, en lugar de uno por tienda.</p>
+              <h4 data-i18n="adv2t">Un solo pago</h4>
+              <p data-i18n="adv2p">Un checkout para todo el carrito, en lugar de uno por tienda.</p>
             </li>
             <li class="card reveal">
               <svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>
-              <h4>Plazos a la vista</h4>
-              <p>El plazo de entrega y el coste de envío de cada marca, en la misma pantalla.</p>
+              <h4 data-i18n="adv3t">Plazos a la vista</h4>
+              <p data-i18n="adv3p">El plazo de entrega y el coste de envío de cada marca, en la misma pantalla.</p>
             </li>
             <li class="card reveal">
               <svg class="svg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
-              <h4>Condiciones en un lugar</h4>
-              <p>Las condiciones de todas las marcas, consultables de forma conjunta.</p>
+              <h4 data-i18n="adv4t">Condiciones en un lugar</h4>
+              <p data-i18n="adv4p">Las condiciones de todas las marcas, consultables de forma conjunta.</p>
             </li>
           </ul>
         </div>
@@ -194,23 +203,23 @@
 
       <section class="block" id="c-faq">
         <div class="wrap narrow">
-          <h3 class="h-sec reveal">Preguntas de quien compra</h3>
+          <h3 class="h-sec reveal" data-i18n="faqBuyTitle">Preguntas de quien compra</h3>
           <div class="faq">
             <details>
-              <summary>¿Es una tienda real?</summary>
-              <p>No. Es un proyecto académico ficticio de Ingeniería del Software, sin vinculación con Inditex ni con ninguna otra empresa o marca real. No se vende nada ni se procesa ningún pago.</p>
+              <summary data-i18n="fb1q">¿Es una tienda real?</summary>
+              <p data-i18n="fb1a">No. Es un proyecto académico ficticio de Ingeniería del Software, sin vinculación con Inditex ni con ninguna otra empresa o marca real. No se vende nada ni se procesa ningún pago.</p>
             </details>
             <details>
-              <summary>¿Quién me vende, el grupo o cada marca?</summary>
-              <p>En el diseño propuesto, el grupo es el único vendedor frente a ti. Los subpedidos solo reparten el cumplimiento (almacén y envío) entre las marcas.</p>
+              <summary data-i18n="fb2q">¿Quién me vende, el grupo o cada marca?</summary>
+              <p data-i18n="fb2a">En el diseño propuesto, el grupo es el único vendedor frente a ti. Los subpedidos solo reparten el cumplimiento (almacén y envío) entre las marcas.</p>
             </details>
             <details>
-              <summary>¿Qué pasa si una marca no puede confirmar su parte?</summary>
-              <p>La propuesta actual es que no se confirme ninguna parte, para no dejar pedidos a medias. Es una decisión todavía en revisión.</p>
+              <summary data-i18n="fb3q">¿Qué pasa si una marca no puede confirmar su parte?</summary>
+              <p data-i18n="fb3a">La propuesta actual es que no se confirme ninguna parte, para no dejar pedidos a medias. Es una decisión todavía en revisión.</p>
             </details>
             <details>
-              <summary>¿Se guardan mis datos?</summary>
-              <p>No. La demo funciona en tu navegador, no tiene servidor ni cuentas y no recoge datos personales. La página no usa trackers ni recursos de terceros.</p>
+              <summary data-i18n="fb4q">¿Se guardan mis datos?</summary>
+              <p data-i18n="fb4a">No. La demo funciona en tu navegador, no tiene servidor ni cuentas y no recoge datos personales. La página no usa trackers ni recursos de terceros.</p>
             </details>
           </div>
         </div>
@@ -223,20 +232,20 @@
         <header class="part-banner reveal">
           <span class="part-num">2</span>
           <div>
-            <p class="eyebrow">Parte 2 · Para empresarios y marcas</p>
-            <h2>Demanda cruzada sin perder el control de tu parte</h2>
+            <p class="eyebrow" data-i18n="p2Eyebrow">Parte 2 · Para empresarios y marcas</p>
+            <h2 data-i18n="p2Title">Demanda cruzada sin perder el control de tu parte</h2>
           </div>
         </header>
-        <nav class="pills" aria-label="Contenido de la parte del empresario">
+        <nav class="pills" aria-label="Contenido de la parte del empresario" data-i18n-aria="p2Nav">
           <ul>
-            <li><a href="#e-propuesta">Propuesta</a></li>
-            <li><a href="#e-modelo">Modelo de negocio</a></li>
-            <li><a href="#e-alcance">Alcance</a></li>
-            <li><a href="#e-riesgos">Riesgos</a></li>
-            <li><a href="#e-decisiones">Decisiones</a></li>
-            <li><a href="#e-evidencia">Requisitos</a></li>
-            <li><a href="#e-trazabilidad">Trazabilidad</a></li>
-            <li><a href="#e-hoja">Hoja de ruta</a></li>
+            <li><a href="#e-propuesta" data-i18n="p2a">Propuesta</a></li>
+            <li><a href="#e-modelo" data-i18n="p2b">Modelo de negocio</a></li>
+            <li><a href="#e-alcance" data-i18n="p2c">Alcance</a></li>
+            <li><a href="#e-riesgos" data-i18n="p2d">Riesgos</a></li>
+            <li><a href="#e-decisiones" data-i18n="p2e">Decisiones</a></li>
+            <li><a href="#e-evidencia" data-i18n="p2f">Requisitos</a></li>
+            <li><a href="#e-trazabilidad" data-i18n="p2g">Trazabilidad</a></li>
+            <li><a href="#e-hoja" data-i18n="p2h">Hoja de ruta</a></li>
           </ul>
         </nav>
       </div>
@@ -244,24 +253,24 @@
       <section class="block" id="e-propuesta">
         <div class="wrap two">
           <div>
-            <h3 class="h-sec reveal">Qué ofrece la plataforma a cada marca</h3>
-            <p class="sub reveal">Un escaparate y un checkout comunes para todo el grupo. Cada marca recibe solo su subpedido para prepararlo y enviarlo.</p>
+            <h3 class="h-sec reveal" data-i18n="offerTitle">Qué ofrece la plataforma a cada marca</h3>
+            <p class="sub reveal" data-i18n="offerSub">Un escaparate y un checkout comunes para todo el grupo. Cada marca recibe solo su subpedido para prepararlo y enviarlo.</p>
             <ul class="bullets">
-              <li><strong>Solo tu parte del pedido.</strong> Cada subpedido contiene únicamente los artículos de tu marca, con su importe, su estado y su identificador.</li>
-              <li><strong>Visibilidad compartida.</strong> Tus productos aparecen junto a los del resto del grupo, sin pagar posicionamiento.</li>
-              <li><strong>Vendedor único frente al cliente.</strong> El grupo vende; las marcas reparten el cumplimiento.</li>
-              <li><strong>Sin pedidos a medias.</strong> Si una marca no puede confirmar, no se confirma ninguna parte (propuesta en revisión).</li>
+              <li><strong data-i18n="o1t">Solo tu parte del pedido.</strong> <span data-i18n="o1p">Cada subpedido contiene únicamente los artículos de tu marca, con su importe, su estado y su identificador.</span></li>
+              <li><strong data-i18n="o2t">Visibilidad compartida.</strong> <span data-i18n="o2p">Tus productos aparecen junto a los del resto del grupo, sin pagar posicionamiento.</span></li>
+              <li><strong data-i18n="o3t">Vendedor único frente al cliente.</strong> <span data-i18n="o3p">El grupo vende; las marcas reparten el cumplimiento.</span></li>
+              <li><strong data-i18n="o4t">Sin pedidos a medias.</strong> <span data-i18n="o4p">Si una marca no puede confirmar, no se confirma ninguna parte (propuesta en revisión).</span></li>
             </ul>
           </div>
-          <div class="flow reveal" aria-label="Flujo: un carrito se convierte en un pedido y este en un subpedido por marca" role="img">
-            <div class="flow-box flow-box--cart"><b>Carrito unificado</b><span>Productos de varias marcas</span></div>
+          <div class="flow reveal" role="img" aria-label="Flujo: un carrito se convierte en un pedido y este en un subpedido por marca" data-i18n-aria="flowAria">
+            <div class="flow-box flow-box--cart"><b data-i18n="flowCart">Carrito unificado</b><span data-i18n="flowCartS">Productos de varias marcas</span></div>
             <div class="flow-arrow" aria-hidden="true">↓</div>
-            <div class="flow-box flow-box--order"><b>Pedido</b><span>Un único pago · vendedor: el grupo</span></div>
+            <div class="flow-box flow-box--order"><b data-i18n="flowOrder">Pedido</b><span data-i18n="flowOrderS">Un único pago · vendedor: el grupo</span></div>
             <div class="flow-arrow" aria-hidden="true">↓</div>
             <div class="flow-subs">
-              <div class="flow-box flow-box--sub"><i class="sw sw--a"></i><b>Subpedido</b><span>Marca A</span></div>
-              <div class="flow-box flow-box--sub"><i class="sw sw--b"></i><b>Subpedido</b><span>Marca B</span></div>
-              <div class="flow-box flow-box--sub"><i class="sw sw--c"></i><b>Subpedido</b><span>Marca C</span></div>
+              <div class="flow-box flow-box--sub"><i class="sw sw--a"></i><b data-i18n="flowSub">Subpedido</b><span data-i18n="brandA">Marca A</span></div>
+              <div class="flow-box flow-box--sub"><i class="sw sw--b"></i><b data-i18n="flowSub">Subpedido</b><span data-i18n="brandB">Marca B</span></div>
+              <div class="flow-box flow-box--sub"><i class="sw sw--c"></i><b data-i18n="flowSub">Subpedido</b><span data-i18n="brandC">Marca C</span></div>
             </div>
           </div>
         </div>
@@ -297,7 +306,7 @@
       <section class="block block--alt" id="e-riesgos">
         <div class="wrap">
           <h3 class="h-sec reveal" id="risks-title"></h3>
-          <p class="sub reveal">Preferimos decirlo claro: estos son los supuestos sin validar y los riesgos que vemos.</p>
+          <p class="sub reveal" data-i18n="risksSub">Preferimos decirlo claro: estos son los supuestos sin validar y los riesgos que vemos.</p>
           <ul class="cards2" id="risks-list"></ul>
         </div>
       </section>
@@ -315,12 +324,12 @@
           <h3 class="h-sec reveal" id="req-title"></h3>
           <p class="sub reveal" id="req-intro"></p>
 
-          <h4 class="h-sub">Necesidades identificadas</h4>
+          <h4 class="h-sub" data-i18n="needsTitle">Necesidades identificadas</h4>
           <ul class="needs" id="req-needs"></ul>
 
           <div class="two two--equal two--top">
-            <div class="panel reveal"><h4>Hipótesis</h4><ul class="idl" id="req-hyp"></ul></div>
-            <div class="panel reveal"><h4>Restricciones</h4><ul class="idl" id="req-cons"></ul></div>
+            <div class="panel reveal"><h4 id="hyp-title"></h4><ul class="idl" id="req-hyp"></ul></div>
+            <div class="panel reveal"><h4 id="cons-title"></h4><ul class="idl" id="req-cons"></ul></div>
           </div>
 
           <div class="callout callout--out reveal" id="req-excl"></div>
@@ -349,23 +358,23 @@
 
       <section class="block" id="e-faq">
         <div class="wrap narrow">
-          <h3 class="h-sec reveal">Preguntas de quien vende</h3>
+          <h3 class="h-sec reveal" data-i18n="faqBizTitle">Preguntas de quien vende</h3>
           <div class="faq">
             <details>
-              <summary>¿Cómo gana dinero la plataforma?</summary>
-              <p>La hipótesis es una comisión por cada subpedido confirmado. Está sin validar y, al ser marcas del mismo grupo, solo aporta valor nuevo si el carrito unificado genera ventas adicionales.</p>
+              <summary data-i18n="fv1q">¿Cómo gana dinero la plataforma?</summary>
+              <p data-i18n="fv1a">La hipótesis es una comisión por cada subpedido confirmado. Está sin validar y, al ser marcas del mismo grupo, solo aporta valor nuevo si el carrito unificado genera ventas adicionales.</p>
             </details>
             <details>
-              <summary>¿Qué está validado y qué no?</summary>
-              <p>Nada de lo comercial está validado con usuarios. No se han hecho entrevistas ni benchmarking documentado: las necesidades parten del planteamiento del Hito 1 y quedan como hipótesis hasta contrastarlas.</p>
+              <summary data-i18n="fv2q">¿Qué está validado y qué no?</summary>
+              <p data-i18n="fv2a">Nada de lo comercial está validado con usuarios. No se han hecho entrevistas ni benchmarking documentado: las necesidades parten del planteamiento del Hito 1 y quedan como hipótesis hasta contrastarlas.</p>
             </details>
             <details>
-              <summary>¿Qué se construye y qué queda fuera?</summary>
-              <p>Se construye un prototipo con catálogo sintético y pago simulado. Quedan fuera envíos reales, devoluciones, atención al cliente y la integración con tiendas reales.</p>
+              <summary data-i18n="fv3q">¿Qué se construye y qué queda fuera?</summary>
+              <p data-i18n="fv3a">Se construye un prototipo con catálogo sintético y pago simulado. Quedan fuera envíos reales, devoluciones, atención al cliente y la integración con tiendas reales.</p>
             </details>
             <details>
-              <summary>¿Dónde puedo revisar el detalle?</summary>
-              <p>En la <a href="../">landing documental</a>, con requisitos, criterios de aceptación, decisiones, riesgos, avances, evolución y uso de IA.</p>
+              <summary data-i18n="fv4q">¿Dónde puedo revisar el detalle?</summary>
+              <p><span data-i18n="fv4a1">En la</span> <a href="../" data-i18n="fv4a2">landing documental</a><span data-i18n="fv4a3">, con requisitos, criterios de aceptación, decisiones, riesgos, avances, evolución y uso de IA.</span></p>
             </details>
           </div>
         </div>
@@ -378,8 +387,8 @@
         <header class="part-banner reveal">
           <span class="part-num">3</span>
           <div>
-            <p class="eyebrow">Quiénes somos</p>
-            <h2>Un equipo de tres personas y un método de trabajo</h2>
+            <p class="eyebrow" data-i18n="p3Eyebrow">Quiénes somos</p>
+            <h2 data-i18n="p3Title">Un equipo de tres personas y un método de trabajo</h2>
           </div>
         </header>
       </div>
@@ -387,10 +396,10 @@
       <section class="block" id="n-equipo">
         <div class="wrap two">
           <div>
-            <p class="sub reveal">IndiConnect es un proyecto universitario de Ingeniería del Software. Partimos de un problema real de compra online, lo especificamos con requisitos y criterios comprobables y lo construimos por hitos, con la trazabilidad como hilo conductor.</p>
+            <p class="sub reveal" data-i18n="usIntro">IndiConnect es un proyecto universitario de Ingeniería del Software. Partimos de un problema real de compra online, lo especificamos con requisitos y criterios comprobables y lo construimos por hitos, con la trazabilidad como hilo conductor.</p>
             <ul class="team" id="team-list"></ul>
           </div>
-          <div class="stats" id="stats" aria-label="El proyecto en cifras"></div>
+          <div class="stats" id="stats" aria-label="El proyecto en cifras" data-i18n-aria="statsAria"></div>
         </div>
       </section>
 
@@ -404,12 +413,14 @@
     </div>
 
     <section class="final">
+      <div class="final-orb final-orb--1" aria-hidden="true"></div>
+      <div class="final-orb final-orb--2" aria-hidden="true"></div>
       <div class="wrap">
-        <h2>Una sola compra, todas las marcas</h2>
-        <p>Pruébalo en menos de un minuto o revisa cómo está especificado.</p>
+        <h2 data-i18n="finalTitle">Una sola compra, todas las marcas</h2>
+        <p data-i18n="finalSub">Pruébalo en menos de un minuto o revisa cómo está especificado.</p>
         <div class="cta-row cta-row--center">
-          <a class="btn btn--light" href="#demo">Probar la demo</a>
-          <a class="btn btn--outline" href="../">Ver la documentación</a>
+          <a class="btn btn--light" href="#demo" data-i18n="finalCta1">Probar la demo</a>
+          <a class="btn btn--outline" href="../" data-i18n="finalCta2">Ver la documentación</a>
         </div>
       </div>
     </section>
@@ -419,12 +430,12 @@
     <div class="wrap foot-grid">
       <div>
         <a class="logo" href="#inicio"><span class="logo-dot" aria-hidden="true"></span><span>IndiConnect</span></a>
-        <p class="foot-note">Proyecto universitario · Ingeniería del Software</p>
-        <p class="foot-note">Equipo: Alberto Guerrero, Lucía Guerra y Mikel Moriel.</p>
+        <p class="foot-note" data-i18n="footTag">Proyecto universitario · Ingeniería del Software</p>
+        <p class="foot-note" data-i18n="footTeam">Equipo: Alberto Guerrero, Lucía Guerra y Mikel Moriel.</p>
       </div>
       <div>
-        <p class="legal-label">Aviso legal</p>
-        <p class="legal">Proyecto académico ficticio, sin vinculación con Inditex ni con ninguna otra empresa o marca real.</p>
+        <p class="legal-label" data-i18n="legalLabel">Aviso legal</p>
+        <p class="legal" data-i18n="legal">Proyecto académico ficticio, sin vinculación con Inditex ni con ninguna otra empresa o marca real.</p>
         <p class="foot-note" id="foot-updated"></p>
       </div>
     </div>

@@ -1,0 +1,104 @@
+/* =====================================================================
+   Selector de idioma, fondos de producto, hero 3D, hojas superpuestas,
+   confeti y vuelo al carrito. Se carga después de styles.css.
+   ===================================================================== */
+
+/* ===== Selector de idioma ===== */
+.lang-btn { flex: none; font: inherit; font-size: .85rem; font-weight: 800; letter-spacing: .02em; cursor: pointer; color: var(--primary); background: var(--surface); border: 2px solid var(--border); border-radius: 999px; padding: .35rem .95rem; transition: border-color .2s, background .2s, transform .15s; }
+.lang-btn:hover { border-color: var(--primary); background: var(--surface-2); transform: translateY(-1px); }
+@media (max-width: 47.99rem) { .logo { order: 1; } .lang-btn { order: 2; } }
+
+/* ===== Fondos de producto por marca y miniaturas ===== */
+.bd-a { background: linear-gradient(145deg, color-mix(in srgb, var(--sw-a) 24%, var(--surface)), color-mix(in srgb, var(--sw-a) 6%, var(--surface-2))); }
+.bd-b { background: linear-gradient(145deg, color-mix(in srgb, var(--sw-b) 26%, var(--surface)), color-mix(in srgb, var(--sw-b) 6%, var(--surface-2))); }
+.bd-c { background: linear-gradient(145deg, color-mix(in srgb, var(--sw-c) 26%, var(--surface)), color-mix(in srgb, var(--sw-c) 6%, var(--surface-2))); }
+.art { display: block; width: 100%; height: 100%; overflow: visible; }
+.thumb { width: 2.5rem; height: 2.5rem; border-radius: .75rem; display: grid; place-items: center; overflow: hidden; flex: none; }
+.thumb .art { width: 88%; height: 88%; }
+
+.prod-img { position: relative; overflow: hidden; height: 8rem; border-radius: 14px; }
+.prod-img .art { width: 74%; height: 100%; margin: 0 auto; }
+.prod-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.prod-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, .35) 50%, transparent 62%); transform: translateX(-130%); pointer-events: none; }
+.prod:hover .prod-img::after { transform: translateX(130%); transition: transform .8s ease; }
+.prod-img .art-body { transform-origin: 50% 90%; transition: transform .4s cubic-bezier(.2, 1.2, .4, 1); }
+.prod:hover .art-body { transform: translateY(-4px) scale(1.06) rotate(-2deg); }
+.prod-price { font-size: 1.1rem; }
+.prod button { display: flex; align-items: center; justify-content: center; gap: .15rem; background: var(--surface-2); transition: background .2s, color .2s, border-color .2s; }
+.prod button:hover { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+.plus { display: inline-block; font-weight: 800; font-size: 1.1rem; line-height: 1; transition: transform .3s ease; }
+.prod button:hover .plus { transform: rotate(90deg) scale(1.2); }
+
+.count { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 .4rem; margin-left: .35rem; border-radius: 999px; background: var(--primary); color: var(--on-primary); font-size: .8rem; letter-spacing: 0; vertical-align: middle; }
+.line-name { display: inline-flex; align-items: center; gap: .55rem; }
+.line-thumb { width: 2rem; height: 2rem; border-radius: .55rem; display: grid; place-items: center; overflow: hidden; flex: none; }
+.line-thumb .art { width: 90%; height: 90%; }
+
+/* ===== Hero: foco, órbitas y maqueta en 3D ===== */
+.hero-glow { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(24rem circle at var(--mx, 72%) var(--my, 28%), color-mix(in srgb, var(--primary-2) 26%, transparent), transparent 62%); }
+.hero-visual { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .25s ease-out; transform-style: preserve-3d; }
+.orbs { position: absolute; inset: 0; pointer-events: none; }
+.orb { position: absolute; display: grid; place-items: center; width: 4.4rem; height: 4.4rem; border-radius: 1.3rem; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.orb .art { width: 82%; height: 82%; }
+.orb--1 { top: -.5rem; left: 2%; }
+.orb--2 { top: 38%; right: -1.2rem; width: 3.6rem; height: 3.6rem; }
+.orb--3 { bottom: -1rem; right: 18%; }
+.orb--4 { top: 52%; left: -1.4rem; width: 3.4rem; height: 3.4rem; }
+@media (max-width: 47.99rem) { .orb--2, .orb--4 { display: none; } .orb--1 { left: 0; } }
+
+/* ===== Hojas superpuestas: cada parte monta sobre la anterior ===== */
+.part { position: relative; border-radius: 2.25rem 2.25rem 0 0; margin-top: -2.25rem; box-shadow: 0 -22px 40px -30px rgba(40, 30, 110, .45); }
+.part--buy { z-index: 1; }
+.part--biz { z-index: 2; }
+.part--us { z-index: 3; }
+.part-banner { padding-top: 5rem; }
+.final { position: relative; z-index: 4; overflow: hidden; margin-top: -2.25rem; border-radius: 2.25rem 2.25rem 0 0; padding-top: 6rem; }
+.final .wrap { position: relative; }
+.final-orb { position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; pointer-events: none; }
+.final-orb--1 { width: 20rem; height: 20rem; left: -5rem; top: -4rem; background: #7c6cff; }
+.final-orb--2 { width: 18rem; height: 18rem; right: -4rem; bottom: -5rem; background: #ff8a4c; }
+
+/* ===== Confeti y vuelo al carrito ===== */
+.result-box--ok { position: relative; overflow: hidden; }
+.confetti { position: absolute; inset: 0; pointer-events: none; }
+.confetti i { position: absolute; top: -10px; left: var(--x); width: .5rem; height: .9rem; border-radius: 2px; animation: fall 1.7s ease-in var(--d) forwards; }
+@keyframes fall { to { transform: translate(var(--dx), 15rem) rotate(var(--r)); opacity: 0; } }
+.fly { box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .45); border-radius: 14px; }
+
+/* ===== Entrada del hero, órbitas y detalles animados ===== */
+.hero-copy > * { animation: fadeUp .9s cubic-bezier(.2, .8, .2, 1) both; }
+.hero-copy > :nth-child(1) { animation-delay: .05s; }
+.hero-copy > :nth-child(2) { animation-delay: .15s; }
+.hero-copy > :nth-child(3) { animation-delay: .3s; }
+.hero-copy > :nth-child(4) { animation-delay: .45s; }
+.hero-copy > :nth-child(5) { animation-delay: .6s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+.hero-visual .mock { animation: mockFloat 7s ease-in-out infinite, fadeIn 1s .3s both; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.orb { animation: orbit 8s ease-in-out infinite; }
+.orb--1 { animation-delay: -1s; }
+.orb--2 { animation-delay: -3s; animation-duration: 10s; }
+.orb--3 { animation-delay: -5s; animation-duration: 9s; }
+.orb--4 { animation-delay: -2s; animation-duration: 11s; }
+@keyframes orbit { 0%, 100% { transform: translate3d(0, 0, 40px) rotate(-4deg); } 50% { transform: translate3d(6px, -14px, 40px) rotate(5deg); } }
+
+.thumb .art-body { animation: sway 5s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes sway { 50% { transform: rotate(3deg) translateY(-1px); } }
+
+.final-orb--1 { animation: drift 12s ease-in-out infinite alternate; }
+.final-orb--2 { animation: drift 15s ease-in-out infinite alternate-reverse; }
+
+.part-num { position: relative; }
+.part-num::after { content: ""; position: absolute; inset: -6px; border-radius: 22px; border: 2px solid var(--primary); opacity: 0; animation: ring 3s ease-out infinite; }
+@keyframes ring { 0% { transform: scale(.9); opacity: .6; } 100% { transform: scale(1.35); opacity: 0; } }
+
+.count.bump { animation: bump .4s ease; }
+.lang-btn { position: relative; overflow: hidden; }
+.lang-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, color-mix(in srgb, var(--primary) 25%, transparent) 50%, transparent 65%); transform: translateX(-120%); animation: glint 6s ease-in-out infinite; pointer-events: none; }
+@keyframes glint { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy > *, .orb, .lang-btn::after, .part-num::after { animation: none !important; }
+  .hero-visual { transform: none !important; }
+}

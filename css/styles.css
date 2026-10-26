@@ -430,3 +430,9 @@ details summary { cursor: pointer; font-weight: 600; color: var(--primary); }
 .cta-group { display: flex; flex-wrap: wrap; gap: .75rem; }
 .btn--ghost { background: transparent; color: var(--primary); border: 2px solid var(--border); }
 .btn--ghost:hover { border-color: var(--primary); filter: none; }
+
+/* ===== Selector de idioma ===== */
+.lang-toggle { font-weight: 700; }
+@media (min-width: 64rem) {
+  .lang-toggle { margin-bottom: -.75rem; }
+}

@@ -47,6 +47,10 @@ Edita **solo** `js/content.js`:
 | Registro de cambios del proyecto (qué, quién, cuándo, por qué) | `evolution.entries` |
 | Declaración de uso de IA | `aiUse` |
 
+### Idiomas (español / inglés)
+
+El botón ES/EN de ambas páginas guarda la elección en `localStorage` (clave `indiconnect-lang`) y también acepta `?lang=en` o `?lang=es` en la URL. El español está en `js/content.js` y el inglés en `js/content.en.js`, con **las mismas claves**: al añadir o cambiar un texto hay que tocar los dos archivos. Los estados (`Borrador`, `En curso`, `Entregado`…) se guardan siempre con su identificador en español; `ui.statusLabels` solo traduce lo que se ve. La landing comercial (`comercial/`) lee ese mismo contenido para sus secciones de evidencia; sus textos de marketing están en `comercial/index.html` (español) y `comercial/i18n.js` (inglés). Fotos propias para la demo: ver `comercial/img/LEEME.txt`.
+
 Los colores de estado se asignan solos a partir del texto del estado. Si inventas un estado nuevo, hay que añadirle su clase `.badge--<estado>` en `css/styles.css`.
 
 ## Publicarla en GitHub Pages

@@ -1,0 +1,15 @@
+FOTOS PROPIAS PARA LA DEMO
+==========================
+
+La demo muestra por defecto ilustraciones originales dibujadas en SVG (sin derechos
+de terceros ni marcas reales). Para usar fotos de producto propias:
+
+1. Guarda aquí las imágenes (JPG o WebP, unos 600x600 px, fondo claro). Deben ser
+   fotos propias o con licencia que permita publicarlas, sin logotipos ni marcas reales.
+2. En comercial/demo.js, rellena el objeto PHOTOS con el id de cada producto, por ejemplo:
+
+     var PHOTOS = { a1: "img/camiseta.jpg", b1: "img/chaqueta.jpg" };
+
+3. Los ids son: a1 (camiseta), a2 (vaquero), b1 (chaqueta), b2 (vestido), c1 (zapatillas), c2 (bolso).
+
+Si una foto no carga, se vuelve a mostrar la ilustración.
