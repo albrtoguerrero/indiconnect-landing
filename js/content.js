@@ -65,7 +65,8 @@ window.CONTENT = {
   hero: {
     title: "Un solo carrito para todas las marcas del grupo",
     value: "Plataforma ficticia que reúne el catálogo de varias marcas de un mismo grupo textil y, al pagar, divide el pedido en subpedidos: uno por marca.",
-    cta: { label: "Cómo funciona", href: "#como-funciona" }
+    cta: { label: "Cómo funciona", href: "#como-funciona" },
+    cta2: { label: "Ver la landing comercial", href: "comercial/" }
   },
 
   problem: {

@@ -90,7 +90,10 @@
         el("p", { "class": "eyebrow", text: C.brand.tagline }),
         el("h1", { id: "inicio-title", text: C.hero.title }),
         el("p", { "class": "lead", text: C.hero.value }),
-        el("a", { "class": "btn", href: C.hero.cta.href, text: C.hero.cta.label }),
+        el("div", { "class": "cta-group" }, [
+          el("a", { "class": "btn", href: C.hero.cta.href, text: C.hero.cta.label }),
+          C.hero.cta2 ? el("a", { "class": "btn btn--ghost", href: C.hero.cta2.href, text: C.hero.cta2.label }) : null
+        ]),
         el("p", { "class": "legal legal--hero", text: C.legal })
       ]),
       renderSnapshot()
