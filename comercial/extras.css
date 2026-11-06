@@ -102,3 +102,6 @@
   .hero-copy > *, .orb, .lang-btn::after, .part-num::after { animation: none !important; }
   .hero-visual { transform: none !important; }
 }
+
+/* ===== Páginas independientes (comprador / empresario) ===== */
+.subpage .part { margin-top: 0; border-radius: 0; box-shadow: none; }

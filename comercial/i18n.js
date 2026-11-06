@@ -11,6 +11,13 @@
     skip: "Skip to content",
     logoAria: "IndiConnect",
     navAria: "Page sections",
+    navHome: "Home",
+    crossToBizT: "Are you a business owner or a brand?",
+    crossToBizS: "Discover the business model, the scope and the risks of the platform.",
+    crossToBizCta: "Go to the business owner section",
+    crossToBuyT: "Want to see the shopping experience?",
+    crossToBuyS: "Fill the cart in the demo and see how the order is split.",
+    crossToBuyCta: "Go to the shopper section",
     navBuy: "I'm a shopper",
     navBiz: "I'm a business owner",
     navUs: "About us",
@@ -198,12 +205,12 @@
     var meta = document.querySelector('meta[name="description"]');
     if (meta) {
       if (meta.getAttribute("data-es") === null) { meta.setAttribute("data-es", meta.getAttribute("content")); }
-      meta.setAttribute("content", en ? EN.metaDesc : meta.getAttribute("data-es"));
+      meta.setAttribute("content", en ? (document.documentElement.getAttribute("data-en-desc") || EN.metaDesc) : meta.getAttribute("data-es"));
     }
     if (document.documentElement.getAttribute("data-es-title") === null) {
       document.documentElement.setAttribute("data-es-title", document.title);
     }
-    document.title = en ? EN.docTitle : document.documentElement.getAttribute("data-es-title");
+    document.title = en ? (document.documentElement.getAttribute("data-en-title") || EN.docTitle) : document.documentElement.getAttribute("data-es-title");
     var btn = document.getElementById("lang-toggle");
     if (btn) {
       btn.textContent = t("langBtn");
