@@ -47,7 +47,7 @@
 @media (max-width: 47.99rem) { .orb--2, .orb--4 { display: none; } .orb--1 { left: 0; } }
 
 /* ===== Hojas superpuestas: cada parte monta sobre la anterior ===== */
-.part { position: relative; border-radius: 2.25rem 2.25rem 0 0; margin-top: -2.25rem; box-shadow: 0 -22px 40px -30px rgba(40, 30, 110, .45); }
+.part { position: relative; border-radius: 2.25rem 2.25rem 0 0; margin-top: -2.25rem; box-shadow: 0 -22px 40px -30px rgba(10, 70, 82, .45); }
 .part--buy { z-index: 1; }
 .part--biz { z-index: 2; }
 .part--us { z-index: 3; }
@@ -55,8 +55,8 @@
 .final { position: relative; z-index: 4; overflow: hidden; margin-top: -2.25rem; border-radius: 2.25rem 2.25rem 0 0; padding-top: 6rem; }
 .final .wrap { position: relative; }
 .final-orb { position: absolute; border-radius: 50%; filter: blur(50px); opacity: .5; pointer-events: none; }
-.final-orb--1 { width: 20rem; height: 20rem; left: -5rem; top: -4rem; background: #7c6cff; }
-.final-orb--2 { width: 18rem; height: 18rem; right: -4rem; bottom: -5rem; background: #ff8a4c; }
+.final-orb--1 { width: 20rem; height: 20rem; left: -5rem; top: -4rem; background: #2fb8c9; }
+.final-orb--2 { width: 18rem; height: 18rem; right: -4rem; bottom: -5rem; background: #ff8a75; }
 
 /* ===== Confeti y vuelo al carrito ===== */
 .result-box--ok { position: relative; overflow: hidden; }

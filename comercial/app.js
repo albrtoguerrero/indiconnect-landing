@@ -46,7 +46,7 @@
     });
     var orbs = $("orbs");
     if (orbs && !orbs.firstChild) {
-      [["tee", "#5b6cff", "a"], ["dress", "#1f9d7a", "b"], ["bag", "#b9783f", "c"], ["jeans", "#3b5b8c", "a"]].forEach(function (o, i) {
+      [["tee", "#2a9fb0", "a"], ["dress", "#1f9d7a", "b"], ["bag", "#b9783f", "c"], ["jeans", "#3b5b8c", "a"]].forEach(function (o, i) {
         orbs.appendChild(el("span", { "class": "orb orb--" + (i + 1) + " bd-" + o[2] }, [window.ICArt.draw(o[0], o[1])]));
       });
     }

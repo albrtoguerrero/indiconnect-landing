@@ -14,7 +14,7 @@
   };
 
   var PRODUCTS = [
-    { id: "a1", brand: "A", price: 19.95, shape: "tee", color: "#5b6cff" },
+    { id: "a1", brand: "A", price: 19.95, shape: "tee", color: "#2a9fb0" },
     { id: "a2", brand: "A", price: 39.95, shape: "jeans", color: "#3b5b8c" },
     { id: "b1", brand: "B", price: 59.95, shape: "jacket", color: "#e0673d" },
     { id: "b2", brand: "B", price: 45.95, shape: "dress", color: "#1f9d7a" },
@@ -182,7 +182,7 @@
   // Confeti con elementos CSS; solo se genera si el usuario admite movimiento
   function confetti(host) {
     if (reduce) { return; }
-    var colors = ["#6a5df0", "#e8590c", "#1f9d7a", "#f2c94c", "#e0673d", "#3b5b8c"];
+    var colors = ["#0f8193", "#e0533f", "#1f9d7a", "#f2c94c", "#e0673d", "#3b5b8c"];
     var wrap = el("div", { "class": "confetti", "aria-hidden": "true" });
     for (var i = 0; i < 26; i++) {
       var p = el("i", {});

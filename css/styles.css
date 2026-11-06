@@ -1,15 +1,15 @@
 /* ===== Tokens ===== */
 :root {
-  --bg: #f6f7fb;
+  --bg: #f3f8f8;
   --surface: #ffffff;
-  --surface-2: #eceef8;
-  --text: #1a1d3a;
-  --muted: #4a4f73;
-  --primary: #3b34b0;
+  --surface-2: #e3f0f1;
+  --text: #12282e;
+  --muted: #44585e;
+  --primary: #0b6e80;
   --on-primary: #ffffff;
-  --accent: #b53b0b;
-  --border: #b4b9d9;
-  --focus: #3b34b0;
+  --accent: #c2412d;
+  --border: #b7d0d3;
+  --focus: #0b6e80;
 
   --b-warn-bg: #fff4d6;   --b-warn-fg: #6b4700;
   --b-info-bg: #dbeafe;   --b-info-fg: #1e3a8a;
@@ -25,16 +25,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1026;
-    --surface: #171a38;
-    --surface-2: #20244a;
-    --text: #eceefc;
-    --muted: #b4b9dc;
-    --primary: #a9b4ff;
-    --on-primary: #0e1026;
-    --accent: #fdba74;
-    --border: #3d4274;
-    --focus: #fdba74;
+    --bg: #0c1b20;
+    --surface: #12272d;
+    --surface-2: #19333a;
+    --text: #e8f3f4;
+    --muted: #a9c3c8;
+    --primary: #5ec3d6;
+    --on-primary: #0c1b20;
+    --accent: #ff9e8a;
+    --border: #2f5159;
+    --focus: #ff9e8a;
     --b-warn-bg: #3a2c08;  --b-warn-fg: #fde68a;
     --b-info-bg: #172554;  --b-info-fg: #bfdbfe;
     --b-ok-bg: #052e16;    --b-ok-fg: #bbf7d0;
@@ -44,16 +44,16 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e1026;
-  --surface: #171a38;
-  --surface-2: #20244a;
-  --text: #eceefc;
-  --muted: #b4b9dc;
-  --primary: #a9b4ff;
-  --on-primary: #0e1026;
-  --accent: #fdba74;
-  --border: #3d4274;
-  --focus: #fdba74;
+  --bg: #0c1b20;
+  --surface: #12272d;
+  --surface-2: #19333a;
+  --text: #e8f3f4;
+  --muted: #a9c3c8;
+  --primary: #5ec3d6;
+  --on-primary: #0c1b20;
+  --accent: #ff9e8a;
+  --border: #2f5159;
+  --focus: #ff9e8a;
   --b-warn-bg: #3a2c08;  --b-warn-fg: #fde68a;
   --b-info-bg: #172554;  --b-info-fg: #bfdbfe;
   --b-ok-bg: #052e16;    --b-ok-fg: #bbf7d0;
@@ -107,9 +107,8 @@ ul, ol { margin: 0; padding: 0; }
   font-weight: 700; color: var(--text); text-decoration: none;
 }
 .brand-dot {
-  width: .9rem; height: .9rem; border-radius: 50%;
-  background: var(--primary); box-shadow: .45rem .2rem 0 -.1rem var(--accent);
-  margin-right: .3rem;
+  width: 2rem; height: 2rem; flex: none;
+  background: url("../assets/logo.svg") center / contain no-repeat;
 }
 #site-nav { order: 3; flex: 1 0 100%; min-width: 0; overflow-x: auto; scrollbar-width: thin; }
 #site-nav ul { display: flex; gap: .25rem; list-style: none; white-space: nowrap; }
@@ -393,7 +392,7 @@ details summary { cursor: pointer; font-weight: 600; color: var(--primary); }
     flex-direction: column; flex-wrap: nowrap; align-items: stretch; justify-content: flex-start; gap: 1.25rem;
   }
   .brand { align-items: flex-start; gap: .75rem; padding: 0 .5rem; font-size: 1.3rem; letter-spacing: -.01em; }
-  .brand-dot { width: 1.25rem; height: 1.25rem; margin: .3rem .5rem 0 0; box-shadow: .6rem .3rem 0 -.15rem var(--accent); }
+  .brand-dot { width: 2.4rem; height: 2.4rem; margin: 0 .25rem 0 0; }
   .brand-sub { display: block; margin-top: .25rem; font-size: .75rem; font-weight: 500; letter-spacing: .02em; color: var(--muted); }
   #site-nav {
     order: 0; flex: 1 1 auto; min-height: 0; overflow-x: hidden; overflow-y: auto;
