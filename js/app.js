@@ -644,7 +644,7 @@
       var h2 = host.querySelector("h2");
       var section = h2 ? h2.textContent : id;
       [].forEach.call(host.querySelectorAll("h3, h4, p, summary, tr, pre, li"), function (n) {
-        if (n.closest(".filter, .snapshot-title")) { return; }
+        if (n.closest(".filter, .snapshot-title") || n.classList.contains("tag")) { return; }
         if (n.tagName === "LI" && n.querySelector("p, h3, h4, ul, summary, pre")) { return; }
         if (n.tagName === "P" && n.closest("tr")) { return; }
         var raw = n.tagName === "TR"
