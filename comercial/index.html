@@ -131,11 +131,47 @@
       </div>
     </section>
 
+    <!-- ============ FLUJO ANIMADO ============ -->
+    <section class="flowsec" aria-labelledby="pipe-title">
+      <div class="wrap">
+        <h2 class="h-sec reveal" id="pipe-title" data-i18n="pipeTitle">Así viaja tu compra</h2>
+        <p class="sub reveal" data-i18n="pipeSub">De varias marcas a un solo pago, y de ahí a un subpedido por marca.</p>
+        <ol class="pipe">
+          <li class="pipe-col">
+            <p class="pipe-label" data-i18n="pipeStep1">1 · Eliges en varias marcas</p>
+            <ul class="pipe-list">
+              <li class="chip"><i class="sw sw--a"></i><span data-i18n="brandA">Marca A</span></li>
+              <li class="chip"><i class="sw sw--b"></i><span data-i18n="brandB">Marca B</span></li>
+              <li class="chip"><i class="sw sw--c"></i><span data-i18n="brandC">Marca C</span></li>
+            </ul>
+          </li>
+          <li class="pipe-link" aria-hidden="true"><span></span></li>
+          <li class="pipe-col">
+            <p class="pipe-label" data-i18n="pipeStep2">2 · Pagas una sola vez</p>
+            <div class="pipe-core">
+              <div class="stage stage--cart" data-i18n="flowCart">Carrito unificado</div>
+              <div class="stage stage--pay" data-i18n="pipePay">Un único pago</div>
+              <div class="stage stage--order" data-i18n="flowOrder">Pedido</div>
+            </div>
+          </li>
+          <li class="pipe-link" aria-hidden="true"><span></span></li>
+          <li class="pipe-col">
+            <p class="pipe-label" data-i18n="pipeStep3">3 · Cada marca recibe lo suyo</p>
+            <ul class="pipe-list">
+              <li class="chip chip--sub"><i class="sw sw--a"></i><span><span data-i18n="flowSub">Subpedido</span> · <span data-i18n="brandA">Marca A</span></span></li>
+              <li class="chip chip--sub"><i class="sw sw--b"></i><span><span data-i18n="flowSub">Subpedido</span> · <span data-i18n="brandB">Marca B</span></span></li>
+              <li class="chip chip--sub"><i class="sw sw--c"></i><span><span data-i18n="flowSub">Subpedido</span> · <span data-i18n="brandC">Marca C</span></span></li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- ============ QUIÉNES SOMOS ============ -->
     <div class="part part--us" id="nosotros">
       <div class="wrap">
         <header class="part-banner reveal">
-          <span class="part-num">3</span>
+          <span class="part-num" aria-hidden="true">i</span>
           <div>
             <p class="eyebrow" data-i18n="p3Eyebrow">Quiénes somos</p>
             <h2 data-i18n="p3Title">Un equipo de tres personas y un método de trabajo</h2>

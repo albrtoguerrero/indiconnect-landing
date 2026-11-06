@@ -145,3 +145,36 @@
 .rc-note { margin: .15rem 0 0; font-size: .78rem; opacity: .8; }
 .receipt-sum { padding: .6rem .75rem; border-top: 2px solid currentColor; }
 .rc-grand { margin-top: .3rem; font-size: 1.05rem; }
+
+/* ===== Flujo animado de la portada ===== */
+.flowsec { padding: 3.5rem 0 5.5rem; }
+.pipe { display: grid; gap: .5rem; align-items: stretch; margin-top: 1.5rem; }
+.pipe-label { margin: 0 0 .6rem; font-size: .85rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.pipe-list { display: grid; gap: .6rem; }
+.pipe .chip { display: flex; align-items: center; gap: .55rem; padding: .7rem 1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); font-weight: 700; box-shadow: var(--shadow); }
+.pipe-core { display: grid; gap: .6rem; }
+.stage { text-align: center; padding: .9rem 1rem; border-radius: 14px; font-weight: 800; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); }
+.stage--pay { background: linear-gradient(135deg, var(--primary), var(--primary-2)); color: var(--on-primary); border-color: transparent; }
+.stage--order { background: var(--surface); border-style: dashed; }
+.pipe-link { display: grid; place-items: center; min-height: 2rem; }
+.pipe-link span { position: relative; display: block; width: 4px; height: 2rem; border-radius: 4px; background: linear-gradient(180deg, transparent, var(--primary), transparent) 0 0 / 100% 200%; animation: pipeDown 1.6s linear infinite; }
+@keyframes pipeDown { from { background-position: 0 -100%; } to { background-position: 0 100%; } }
+@keyframes pipeGlow { 0%, 22%, 100% { box-shadow: var(--shadow); transform: none; } 8%, 14% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 45%, transparent), var(--shadow); transform: translateY(-2px); } }
+.pipe .chip, .stage { animation: pipeGlow 7s ease-in-out infinite; }
+.pipe-col:nth-of-type(1) .chip { animation-delay: 0s; }
+.stage--cart { animation-delay: 1.2s; } .stage--pay { animation-delay: 2.4s; } .stage--order { animation-delay: 3.6s; }
+.pipe-col:last-of-type .chip:nth-child(1) { animation-delay: 4.6s; } .pipe-col:last-of-type .chip:nth-child(2) { animation-delay: 4.9s; } .pipe-col:last-of-type .chip:nth-child(3) { animation-delay: 5.2s; }
+@media (min-width: 52rem) {
+  .pipe { grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0 .75rem; }
+  .pipe-link { min-height: 0; padding-top: 2rem; }
+  .pipe-link span { width: 3.5rem; height: 4px; background: linear-gradient(90deg, transparent, var(--primary), transparent) 0 0 / 200% 100%; animation-name: pipeRight; }
+  @keyframes pipeRight { from { background-position: -100% 0; } to { background-position: 100% 0; } }
+  .pipe-core { height: calc(100% - 1.9rem); align-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .pipe .chip, .stage, .pipe-link span { animation: none !important; } }
+
+/* ===== Tarjetas con algo más de relieve ===== */
+.card, .panel { box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 12px 26px -20px rgba(10, 70, 82, .45); }
+.card:not(.reveal) { transition: transform .2s ease, box-shadow .2s ease; }
+.card:not(.reveal):hover { transform: translateY(-3px); box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 18px 32px -18px rgba(10, 70, 82, .55); }
+@media (prefers-color-scheme: dark) { .card, .panel { box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset, 0 12px 26px -20px rgba(0, 0, 0, .8); } }
