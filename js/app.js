@@ -629,6 +629,138 @@
     });
   }
 
+  /* ---------- buscador global y botón de volver arriba ---------- */
+
+  var MAX_RESULTS = 30;
+
+  function norm(t) { return t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+
+  // Índice construido a partir del DOM ya renderizado (mismo idioma que se está viendo).
+  function buildIndex() {
+    var items = [];
+    HOSTS.forEach(function (id) {
+      var host = document.getElementById(id);
+      if (!host) { return; }
+      var h2 = host.querySelector("h2");
+      var section = h2 ? h2.textContent : id;
+      [].forEach.call(host.querySelectorAll("h3, h4, p, summary, tr, pre, li"), function (n) {
+        if (n.closest(".filter, .snapshot-title")) { return; }
+        if (n.tagName === "LI" && n.querySelector("p, h3, h4, ul, summary, pre")) { return; }
+        if (n.tagName === "P" && n.closest("tr")) { return; }
+        var raw = n.tagName === "TR"
+          ? [].map.call(n.children, function (c) { return c.textContent.replace(/\s+/g, " ").trim(); }).join(" · ")
+          : [].map.call(n.childNodes, function (c) { return c.textContent; }).join(" ");
+        var text = raw.replace(/\s+/g, " ").trim();
+        if (text.length < 3) { return; }
+        items.push({ node: n, text: text, key: norm(text), section: section, sectionId: id });
+      });
+    });
+    return items;
+  }
+
+  function snippet(text, words) {
+    var at = norm(text).indexOf(words[0]);
+    var start = Math.max(0, at - 50);
+    var out = text.slice(start, start + 150);
+    return (start > 0 ? "… " : "") + out + (start + 150 < text.length ? " …" : "");
+  }
+
+  function goTo(item) {
+    var n = item.node;
+    var d = n.closest("details");
+    while (d) { d.open = true; d = d.parentElement ? d.parentElement.closest("details") : null; }
+    if (n.hidden) { n.hidden = false; }
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    n.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+    n.classList.add("search-hit");
+    setTimeout(function () { n.classList.remove("search-hit"); }, 2600);
+  }
+
+  var openSearch = function () {};
+
+  function syncTop() {
+    var t = document.getElementById("to-top");
+    if (t) { t.hidden = window.scrollY < 700; }
+  }
+
+  function initSearchUi() {
+    var old = document.getElementById("search-dialog");
+    if (old) { old.remove(); }
+    var oldTop = document.getElementById("to-top");
+    if (oldTop) { oldTop.remove(); }
+
+    var btn = document.getElementById("search-btn");
+    if (btn) {
+      btn.textContent = C.ui.searchBtn;
+      btn.setAttribute("aria-label", C.ui.searchTitle + " (/)");
+    }
+
+    var input = el("input", { type: "search", id: "search-input", "class": "filter-input", placeholder: C.ui.searchPlaceholder, autocomplete: "off", spellcheck: "false" });
+    var status = el("p", { "class": "filter-status", role: "status", "aria-live": "polite" });
+    var results = el("ul", { "class": "search-results" });
+    var closeBtn = el("button", { type: "button", "class": "btn btn--ghost filter-clear", text: C.ui.searchClose });
+    var dialog = el("dialog", { id: "search-dialog", "class": "search-dialog", "aria-labelledby": "search-title" }, [
+      el("div", { "class": "search-head" }, [
+        el("h2", { id: "search-title", text: C.ui.searchTitle }),
+        closeBtn
+      ]),
+      el("label", { "for": "search-input", "class": "sr-only", text: C.ui.searchTitle }),
+      input, status, results,
+      el("p", { "class": "search-hint", text: C.ui.searchHint })
+    ]);
+    document.body.appendChild(dialog);
+
+    var index = null;
+    function run() {
+      clear(results);
+      var q = input.value.trim();
+      if (!q) { status.textContent = ""; return; }
+      if (!index) { index = buildIndex(); }
+      var words = norm(q).split(/\s+/).filter(Boolean);
+      var hits = index.filter(function (it) { return words.every(function (w) { return it.key.indexOf(w) !== -1; }); });
+      if (!hits.length) { status.textContent = C.ui.searchNone.replace("{q}", q); return; }
+      status.textContent = (hits.length === 1 ? C.ui.searchOne : C.ui.searchCount.replace("{n}", hits.length)) + (hits.length > MAX_RESULTS ? " · " + C.ui.searchMore.replace("{n}", MAX_RESULTS) : "");
+      hits.slice(0, MAX_RESULTS).forEach(function (it) {
+        var b = el("button", { type: "button", "class": "search-item" }, [
+          el("span", { "class": "search-sec", text: it.section }),
+          el("span", { "class": "search-txt", text: snippet(it.text, words) })
+        ]);
+        b.addEventListener("click", function () { dialog.close(); goTo(it); });
+        results.appendChild(el("li", {}, [b]));
+      });
+    }
+    input.addEventListener("input", run);
+    closeBtn.addEventListener("click", function () { dialog.close(); });
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) { dialog.close(); } });
+    dialog.addEventListener("close", function () { if (btn) { btn.focus(); } });
+
+    openSearch = function () {
+      index = null;            // se reconstruye por si el contenido cambió (idioma)
+      if (typeof dialog.showModal === "function") { dialog.showModal(); }
+      input.focus(); input.select();
+      run();
+    };
+    if (btn) { btn.onclick = openSearch; }
+
+    var top = el("button", { type: "button", id: "to-top", "class": "to-top", hidden: "", "aria-label": C.ui.backToTop, title: C.ui.backToTop, text: "↑" });
+    top.addEventListener("click", function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      document.getElementById("main").focus({ preventScroll: true });
+    });
+    document.body.appendChild(top);
+    syncTop();
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) { return; }
+    var a = document.activeElement;
+    if (a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA" || a.tagName === "SELECT" || a.isContentEditable)) { return; }
+    e.preventDefault();
+    openSearch();
+  });
+  window.addEventListener("scroll", syncTop, { passive: true });
+
   /* ---------- idioma ---------- */
 
   var HOSTS = ["inicio", "problema", "como-funciona", "negocio", "alcance", "decisiones", "riesgos",
@@ -660,6 +792,7 @@
     renderTeam();
     renderFooter();
     initNavSpy();
+    initSearchUi();
     if (paintTheme) { paintTheme(); }
   }
 
