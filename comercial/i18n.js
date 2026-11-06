@@ -26,6 +26,7 @@
     crossToBuyCta: "Go to the shopper section",
     navBuy: "I'm a shopper",
     navBiz: "I'm a business owner",
+    navLog: "Log",
     navUs: "About us",
     navDocs: "Documentation",
     banner: "Fictional academic project: synthetic catalogue, simulated payment and no real brands.",

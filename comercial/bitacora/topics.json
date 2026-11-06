@@ -1,0 +1,20 @@
+{
+  "topics": [
+    {"id": "rf", "es": "Requisitos funcionales", "en": "Functional requirements", "link": "../../#requisitos"},
+    {"id": "rnf", "es": "Requisitos no funcionales", "en": "Non-functional requirements", "link": "../../#requisitos"},
+    {"id": "hu", "es": "Historias de usuario y trazabilidad", "en": "User stories and traceability", "link": "../../#trazabilidad"},
+    {"id": "riesgos", "es": "Riesgos", "en": "Risks", "link": "../../#riesgos"},
+    {"id": "decisiones", "es": "Decisiones", "en": "Decisions", "link": "../../#decisiones"},
+    {"id": "alcance", "es": "Alcance", "en": "Scope", "link": "../../#alcance"},
+    {"id": "negocio", "es": "Modelo de negocio y costes", "en": "Business model and costs", "link": "../../#negocio"},
+    {"id": "planificacion", "es": "Planificación y subtareas", "en": "Planning and subtasks", "link": "../../#avances"},
+    {"id": "diagramas", "es": "Diagramas y vistas del requisito", "en": "Diagrams and requirement views", "link": "../../#requisitos"},
+    {"id": "landing-doc", "es": "Landing documental", "en": "Documentation landing", "link": "../../"},
+    {"id": "landing-com", "es": "Landing comercial", "en": "Commercial landing", "link": "../"},
+    {"id": "demo", "es": "Demo de compra y precios", "en": "Purchase demo and prices", "link": "../comprador/#demo"},
+    {"id": "diseno", "es": "Diseño visual", "en": "Visual design", "link": "../"},
+    {"id": "despliegue", "es": "Publicación y despliegue", "en": "Publishing and deployment", "link": "../../"},
+    {"id": "bitacora", "es": "Bitácora de prompts", "en": "Prompt log", "link": "./"},
+    {"id": "otros", "es": "Otros", "en": "Other", "link": "./"}
+  ]
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es" data-en-title="IndiConnect · Prompt log" data-en-desc="Timestamped log of every prompt used to build the IndiConnect landing pages. Fictional academic project.">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Bitácora con la hora y los detalles de cada prompt usado para construir las landings de IndiConnect. Proyecto académico ficticio.">
+  <meta name="theme-color" content="#0b6e80" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c1b20" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="IndiConnect · Bitácora de prompts">
+  <meta property="og:description" content="Bitácora con la hora y los detalles de cada prompt usado para construir las landings de IndiConnect.">
+  <meta property="og:image" content="https://albrtoguerrero.github.io/indiconnect-landing/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IndiConnect: todas las marcas del grupo, un solo carrito. Proyecto académico ficticio.">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>IndiConnect · Bitácora de prompts</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../animations.css">
+  <link rel="stylesheet" href="../extras.css">
+  <link rel="stylesheet" href="bitacora.css">
+  <script>document.documentElement.className += " js";</script>
+  <script src="../../js/lang.js"></script>
+  <script src="../../js/content.js"></script>
+  <script src="../../js/content.en.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../app.js" defer></script>
+  <script src="bitacora.js" defer></script>
+  </head>
+<body class="subpage">
+  <a class="skip-link" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <header class="top" id="top">
+    <div class="wrap top-inner">
+      <a class="logo" href="../" aria-label="IndiConnect" data-i18n-aria="logoAria">
+        <span class="logo-dot" aria-hidden="true"></span><span>IndiConnect</span>
+      </a>
+      <nav id="top-nav" aria-label="Secciones de la página" data-i18n-aria="navAria">
+        <ul>
+          <li><a href="../" data-i18n="navHome">Inicio</a></li>
+          <li><a href="../comprador/" data-i18n="navBuy">Soy comprador</a></li>
+          <li><a href="../empresario/" data-i18n="navBiz">Soy empresario</a></li>
+          <li><a href="../#nosotros" data-i18n="navUs">Quiénes somos</a></li>
+          <li><a href="./" data-i18n="navLog" aria-current="true">Bitácora</a></li>
+          <li><a href="../../" class="ext" data-i18n="navDocs">Documentación</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="lang-btn" id="lang-toggle" aria-label="Cambiar el idioma a inglés">English</button>
+    </div>
+  </header>
+
+  <div class="demo-banner" role="note">
+    <div class="wrap" data-i18n="banner">Proyecto académico ficticio: catálogo sintético, pago simulado y ninguna marca real.</div>
+  </div>
+
+  <main id="main" tabindex="-1">
+    <div class="part part--log">
+      <div class="wrap">
+        <header class="part-banner">
+          <span class="part-num" aria-hidden="true">&#9776;</span>
+          <div>
+            <p class="eyebrow" id="lg-eyebrow">Registro de trabajo</p>
+            <h1 class="log-h1" id="lg-title">Bitácora de prompts</h1>
+          </div>
+        </header>
+        <p class="sub" id="lg-intro"></p>
+        <dl class="log-stats" id="lg-stats"></dl>
+        <div class="log-tools">
+          <label class="sr-only" for="lg-q" id="lg-qlabel">Buscar</label>
+          <input type="search" id="lg-q" autocomplete="off">
+          <div class="log-dl">
+            <button type="button" class="btn btn--outline" id="lg-share">Copiar enlace a esta vista</button>
+            <button type="button" class="btn btn--outline" id="lg-csv">CSV</button>
+          </div>
+        </div>
+        <div class="log-filters">
+          <div class="log-chips" id="lg-authors" role="group" aria-label="Autor"></div>
+          <div class="log-chips" id="lg-chips" role="group" aria-label="Entregable"></div>
+        </div>
+        <p class="log-count" id="lg-count" aria-live="polite"></p>
+        <div id="lg-list" class="log-list"></div>
+        <p class="log-note" id="lg-note"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div>
+        <a class="logo" href="../"><span class="logo-dot" aria-hidden="true"></span><span>IndiConnect</span></a>
+        <p class="foot-note" data-i18n="footTag">Proyecto universitario · Ingeniería del Software</p>
+        <p class="foot-note" data-i18n="footTeam">Equipo: Alberto Guerrero, Lucía Guerra y Mikel Moriel.</p>
+      </div>
+      <div>
+        <p class="legal-label" data-i18n="legalLabel">Aviso legal</p>
+        <p class="legal" data-i18n="legal">Proyecto académico ficticio, sin vinculación con Inditex ni con ninguna otra empresa o marca real.</p>
+        <p class="foot-note" id="foot-updated"></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

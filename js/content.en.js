@@ -53,6 +53,7 @@ window.CONTENT_EN = {
       updated: "Updated"
     },
     searchBtn: "Search",
+    promptsLink: "View the prompts for this section",
     searchTitle: "Search the documentation",
     searchPlaceholder: "A word or an ID (RF-36, payment, S-01…)",
     searchClose: "Close",

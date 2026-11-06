@@ -1,0 +1,40 @@
+/* Bitácora de prompts */
+.part--log { background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 7%, var(--bg)), var(--bg) 22rem); padding-bottom: 4rem; }
+.log-h1 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); max-width: 38rem; }
+.log-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .75rem; margin: 1.5rem 0; }
+.log-stats > div { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .9rem 1rem; }
+.log-stats dt { font-size: .78rem; color: var(--muted); }
+.log-stats dd { margin: .15rem 0 0; font-size: 1.35rem; font-weight: 800; color: var(--primary); }
+.log-tools { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.log-tools input[type="search"] { flex: 1 1 14rem; min-width: 0; padding: .65rem .9rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
+.log-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.log-chips button { font: inherit; font-size: .82rem; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); padding: .3rem .75rem; border-radius: 999px; }
+.log-chips button[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.log-dl { display: flex; gap: .4rem; margin-left: auto; }
+.log-dl .btn { padding: .45rem .9rem; font-size: .85rem; }
+.log-count { color: var(--muted); font-size: .9rem; margin: 1rem 0 .25rem; }
+.log-day { margin: 1.75rem 0 .6rem; font-size: 1rem; color: var(--accent); }
+.log-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: .9rem 1.1rem; margin-bottom: .6rem; }
+.log-head { display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: baseline; font-size: .82rem; color: var(--muted); }
+.log-n { font-weight: 800; color: var(--primary); }
+.log-time { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.log-text { margin: .6rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+.log-meta { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .65rem; }
+.log-meta span { font-size: .74rem; background: var(--surface-2); color: var(--muted); padding: .15rem .55rem; border-radius: 999px; }
+.log-note { color: var(--muted); font-size: .85rem; margin-top: 1.5rem; }
+.log-empty { padding: 2rem 0; color: var(--muted); }
+.log-acts { margin-top: .75rem; border-top: 1px solid var(--border); padding-top: .6rem; }
+.log-acts > summary { cursor: pointer; font-weight: 700; font-size: .88rem; color: var(--primary); }
+.log-actlist { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .35rem; max-height: 26rem; overflow: auto; }
+.log-act { display: flex; flex-wrap: wrap; gap: .25rem .6rem; align-items: baseline; font-size: .82rem; }
+.log-act .log-time { font-weight: 600; color: var(--muted); }
+.log-tool { background: var(--surface-2); color: var(--primary); font-weight: 700; font-size: .72rem; padding: .1rem .5rem; border-radius: 999px; }
+.log-acttext { color: var(--text); overflow-wrap: anywhere; min-width: 0; }
+.log-extra { margin: .2rem 0 0 .2rem; }
+.log-extra > summary { cursor: pointer; font-size: .75rem; color: var(--muted); }
+.log-code { margin: .3rem 0 0; padding: .6rem .75rem; background: var(--surface-2); border-radius: 10px; font-size: .76rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.log-filters { display: grid; gap: .6rem; margin-top: .9rem; }
+.log-flabel { font-size: .78rem; font-weight: 700; color: var(--muted); align-self: center; margin-right: .2rem; }
+.log-author { font-weight: 700; color: var(--accent); }
+.log-topic { font-size: .74rem; font-weight: 700; background: color-mix(in srgb, var(--primary) 14%, transparent); color: var(--primary); padding: .15rem .6rem; border-radius: 999px; text-decoration: none; }
+a.log-topic:hover { text-decoration: underline; }

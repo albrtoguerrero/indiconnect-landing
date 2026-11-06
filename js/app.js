@@ -44,10 +44,20 @@
     return el("span", { "class": "badge badge--" + slug(label), text: shown });
   }
 
+  // Sección de la documental -> entregable de la bitácora de prompts (comercial/bitacora/topics.json)
+  var PROMPT_TOPIC = {
+    alcance: "alcance", negocio: "negocio", decisiones: "decisiones", riesgos: "riesgos",
+    requisitos: "rf", trazabilidad: "hu", avances: "planificacion"
+  };
+
   function fill(id, build) {
     var host = document.getElementById(id);
     var container = el("div", { "class": "container" });
     build(container, id + "-title");
+    var topic = PROMPT_TOPIC[id], head = container.querySelector(".section-head");
+    if (topic && head && C.ui.promptsLink) {
+      head.appendChild(el("a", { "class": "prompts-link", href: "comercial/bitacora/?tema=" + topic, text: C.ui.promptsLink }));
+    }
     host.appendChild(container);
     var h = container.querySelector("h2");
     if (h) { host.setAttribute("aria-labelledby", h.id); }

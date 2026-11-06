@@ -46,6 +46,7 @@ window.CONTENT = {
       updated: "Actualizado"
     },
     searchBtn: "Buscar",
+    promptsLink: "Ver los prompts de esta sección",
     searchTitle: "Buscar en la documentación",
     searchPlaceholder: "Una palabra o un identificador (RF-36, pago, S-01…)",
     searchClose: "Cerrar",
