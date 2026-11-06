@@ -105,3 +105,43 @@
 
 /* ===== Páginas independientes (comprador / empresario) ===== */
 .subpage .part { margin-top: 0; border-radius: 0; box-shadow: none; }
+
+/* ===== Demo: selector de fallo y línea de tiempo del resultado ===== */
+.failpick { border: 0; padding: 0; margin: 0 0 .9rem; min-width: 0; }
+.failpick legend { padding: 0; font-size: .9rem; color: var(--muted); margin-bottom: .4rem; }
+.failpick-opts { display: flex; flex-wrap: wrap; gap: .4rem; }
+.failopt { position: relative; display: inline-flex; cursor: pointer; }
+.failopt input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.failopt span { padding: .35rem .8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: .88rem; font-weight: 600; color: var(--text); }
+.failopt input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.failopt input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+.failopt.is-off { cursor: not-allowed; opacity: .45; }
+.failopt.is-off input { cursor: not-allowed; }
+.steps-res { display: grid; gap: .35rem; margin: .6rem 0 .8rem; }
+.steps-res li { display: flex; justify-content: flex-start; align-items: center; gap: .55rem; padding: .4rem .6rem; border-radius: 8px; background: rgba(255, 255, 255, .55); font-weight: 600; }
+@media (prefers-color-scheme: dark) { .steps-res li { background: rgba(255, 255, 255, .08); } }
+.step-ico { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 50%; font-size: .85rem; flex: none; background: var(--muted); color: var(--bg); }
+.steps-res .is-bad .step-ico { background: var(--bad); color: var(--bad-bg); }
+.btn--sm { padding: .45rem 1rem; font-size: .9rem; }
+.steps-res li { animation: lineIn .45s ease both; animation-delay: calc(var(--i, 0) * 140ms + 200ms); }
+
+/* ===== Demo: desglose de precio (base imponible + IVA) ===== */
+.breakdown { margin: .8rem 0 .2rem; font-size: .9rem; color: var(--muted); }
+.breakdown > div { display: flex; justify-content: space-between; gap: .5rem; padding: .1rem 0; }
+.breakdown dt, .breakdown dd { margin: 0; }
+.breakdown dd { font-variant-numeric: tabular-nums; color: var(--text); }
+.breakdown .bd-sep { margin-top: .35rem; padding-top: .45rem; border-top: 1px dashed var(--border); }
+.result-box li { flex-wrap: wrap; }
+.result-box li small { flex-basis: 100%; font-size: .8rem; opacity: .85; }
+
+/* ===== Recibo itemizado del pedido ===== */
+.receipt { display: grid; gap: .7rem; margin-top: .6rem; }
+.receipt-brand { padding: .6rem .75rem; border-radius: 10px; background: rgba(255, 255, 255, .55); animation: lineIn .45s ease both; animation-delay: calc(var(--i, 0) * 140ms + 250ms); }
+@media (prefers-color-scheme: dark) { .receipt-brand { background: rgba(255, 255, 255, .07); } }
+.receipt h5 { margin: 0 0 .35rem; font-size: .92rem; }
+.rc-row { display: flex; justify-content: space-between; gap: .75rem; margin: 0; padding: .1rem 0; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.rc-sub { opacity: .85; font-size: .85rem; }
+.rc-tot { margin-top: .3rem; padding-top: .3rem; border-top: 1px solid currentColor; }
+.rc-note { margin: .15rem 0 0; font-size: .78rem; opacity: .8; }
+.receipt-sum { padding: .6rem .75rem; border-top: 2px solid currentColor; }
+.rc-grand { margin-top: .3rem; font-size: 1.05rem; }

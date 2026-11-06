@@ -26,6 +26,9 @@
      Mientras no haya foto se muestra la ilustración. Ver img/LEEME.txt. */
   var PHOTOS = {};
 
+  // Los precios del catálogo ya incluyen IVA (supuesto de la demo, valores inventados).
+  var VAT_RATE = 21;
+
   var cart = {};          // id -> cantidad
   var orderSeq = 1001;
   var lastAdded = null;   // para animar solo la línea recién añadida
@@ -72,6 +75,8 @@
       var g = out[k], b = BRANDS[k];
       g.shipping = (b.freeFrom !== null && g.subtotal >= b.freeFrom) ? 0 : b.ship;
       g.total = g.subtotal + g.shipping;
+      g.base = Math.round(g.total / (1 + VAT_RATE / 100) * 100) / 100;
+      g.vat = Math.round((g.total - g.base) * 100) / 100;
       return g;
     });
   }
@@ -137,12 +142,12 @@
     var host = $("cart");
     clear(host);
     var gs = groups();
-    var total = 0, count = 0;
+    var total = 0, count = 0, sumProducts = 0, sumShip = 0, sumBase = 0, sumVat = 0;
 
     if (!gs.length) { host.appendChild(el("p", { "class": "cart-empty", text: t("cartEmpty") })); }
     gs.forEach(function (g) {
       var b = BRANDS[g.brand];
-      total += g.total;
+      total += g.total; sumProducts += g.subtotal; sumShip += g.shipping; sumBase += g.base; sumVat += g.vat;
       var isNewBrand = lastAdded && byId(lastAdded).brand === g.brand && g.lines.length === 1 && g.lines[0].qty === 1;
       var box = el("div", { "class": "cart-brand" + (isNewBrand ? " new" : "") }, [
         el("h4", {}, [el("i", { "class": "sw", style: "background:" + b.color }), el("span", { text: bname(g.brand) })])
@@ -160,11 +165,20 @@
         ]));
       });
       box.appendChild(el("div", { "class": "cart-meta" }, [
-        el("span", { text: t("ship") + " " + (g.shipping === 0 ? t("free") : money(g.shipping)) }),
+        el("span", { text: t("subtotal") + " " + money(g.subtotal) + " · " + t("ship") + " " + (g.shipping === 0 ? t("free") : money(g.shipping)) }),
         el("span", { text: t("delivery") + " " + t(b.days) })
       ]));
       host.appendChild(box);
     });
+
+    var bd = $("breakdown");
+    clear(bd);
+    if (gs.length) {
+      [[t("bdProducts"), sumProducts, ""], [t("bdShip"), sumShip, ""],
+       [t("bdBase"), sumBase, "bd-sep"], [t("bdVat", { r: VAT_RATE }), sumVat, ""]].forEach(function (r) {
+        bd.appendChild(el("div", { "class": r[2] }, [el("dt", { text: r[0] }), el("dd", { text: money(r[1]) })]));
+      });
+    }
 
     var totalEl = $("cart-total");
     totalEl.textContent = money(total);
@@ -175,9 +189,32 @@
     lastTotal = total;
     lastAdded = null;
     $("pay").disabled = !gs.length;
+    renderFailPick();
   }
 
   function clearResult() { clear($("result")); }
+
+  // Selector de la marca que "falla": solo se puede elegir una marca que esté en el carrito.
+  function failBrand() {
+    var r = document.querySelector('#failpick input:checked');
+    return r ? r.value : "";
+  }
+  function renderFailPick() {
+    var host = $("failpick");
+    var prev = failBrand();
+    clear(host);
+    var inCart = groups().map(function (g) { return g.brand; });
+    [["", t("simNone")]].concat(Object.keys(BRANDS).map(function (k) { return [k, bname(k)]; })).forEach(function (o) {
+      var avail = o[0] === "" || inCart.indexOf(o[0]) !== -1;
+      var input = el("input", { type: "radio", name: "simfail", value: o[0] });
+      if (!avail) { input.disabled = true; }
+      if (o[0] === (avail ? prev : "")) { input.checked = true; }
+      var lab = el("label", { "class": "failopt" + (avail ? "" : " is-off"), title: avail ? "" : t("simBrandNA") }, [input, el("span", { text: o[1] })]);
+      input.addEventListener("change", clearResult);
+      host.appendChild(lab);
+    });
+    if (!host.querySelector("input:checked")) { host.querySelector("input").checked = true; }
+  }
 
   // Confeti con elementos CSS; solo se genera si el usuario admite movimiento
   function confetti(host) {
@@ -198,30 +235,60 @@
     if (!gs.length) { return; }
     var res = $("result");
     clear(res);
-    var failing = $("sim-fail").checked ? gs[gs.length - 1] : null;
+    var fb = failBrand();
+    var failing = gs.filter(function (g) { return g.brand === fb; })[0] || null;
 
     if (failing) {
+      var steps = el("ul", { "class": "steps-res" });
+      gs.forEach(function (g, idx) {
+        var bad = g === failing;
+        steps.appendChild(el("li", { "class": bad ? "is-bad" : "is-held", style: "--i:" + idx }, [
+          el("span", { "class": "step-ico", "aria-hidden": "true", text: bad ? "✕" : "↺" }),
+          el("span", { text: bname(g.brand) + " · " + t(bad ? "stepFail" : "stepHeld") })
+        ]));
+      });
+      var retry = el("button", { type: "button", "class": "btn btn--ghost btn--sm", text: t("retry") });
+      retry.addEventListener("click", function () {
+        var none = document.querySelector('#failpick input[value=""]');
+        if (none) { none.checked = true; }
+        pay();
+      });
       res.appendChild(el("div", { "class": "result-box result-box--bad" }, [
         el("h4", {}, [el("span", { "class": "tick-badge", "aria-hidden": "true" }), document.createTextNode(t("failTitle"))]),
-        el("p", { text: t("failBody", { b: bname(failing.brand) }) })
+        el("p", { text: t("failBody", { b: bname(failing.brand) }) }),
+        steps,
+        retry
       ]));
       return;
     }
 
     var id = "PED-" + (orderSeq++);
-    var list = el("ul", {});
-    var total = 0;
+    var total = 0, sumBase = 0, sumVat = 0;
+    var receipt = el("div", { "class": "receipt" });
     gs.forEach(function (g, idx) {
-      total += g.total;
-      list.appendChild(el("li", { style: "--i:" + idx }, [
-        el("span", { text: id + "-" + g.brand + " · " + bname(g.brand) }),
-        el("strong", { text: money(g.total) })
-      ]));
+      total += g.total; sumBase += g.base; sumVat += g.vat;
+      var blk = el("section", { "class": "receipt-brand", style: "--i:" + idx }, [
+        el("h5", { text: id + "-" + g.brand + " · " + bname(g.brand) })
+      ]);
+      g.lines.forEach(function (l) {
+        var label = l.qty + " × " + pname(l.p) + (l.qty > 1 ? " (" + money(l.p.price) + " " + t("each") + ")" : "");
+        blk.appendChild(el("p", { "class": "rc-row" }, [el("span", { text: label }), el("span", { text: money(l.p.price * l.qty) })]));
+      });
+      blk.appendChild(el("p", { "class": "rc-row rc-sub" }, [el("span", { text: t("subtotal") }), el("span", { text: money(g.subtotal) })]));
+      blk.appendChild(el("p", { "class": "rc-row rc-sub" }, [el("span", { text: t("ship") }), el("span", { text: g.shipping === 0 ? t("free") : money(g.shipping) })]));
+      blk.appendChild(el("p", { "class": "rc-row rc-tot" }, [el("strong", { text: t("subTotal") }), el("strong", { text: money(g.total) })]));
+      blk.appendChild(el("p", { "class": "rc-note", text: t("bdBase") + " " + money(g.base) + " + " + t("bdVat", { r: VAT_RATE }) + " " + money(g.vat) }));
+      receipt.appendChild(blk);
     });
+    receipt.appendChild(el("div", { "class": "receipt-sum" }, [
+      el("p", { "class": "rc-row" }, [el("span", { text: t("bdBase") }), el("span", { text: money(sumBase) })]),
+      el("p", { "class": "rc-row" }, [el("span", { text: t("bdVat", { r: VAT_RATE }) }), el("span", { text: money(sumVat) })]),
+      el("p", { "class": "rc-row rc-grand" }, [el("strong", { text: t("grandTotal") }), el("strong", { text: money(total) })])
+    ]));
     var box = el("div", { "class": "result-box result-box--ok" }, [
       el("h4", {}, [el("span", { "class": "tick-badge", "aria-hidden": "true" }), document.createTextNode(t("okTitle", { id: id, total: money(total) }))]),
       el("p", { text: gs.length === 1 ? t("okOne") : t("okMany", { n: gs.length }) }),
-      list
+      receipt
     ]);
     res.appendChild(box);
     confetti(box);
@@ -233,6 +300,5 @@
 
   renderAll();
   $("pay").addEventListener("click", pay);
-  $("sim-fail").addEventListener("change", clearResult);
   window.addEventListener("iclangchange", function () { clearResult(); renderAll(); });
 })();
