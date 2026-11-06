@@ -53,6 +53,11 @@ window.CONTENT_EN = {
       updated: "Updated"
     },
     reqNavLabel: "Contents of this section",
+    filterLabel: "Filter table rows",
+    filterPlaceholder: "Type an ID or a word (RF-36, payment, N-02…)",
+    filterClear: "Clear filter",
+    filterCount: "{n} of {total} rows visible",
+    filterNone: "No row matches the filter.",
     tableRegion: "Scrollable table",
     byLabel: "Changed by:",
     whatLabel: "What changed",

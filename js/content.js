@@ -46,6 +46,11 @@ window.CONTENT = {
       updated: "Actualizado"
     },
     reqNavLabel: "Contenido de esta sección",
+    filterLabel: "Filtrar filas de las tablas",
+    filterPlaceholder: "Escribe un identificador o una palabra (RF-36, pago, N-02…)",
+    filterClear: "Borrar filtro",
+    filterCount: "{n} de {total} filas visibles",
+    filterNone: "Ninguna fila coincide con el filtro.",
     tableRegion: "Tabla desplazable",
     byLabel: "Responsable del cambio:",
     whatLabel: "Qué cambió",

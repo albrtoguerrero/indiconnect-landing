@@ -14,8 +14,24 @@ css/styles.css      Tokens de color, tema claro/oscuro, diseño responsive
 js/content.js       TODO el contenido (textos, estados, fechas, equipo, nombre de marca)
 js/app.js           Lee content.js y construye el HTML; alterna el tema
 assets/favicon.svg  Icono propio en SVG
+assets/og.png        Imagen de vista previa al compartir el enlace (1200x630)
+comercial/           Landing comercial en tres páginas (ver abajo)
 .nojekyll           Evita que GitHub Pages procese el sitio con Jekyll
 ```
+
+## Landing comercial (`comercial/`)
+
+```
+comercial/index.html             Portada: hero, dos puertas, marcas y «Quiénes somos»
+comercial/comprador/index.html   Parte del comprador: problema, cómo funciona, demo, ventajas, preguntas
+comercial/empresario/index.html  Parte del empresario: propuesta, modelo, alcance, riesgos, requisitos, trazabilidad
+comercial/{styles,animations,extras}.css, app.js, i18n.js, art.js   Compartidos por las tres páginas
+comercial/demo.js                Solo se carga en la página del comprador
+```
+
+Los enlaces antiguos con ancla (`/comercial/#comprador`, `#demo`, `#e-…`) se redirigen a la página nueva con un pequeño script de `comercial/index.html`. Al añadir una página nueva, ponle su `data-en-title` y `data-en-desc` en `<html>` para que el título y la descripción se traduzcan.
+
+En la landing documental, las secciones de requisitos y trazabilidad incluyen un filtro de texto que oculta filas de las tablas (los textos están en `ui.filter*` de `content.js` y `content.en.js`).
 
 ## Ejecutarla en local
 

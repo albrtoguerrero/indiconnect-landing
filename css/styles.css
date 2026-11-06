@@ -436,3 +436,11 @@ details summary { cursor: pointer; font-weight: 600; color: var(--primary); }
 @media (min-width: 64rem) {
   .lang-toggle { margin-bottom: -.75rem; }
 }
+
+/* ===== Filtro de tablas ===== */
+.filter { margin: 0 0 1.5rem; }
+.filter label { display: block; font-weight: 600; margin-bottom: .4rem; }
+.filter-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+.filter-input { flex: 1 1 18rem; min-height: 2.75rem; padding: .5rem .85rem; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.filter-status { min-height: 1.4rem; margin: .4rem 0 0; color: var(--muted); font-size: .9rem; }
+tr[hidden] { display: none; }

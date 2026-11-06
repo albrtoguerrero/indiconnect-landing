@@ -11,12 +11,33 @@
   <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="IndiConnect · Un solo carrito para todas las marcas del grupo">
   <meta property="og:description" content="Para compradores y para empresarios: carrito unificado, pago único y subpedidos por marca. Proyecto académico ficticio.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://albrtoguerrero.github.io/indiconnect-landing/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IndiConnect: todas las marcas del grupo, un solo carrito. Proyecto académico ficticio.">
+  <meta name="twitter:card" content="summary_large_image">
   <title>IndiConnect · Un solo carrito para todas las marcas</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="extras.css">
+  <script>
+    // Enlaces antiguos (#comprador, #empresario, #demo, #c-*, #e-*) -> páginas separadas
+    (function () {
+    function go() {
+      var h = location.hash.slice(1);
+      if (!h) { return; }
+      var to = null;
+      if (h === "comprador") { to = "comprador/"; }
+      else if (h === "empresario") { to = "empresario/"; }
+      else if (h === "demo" || h.indexOf("c-") === 0) { to = "comprador/#" + h; }
+      else if (h.indexOf("e-") === 0) { to = "empresario/#" + h; }
+      if (to) { location.replace(to + location.search); }
+    }
+    go();
+    window.addEventListener("hashchange", go);
+    })();
+  </script>
   <script>document.documentElement.className += " js";</script>
   <script src="../js/lang.js"></script>
   <script src="../js/content.js"></script>

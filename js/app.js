@@ -410,6 +410,36 @@
     }));
   }
 
+  // Filtro de texto para las tablas de una sección (oculta filas, no las elimina).
+  function filterBox(scopeId) {
+    var input = el("input", { type: "search", id: scopeId + "-filter", "class": "filter-input",
+      placeholder: C.ui.filterPlaceholder, autocomplete: "off", spellcheck: "false" });
+    var status = el("p", { "class": "filter-status", role: "status", "aria-live": "polite" });
+    var wrap = el("div", { "class": "filter" }, [
+      el("label", { "for": scopeId + "-filter", text: C.ui.filterLabel }),
+      el("div", { "class": "filter-row" }, [
+        input,
+        el("button", { type: "button", "class": "btn btn--ghost filter-clear", text: C.ui.filterClear })
+      ]),
+      status
+    ]);
+    function norm(t) { return t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+    function run() {
+      var q = norm(input.value.trim());
+      var rows = [].slice.call(document.querySelectorAll("#" + scopeId + " .table--text tbody tr"));
+      var shown = 0;
+      rows.forEach(function (r) {
+        var hit = !q || norm(r.textContent).indexOf(q) !== -1;
+        r.hidden = !hit;
+        if (hit) { shown += 1; }
+      });
+      status.textContent = !q ? "" : (shown ? C.ui.filterCount.replace("{n}", shown).replace("{total}", rows.length) : C.ui.filterNone);
+    }
+    input.addEventListener("input", run);
+    wrap.querySelector("button").addEventListener("click", function () { input.value = ""; run(); input.focus(); });
+    return wrap;
+  }
+
   function renderRequirements() {
     fill("requisitos", function (c, hid) {
       var r = C.requirements;
@@ -430,6 +460,7 @@
         }))
       ]));
 
+      c.appendChild(filterBox("requisitos"));
       c.appendChild(subTitle(r.sources.title, "req-fuentes"));
       c.appendChild(textTable(r.sources));
       c.appendChild(el("div", { "class": "two-col two-col--top", id: "req-hipotesis" }, [
@@ -472,6 +503,7 @@
           ]);
         }))
       ]);
+      c.appendChild(filterBox("trazabilidad"));
       c.appendChild(tableWrap(t.caption, table));
 
       c.appendChild(subTitle(t.asanaTitle));
