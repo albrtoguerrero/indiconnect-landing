@@ -343,7 +343,7 @@ window.CONTENT = {
         ["F-07", "Entrevistas a usuarios", "Simulada", "No se han hecho con personas reales; se simularon 20 entrevistas (ver Validación simulada) y las necesidades siguen pendientes de validar con usuarios reales"]
       ]
     },
-    hypothesesTitle: "Hipótesis",
+    hypothesesTitle: "Hipótesis",
     hypothesesWhy: {"whyLabel": "Por qué está respaldada", "whyLabelPartial": "Por qué solo en parte", "quotesLabel": "Lo que dijeron (en las entrevistas simuladas)", "seeAll": "Ver todas las entrevistas"},
     hypotheses: [
       { id: "H-01", text: "Existe una necesidad real de comprar en varias marcas del grupo a la vez.", state: "Respaldada por simulación", why: {"summary": "Respaldada: 10 de 20 entrevistados comparan o combinan marcas del grupo al comprar y otros 6 lo hacen a veces, así que 16 de 20 reconocen la necesidad.", "points": ["Sí (10): E-01, E-02, E-03, E-05, E-09, E-11, E-13, E-15, E-17, E-19.", "En parte (6): E-04, E-06, E-10, E-12, E-16, E-20. Lo hacen de vez en cuando o solo para comparar precios.", "No (4): E-07, E-08, E-14, E-18. Compran poco, son fieles a una marca o prefieren la tienda física.", "Patrón: la necesidad es mayor en quien compra a menudo y arma conjuntos con prendas de varias marcas."], "quotes": [["E-03", "Voy saltando entre marcas del mismo grupo constantemente. Para armar un conjunto necesito prendas de varias."], ["E-05", "Compro para los niños y para mí en varias marcas. Hoy abro tres pestañas y tres carritos."], ["E-08", "Soy fiel a una marca porque ya conozco su talla y su calidad. No suelo mirar otras."]], "limit": "Salvedad: son respuestas simuladas; la necesidad real se confirmará con personas en la prueba del 22 de enero."} },

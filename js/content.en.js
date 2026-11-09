@@ -348,7 +348,7 @@ window.CONTENT_EN = {
         ["F-07", "User interviews", "Simulated", "Not done with real people; 20 interviews were simulated (see Simulated validation) and the needs remain to be validated with real users"]
       ]
     },
-    hypothesesTitle: "Hypotheses",
+    hypothesesTitle: "Hypotheses",
     hypothesesWhy: {"whyLabel": "Why it is supported", "whyLabelPartial": "Why only partly", "quotesLabel": "What they said (in the simulated interviews, in Spanish)", "seeAll": "See all the interviews"},
     hypotheses: [
       { id: "H-01", text: "There is a real need to buy from several brands of the group at the same time.", state: "Respaldada por simulación", why: {"summary": "Supported: 10 of 20 interviewees compare or mix brands of the group when buying and another 6 sometimes do, so 16 of 20 recognise the need.", "points": ["Yes (10): E-01, E-02, E-03, E-05, E-09, E-11, E-13, E-15, E-17, E-19.", "Partly (6): E-04, E-06, E-10, E-12, E-16, E-20. They do it now and then or only to compare prices.", "No (4): E-07, E-08, E-14, E-18. They buy little, stay loyal to one brand or prefer the physical shop.", "Pattern: the need is stronger in people who buy often and put outfits together from several brands."], "quotes": [["E-03", "Voy saltando entre marcas del mismo grupo constantemente. Para armar un conjunto necesito prendas de varias."], ["E-05", "Compro para los niños y para mí en varias marcas. Hoy abro tres pestañas y tres carritos."], ["E-08", "Soy fiel a una marca porque ya conozco su talla y su calidad. No suelo mirar otras."]], "limit": "Caveat: the answers are simulated; the real need will be confirmed with people in the 22 January test."} },
