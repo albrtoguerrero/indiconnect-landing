@@ -136,11 +136,11 @@
     var current = sp.filter(function (x) { return x.status === "En curso"; })[0] ||
       sp.filter(function (x) { return x.status === "Pendiente"; })[0] || sp[sp.length - 1];
     var delivered = sp.filter(function (x) { return x.status === "Entregado"; }).length;
-    var drafts = C.decisions.items.filter(function (d) { return d.status === "Borrador"; }).length;
+    var approved = C.decisions.items.filter(function (d) { return d.status === "Aprobado"; }).length;
     var rows = [
       [s.current, current.milestone + " · " + current.name, current.status],
       [s.delivered, delivered + " " + C.ui.ofWord + " " + sp.length],
-      [s.decisions, drafts + " " + C.ui.ofWord + " " + C.decisions.items.length + " " + C.ui.inDraft],
+      [s.decisions, approved + " " + C.ui.ofWord + " " + C.decisions.items.length + " " + C.ui.approved],
       [s.needs, String(C.requirements.needs.rows.length)],
       [s.criteria, String(C.traceability.rows.length)],
       [s.updated, formatDate(C.lastUpdated)]
@@ -559,6 +559,26 @@
           el("p", { text: p.text })
         ]);
       })));
+      if (a.model) {
+        c.appendChild(el("h3", { "class": "sub-title", text: a.modelTitle }));
+        c.appendChild(el("dl", { "class": "ai-model" }, a.model.map(function (r) {
+          return el("div", {}, [el("dt", { text: r[0] }), el("dd", { text: r[1] })]);
+        })));
+        c.appendChild(el("p", { "class": "note", text: a.modelNote }));
+      }
+      if (a.rules) {
+        c.appendChild(el("h3", { "class": "sub-title", text: a.rulesTitle }));
+        c.appendChild(el("p", { "class": "lead", text: a.rulesIntro }));
+        c.appendChild(el("ul", { "class": "cards cards--rules" }, a.rules.map(function (r) {
+          return el("li", { "class": "card" }, [
+            el("h4", { text: r.title }),
+            el("p", { text: r.text })
+          ]);
+        })));
+      }
+      if (a.logLink) {
+        c.appendChild(el("p", {}, [el("a", { "class": "btn btn--ghost", href: a.logLink.href, text: a.logLink.label })]));
+      }
     });
   }
 

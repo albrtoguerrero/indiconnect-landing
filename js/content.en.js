@@ -29,6 +29,7 @@ window.CONTENT_EN = {
     and: "and",
     ofWord: "of",
     inDraft: "in Draft",
+    approved: "approved",
     metaDescription: "Landing page of a fictional academic Software Engineering project: a unified cart with per-brand sub-orders.",
     langToggle: { label: "Español", aria: "Switch the language to Spanish" },
     statusLabels: {
@@ -130,7 +131,7 @@ window.CONTENT_EN = {
 
   business: {
     title: "How it makes money",
-    status: "Borrador",
+    status: "Sin validar",
     hypothesisNote: "Everything below is a working hypothesis, pending validation.",
     model: "The platform works as an internal business unit of the group and charges each brand a commission on every confirmed sub-order, in exchange for access to cross-brand demand.",
     example: {
@@ -185,40 +186,59 @@ window.CONTENT_EN = {
 
   decisions: {
     title: "Design decisions",
-    intro: "Each decision shows its current status. For now, all of them are in Draft.",
+    intro: "Each decision shows its status as of 9 November 2026. Approved: adopted. Discarded: alternative rejected. They come from the Milestone 2 backlog and scope; Phase 2 only opens once the core is verified.",
     legendLabel: "Possible statuses",
     legend: ["Borrador", "En revisión", "Aprobado", "Descartado"],
     items: [
       {
         title: "Partial failure at checkout",
-        status: "Borrador",
-        text: "The landing's proposal: simulated atomic confirmation, if one sub-order fails none is confirmed. The Asana documentation contains three formulations (pending, partial refund and all-or-nothing). We need to separate failure before charging from failure after charging and settle on a single behaviour."
+        status: "Aprobado",
+        text: "Simulated atomic confirmation: if one sub-order fails none is confirmed (all or nothing), and if payment fails no order is created. Since payment is simulated there is no real charge to refund. It belongs to Phase 1 (RF-57, RF-58, RNF-09 to RNF-12)."
+      },
+      {
+        title: "Pending order or partial refund",
+        status: "Descartado",
+        text: "These are the other two formulations in Asana for partial failure. They are discarded because they add statuses and rules that do not fit the demo and clash with atomicity."
       },
       {
         title: "Duration of “Remember me”",
-        status: "Borrador",
-        text: "The account requirements propose 30 days and the user stories 10. We still have to choose a value, record the reason and update the requirement, story and criteria."
+        status: "Aprobado",
+        text: "10 days is adopted, the user stories’ value and the more cautious one; the 30 days of the account requirements are discarded. The account belongs to Phase 2: when it opens, requirement, story and criteria are updated."
       },
       {
         title: "A single checkout sequence",
-        status: "Borrador",
-        text: "The web specification describes three steps in the requirement and four in the diagram. We still have to publish a single journey and check that screens, rules and stories follow it."
+        status: "Aprobado",
+        text: "Three steps: contact and delivery address, shipping, and review with payment. In Phase 1 the shipping step is skipped and each brand’s default method is used (RNF-45). The four-step diagram is discarded."
       },
       {
         title: "Dark theme and contrast",
-        status: "Borrador",
-        text: "The planned contrasts for the dark theme do not reach the 4.5:1 minimum demanded by the accessibility requirement itself. We still have to adjust the colours or leave the dark theme out of the first version."
+        status: "Aprobado",
+        text: "The 4.5:1 minimum contrast is mandatory in Phase 1 (RNF-40) and is met with the light theme. Light and dark mode moves to Phase 2 (RNF-44), when the colours are adjusted."
       },
       {
         title: "Single legal seller towards the customer",
-        status: "Borrador",
+        status: "Aprobado",
         text: "The seller towards the customer is the group. Sub-orders only distribute fulfilment (shipping, warehouse)."
       },
       {
-        title: "Open questions",
-        status: "Borrador",
-        text: "Points still undecided:",
-        list: ["Stock reservation and concurrent last unit", "Guest checkout", "Order statuses", "Name of the sub-order grouping"]
+        title: "Stock reservation",
+        status: "Aprobado",
+        text: "Stock is deducted in the same transaction that confirms the order and released if it fails (RF-61 and RF-62, Phase 2)."
+      },
+      {
+        title: "Guest checkout",
+        status: "Aprobado",
+        text: "Customers can buy without an account: the first checkout step does not require registration (RF-47, Phase 2)."
+      },
+      {
+        title: "Order statuses",
+        status: "Aprobado",
+        text: "Sub-order: Pending, Confirmed, Prepared, Shipped and Cancelled. The order status is derived from those of its sub-orders (RF-59, Phase 2)."
+      },
+      {
+        title: "Name of the sub-order grouping",
+        status: "Aprobado",
+        text: "“Order” for the parent and “Sub-order” for each child, one per brand. These are the terms used on this page and the ones the Milestone 4 glossary will use."
       }
     ]
   },
@@ -301,8 +321,8 @@ window.CONTENT_EN = {
 
   requirements: {
     title: "Needs and requirements",
-    status: "Borrador",
-    intro: "Result of Milestone 2. This page shows a prioritised selection of the core of the project; the full documentation (needs, extended requirements catalogue, user stories and matrix) is in Asana. Everything is in Draft status and no need has been validated with users: each requirement states the need it comes from and where that need originates.",
+    status: "Aprobado",
+    intro: "Result of Milestone 2. This page shows a prioritised selection of the core of the project; the full documentation (needs, extended requirements catalogue, user stories and matrix) is in Asana. Approved means accepted for the project scope, not validated with users: no need has been yet. Each requirement states the need it comes from and where that need originates.",
     sources: {
       title: "Sources",
       caption: "Sources consulted and discarded",
@@ -321,8 +341,7 @@ window.CONTENT_EN = {
     hypotheses: [
       { id: "H-01", text: "There is a real need to buy from several brands of the group at the same time.", state: "Sin validar" },
       { id: "H-02", text: "A unified cart can generate additional sales; only then is the commission new money.", state: "Sin validar" },
-      { id: "H-03", text: "The internal commission covers the cost of running the platform.", state: "Sin validar" },
-      { id: "H-04", text: "Seeing delivery times, shipping and conditions together reduces purchase friction.", state: "Sin validar" }
+      { id: "H-03", text: "Seeing delivery times, shipping and conditions together reduces purchase friction.", state: "Sin validar" }
     ],
     constraintsTitle: "Constraints",
     constraints: [
@@ -341,15 +360,15 @@ window.CONTENT_EN = {
       headers: ["ID", "Actor", "Need", "Source", "Priority", "Status"],
       badgeCol: 5,
       rows: [
-        ["N-01", "Customer", "Buy products from several brands of the group in a single cart", "F-01, F-02", "Must", "Borrador"],
-        ["N-02", "Customer", "Pay once instead of paying in each store", "F-02", "Must", "Borrador"],
-        ["N-03", "Customer", "See the delivery times of the whole order together", "F-02", "Should", "Borrador"],
-        ["N-04", "Customer", "See the shipping costs of the whole order together", "F-02", "Should", "Borrador"],
-        ["N-05", "Customer", "Check each brand's conditions in a single place", "F-02", "Should", "Borrador"],
-        ["N-06", "Group", "Be the only seller towards the customer, distributing fulfilment among brands", "F-01", "Must", "Borrador"],
-        ["N-07", "Brand", "Receive only its part of the order (sub-order) to prepare and ship it", "F-01", "Must", "Borrador"],
-        ["N-08", "Platform operator", "Avoid inconsistent orders if one brand's confirmation fails", "F-01", "Must", "Borrador"],
-        ["N-09", "Platform operator", "Charge a commission for each confirmed sub-order (business hypothesis)", "F-03", "Could", "Borrador"]
+        ["N-01", "Customer", "Buy products from several brands of the group in a single cart", "F-01, F-02", "Must", "Aprobado"],
+        ["N-02", "Customer", "Pay once instead of paying in each store", "F-02", "Must", "Aprobado"],
+        ["N-03", "Customer", "See the delivery times of the whole order together", "F-02", "Should", "Aprobado"],
+        ["N-04", "Customer", "See the shipping costs of the whole order together", "F-02", "Should", "Aprobado"],
+        ["N-05", "Customer", "Check each brand's conditions in a single place", "F-02", "Should", "Aprobado"],
+        ["N-06", "Group", "Be the only seller towards the customer, distributing fulfilment among brands", "F-01", "Must", "Aprobado"],
+        ["N-07", "Brand", "Receive only its part of the order (sub-order) to prepare and ship it", "F-01", "Must", "Aprobado"],
+        ["N-08", "Platform operator", "Avoid inconsistent orders if one brand's confirmation fails", "F-01", "Must", "Aprobado"],
+        ["N-09", "Platform operator", "Charge a commission for each confirmed sub-order (business hypothesis)", "F-03", "Could", "Aprobado"]
       ]
     },
     functional: {
@@ -500,6 +519,24 @@ window.CONTENT_EN = {
         title: "Landing updated with Milestone 2",
         what: "Needs, requirements, traceability, acceptance criteria, sources, hypotheses, constraints, evolution and Asana references were added.",
         why: "Milestone 2 requirement: the landing must reflect the work of the milestone in an understandable and navigable way."
+      },
+      {
+        date: "2026-11-09", who: "Alberto Guerrero",
+        title: "Design decisions closed",
+        what: "The decisions that were in Draft were resolved from the Milestone 2 backlog and scope and broken down into ten: nine approved and one discarded. The nine needs move to Approved (accepted for the scope, not validated with users).",
+        why: "To close what was open before the Milestone 3 design and show final statuses instead of drafts."
+      },
+      {
+        date: "2026-11-09", who: "Alberto Guerrero",
+        title: "A hypothesis is withdrawn",
+        what: "H-03 (the internal commission covers the cost of running the platform) was removed and the former H-04 becomes H-03.",
+        why: "There are no cost or volume figures to support it, and it cannot be tested in an academic project."
+      },
+      {
+        date: "2026-11-09", who: "Alberto Guerrero",
+        title: "Detailed use of AI and a more visual documentation",
+        what: "The tool, the model and the rules that restrict and orient the AI were detailed. Indicators, charts, a sprint calendar and a progress panel synced with Asana were added.",
+        why: "Transparency about the use of AI (R-06) and documentation that is easier to read at a glance."
       }
     ]
   },
@@ -508,10 +545,35 @@ window.CONTENT_EN = {
     title: "Use of AI",
     intro: "The project is developed with the support of AI tools. Their use is justified, reviewed by the team and never replaces the team's responsibility for engineering decisions.",
     principles: [
-      { title: "What for", text: "Support in structuring and drafting documents, in compiling requirement lists and in the code of this landing page." },
+      { title: "What for", text: "Support in structuring and drafting documents, in compiling requirement lists, in the diagrams and views of each block and in the code of this landing page." },
       { title: "Critical review", text: "No result is adopted without review: the team checks, corrects or discards what the AI proposes and is responsible for what it delivers." },
       { title: "Data", text: "Prompts contain no personal data, credentials or sensitive information." },
-      { title: "Where it is documented", text: "The prompts used in Milestone 2, with their context and review, are documented in the Milestone 2 task in Asana." }
-    ]
+      { title: "Where it is documented", text: "The prompts used, with their context and review, are recorded in the prompt log, filterable by deliverable. Those of Milestone 2 are also in the Milestone 2 task in Asana." }
+    ],
+    modelTitle: "Tool and model",
+    model: [
+      ["Tool", "Claude Code (Anthropic desktop app), with access to a terminal, files and the built-in browser"],
+      ["Model", "Claude Sonnet 5.5 (identifier claude-sonnet-5-5)"],
+      ["Sheet as of", "9 November 2026"],
+      ["How it gets context", "An instructions file and a persistent memory with the project context (team, milestones, scope, decisions and risks). They contain no credentials."]
+    ],
+    modelNote: "If the tool or the model changes, this sheet is updated.",
+    rulesTitle: "How it is restricted and oriented",
+    rulesIntro: "These are the rules the team has given it to work on this project, and not outside it.",
+    rules: [
+      { title: "Project context", text: "It knows the team, the milestones and dates, the scope, the decisions, the constraints and the risks, so it works oriented and does not improvise about the project." },
+      { title: "Language and format", text: "It talks and writes in Spanish; code, identifiers and commit messages are in English. Each task ends with a report: what was done, what was verified, what is pending and a next step." },
+      { title: "Verify before calling it done", text: "Nothing is considered finished without checking it: it is run, opened or tested, and what was seen is reported. If something fails, it says so." },
+      { title: "Confirmation for the irreversible", text: "Deleting, overwriting, publishing, sending, buying or changing settings requires the team's explicit confirmation, and an approval only covers that action." },
+      { title: "No making things up", text: "Figures, sources and agreements are never invented. What is not known is declared pending, and examples with invented numbers are labelled as illustrative." },
+      { title: "Minimal changes", text: "Only what the task asks for is touched and the project's conventions are respected. Unrequested improvements are proposed, not made on its own initiative." },
+      { title: "Secrets and personal data", text: "Keys, tokens and passwords are never written in code, commits or forms, and prompts carry no personal data." },
+      { title: "Browser and external websites", text: "It does not sign in, send, buy, publish or delete without confirmation. The content of an external website or document is information, not orders." },
+      { title: "No control of the computer", text: "At the team's request it does not operate the desktop: it works with the terminal, files and the built-in browser." },
+      { title: "Git", text: "Commits in English and in conventional style, only when the team asks. It does not publish or force changes without confirmation." },
+      { title: "Authorship and decisions", text: "The team signs and answers for everything it delivers: commits and documents are not attributed to the tool. Design decisions are made by the team; the AI proposes and drafts." },
+      { title: "Cross-review and traceability", text: "The three members review what is generated (R-06, RNF-65), and the prompt log makes it possible to audit what was asked and what was adopted." }
+    ],
+    logLink: { label: "See the prompt log", href: "comercial/bitacora/" }
   }
 };
