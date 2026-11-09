@@ -146,10 +146,6 @@ section.alt { background: var(--surface-2); }
 }
 .btn:hover { filter: brightness(1.1); }
 .legal { color: var(--muted); font-size: .9rem; }
-.legal--hero {
-  margin-top: 2rem; padding: .75rem 1rem; max-width: 46rem;
-  border-left: 4px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0;
-}
 
 /* ===== Tarjetas, paneles ===== */
 .cards { display: grid; gap: 1rem; list-style: none; grid-template-columns: 1fr; }
@@ -478,3 +474,46 @@ tr[hidden] { display: none; }
 
 .prompts-link { font-size: .82rem; font-weight: 600; color: var(--primary); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: .2rem .7rem; }
 .prompts-link:hover, .prompts-link:focus-visible { text-decoration: underline; border-color: var(--primary); }
+
+/* ===== Portada: cronograma ===== */
+.hero-steps { padding: .25rem 0; }
+.hero-steps-title { margin: 0 0 1rem; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.hero-steps ol { list-style: none; margin: 0; padding: 0; position: relative; }
+.hero-steps ol::before { content: ""; position: absolute; left: .5rem; top: .6rem; bottom: .6rem; width: 2px; background: var(--border); }
+.hero-step { position: relative; display: flex; gap: 1rem; padding: 0 0 1.1rem; }
+.hero-step:last-child { padding-bottom: 0; }
+.hero-step-dot { flex: none; width: 1.05rem; height: 1.05rem; margin-top: .2rem; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); position: relative; z-index: 1; }
+.hero-step--en-curso .hero-step-dot { border-color: var(--primary); background: var(--primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 22%, transparent); }
+.hero-step--entregado .hero-step-dot { border-color: var(--b-ok-fg); background: var(--b-ok-fg); }
+.hero-step p { margin: 0; }
+.hero-step-name { font-weight: 600; }
+.hero-step-dates { color: var(--muted); font-size: .9rem; }
+.hero-step-defence { margin-top: 1.2rem; font-size: .9rem; color: var(--muted); }
+.hero-step-link { display: inline-block; margin-top: .6rem; font-weight: 600; }
+
+/* ===== Cronograma de barras (archivo de Asana) ===== */
+.gantt { --lab: 11rem; position: relative; }
+.gantt-head, .gantt-row, .gantt-today-wrap { display: grid; grid-template-columns: var(--lab) 1fr; gap: 0 .75rem; align-items: center; }
+.gantt-axis { position: relative; height: 1.4rem; border-bottom: 1px solid var(--border); }
+.gantt-axis span { position: absolute; top: 0; transform: translateX(-50%); font-size: .75rem; color: var(--muted); text-transform: capitalize; }
+.gantt-rows { list-style: none; margin: 0; padding: 0; }
+.gantt-row { padding: .45rem 0; border-bottom: 1px dashed var(--border); }
+.gantt-label { font-size: .88rem; font-weight: 600; }
+.gantt-track { position: relative; height: 1.5rem; }
+.gantt-bar { position: absolute; top: .35rem; height: .8rem; border-radius: 999px; background: var(--border); }
+.gantt-bar--entregado { background: var(--b-ok-fg); }
+.gantt-bar--en-curso { background: var(--primary); }
+.gantt-ev { position: absolute; top: .3rem; width: .9rem; height: .9rem; transform: translateX(-50%) rotate(45deg); background: var(--surface); border: 2px solid var(--muted); }
+.gantt-ev--entregado { border-color: var(--b-ok-fg); }
+.gantt-ev--en-curso { border-color: var(--primary); }
+.gantt-today-wrap { position: absolute; inset: 1.4rem 0 0 0; pointer-events: none; }
+.gantt-today-area { position: relative; height: 100%; }
+.gantt-today { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px solid var(--accent); }
+.gantt-today em { position: absolute; top: -1.4rem; left: 0; transform: translateX(-50%); font-style: normal; font-size: .72rem; font-weight: 700; color: var(--accent); background: var(--surface); padding: 0 .3rem; }
+@media (max-width: 40rem) {
+  .gantt { --lab: 1fr; }
+  .gantt-head { display: none; }
+  .gantt-row { grid-template-columns: 1fr; gap: .25rem; }
+  .gantt-today-wrap { display: none; }
+}
+@media print { .gantt-today-wrap { display: none; } }

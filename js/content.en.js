@@ -53,6 +53,9 @@ window.CONTENT_EN = {
       criteria: "Acceptance criteria",
       updated: "Updated"
     },
+    heroTimelineTitle: "Project schedule",
+    heroTimelineLink: "See the Asana archive",
+    heroDefence: "Group defence: 15 January 2027",
     searchBtn: "Search",
     promptsLink: "View the prompts for this section",
     searchTitle: "Search the documentation",
@@ -88,6 +91,7 @@ window.CONTENT_EN = {
     { id: "trazabilidad", label: "Traceability" },
     { id: "diseno", label: "Design" },
     { id: "avances", label: "Progress" },
+    { id: "asana", label: "Asana archive" },
     { id: "evolucion", label: "Evolution" },
     { id: "uso-ia", label: "Use of AI" },
     { id: "equipo", label: "Team" }
@@ -295,7 +299,8 @@ window.CONTENT_EN = {
         dates: "26 Oct – 13 Nov 2026",
         milestone: "Milestone 3",
         text: "Problem analysis, structured design and alternatives.",
-        status: "Pendiente"
+        status: "En curso",
+        note: "Design document and annexes uploaded to Asana on 9 November. The team cross-review and the 13 November Sprint Review are still to come."
       },
       {
         name: "Sprint 4",
@@ -604,6 +609,399 @@ window.CONTENT_EN = {
         "Section 12 of the design document, besides each block's own log."
       ]
     ]
+  },
+
+  archive: {
+      "title": "Asana archive",
+      "intro": "A copy on this page of what the team keeps in Asana, so it survives if we lose access to the board: schedule, deliveries, the Milestone 3 brief and the work plan. It was assembled by hand from what the board shows and from the team's plan. The source texts are in Spanish.",
+      "limits": "Not included: Asana comments and attached files, the other groups' tasks (Food4All and LearnCode), the subtasks of Milestones 1, 2 and 4, and the board's metrics dashboard. The data is as of the date shown and does not sync by itself.",
+      "asOf": "Copy as of 9 November 2026",
+      "ganttTitle": "Project schedule",
+      "ganttCaption": "Schedule of the five sprints, with ceremonies and final dates",
+      "ganttHint": "Bar: sprint length. Diamonds: planning at the start and review at the end. Line: today.",
+      "today": "Today",
+      "rows": [
+          {
+              "label": "Sprint 1 · Milestone 1",
+              "start": "2026-09-21",
+              "end": "2026-10-02",
+              "status": "Entregado",
+              "events": [
+                  [
+                      "2026-09-21",
+                      "Planning"
+                  ],
+                  [
+                      "2026-10-02",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 2 · Milestone 2",
+              "start": "2026-10-05",
+              "end": "2026-10-23",
+              "status": "Entregado",
+              "events": [
+                  [
+                      "2026-10-05",
+                      "Planning"
+                  ],
+                  [
+                      "2026-10-23",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 3 · Milestone 3",
+              "start": "2026-10-26",
+              "end": "2026-11-13",
+              "status": "En curso",
+              "events": [
+                  [
+                      "2026-10-26",
+                      "Planning"
+                  ],
+                  [
+                      "2026-11-13",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 4 · Milestone 4",
+              "start": "2026-11-16",
+              "end": "2026-12-11",
+              "status": "Pendiente",
+              "events": [
+                  [
+                      "2026-11-16",
+                      "Planning"
+                  ],
+                  [
+                      "2026-12-11",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 5 · Milestone 5",
+              "start": "2026-12-14",
+              "end": "2027-01-15",
+              "status": "Pendiente",
+              "events": [
+                  [
+                      "2026-12-14",
+                      "Planning"
+                  ],
+                  [
+                      "2027-01-15",
+                      "Final review and defence"
+                  ]
+              ]
+          },
+          {
+              "label": "Final in-person exam",
+              "start": "2027-01-22",
+              "end": "2027-01-22",
+              "status": "Pendiente",
+              "events": [
+                  [
+                      "2027-01-22",
+                      "In-person exam"
+                  ]
+              ]
+          }
+      ],
+      "axis": {
+          "start": "2026-09-14",
+          "end": "2027-01-31"
+      },
+      "deliveriesTitle": "Milestones and deliveries",
+      "deliveriesCaption": "Project milestones, their brief and their delivery status",
+      "deliveriesHeaders": [
+          "Milestone",
+          "What is delivered",
+          "Dates",
+          "Status",
+          "Recorded delivery"
+      ],
+      "deliveries": [
+          [
+              "Milestone 1",
+              "Context, actors, scope, exclusions and reasoned choice of approach",
+              "21 Sep – 2 Oct 2026",
+              "Entregado",
+              "Draft delivered to the team"
+          ],
+          [
+              "Milestone 2",
+              "Needs, requirements and acceptance criteria",
+              "5 – 23 Oct 2026",
+              "Entregado",
+              "Delivered on 23 October in Asana"
+          ],
+          [
+              "Milestone 3",
+              "Problem analysis, structured design and alternatives",
+              "26 Oct – 13 Nov 2026",
+              "En curso",
+              "Design document and annexes uploaded to Asana on 9 November; cross-review and the 13 November Sprint Review are still to come"
+          ],
+          [
+              "Milestone 4",
+              "Domain model, detailed design and AI-assisted construction",
+              "16 Nov – 11 Dec 2026",
+              "Pendiente",
+              "—"
+          ],
+          [
+              "Milestone 5",
+              "Integration, quality, traceability, final dossier and defence or individual check",
+              "14 Dec 2026 – 15 Jan 2027",
+              "Pendiente",
+              "—"
+          ]
+      ],
+      "boardTitle": "Board structure",
+      "boardCaption": "Tasks on the course board that concern IndiConnect, by section",
+      "boardHeaders": [
+          "Section",
+          "Task",
+          "Dates",
+          "Type"
+      ],
+      "board": [
+          [
+              "Sprint 1 – Milestone 1",
+              "[TODOS] Sprint Planning – Sprint 1",
+              "21 Sep",
+              "Ceremony"
+          ],
+          [
+              "Sprint 1 – Milestone 1",
+              "[INDICONNECT] Hito 1 – Contexto, actores y alcance · App Inditex",
+              "21 Sep – 2 Oct",
+              "Milestone"
+          ],
+          [
+              "Sprint 1 – Milestone 1",
+              "[TODOS] Sprint Review & Retrospectiva – Sprint 1",
+              "2 Oct",
+              "Ceremony"
+          ],
+          [
+              "Sprint 2 – Milestone 2",
+              "[TODOS] Sprint Planning – Sprint 2",
+              "5 Oct",
+              "Ceremony"
+          ],
+          [
+              "Sprint 2 – Milestone 2",
+              "[INDICONNECT] Hito 2 – Requisitos y Criterios de Aceptación · App Inditex (8 subtasks)",
+              "5 – 23 Oct",
+              "Milestone"
+          ],
+          [
+              "Sprint 2 – Milestone 2",
+              "[TODOS] Sprint Review & Retrospectiva – Sprint 2",
+              "23 Oct",
+              "Ceremony"
+          ],
+          [
+              "Sprint 3 – Milestone 3",
+              "[TODOS] Sprint Planning – Sprint 3 + Rotación de roles",
+              "26 Oct",
+              "Ceremony"
+          ],
+          [
+              "Sprint 3 – Milestone 3",
+              "[INDICONNECT] Hito 3 – Análisis y Diseño Estructurado (1 subtask: “Análisis”)",
+              "26 Oct – 13 Nov",
+              "Milestone"
+          ],
+          [
+              "Sprint 3 – Milestone 3",
+              "[TODOS] Sprint Review & Retrospectiva – Sprint 3",
+              "13 Nov",
+              "Ceremony"
+          ],
+          [
+              "Sprint 4 – Milestone 4",
+              "[TODOS] Sprint Planning – Sprint 4",
+              "16 Nov",
+              "Ceremony"
+          ],
+          [
+              "Sprint 4 – Milestone 4",
+              "[INDICONNECT] Hito 4 – Modelo de dominio, diseño detallado y construcción asistida por IA (7 subtasks)",
+              "16 Nov – 11 Dec",
+              "Milestone"
+          ],
+          [
+              "Sprint 4 – Milestone 4",
+              "[TODOS] Sprint Review – Sprint 4",
+              "11 Dec",
+              "Ceremony"
+          ],
+          [
+              "Sprint 5 – Milestone 5",
+              "[TODOS] Sprint Planning – Sprint 5",
+              "14 Dec",
+              "Ceremony"
+          ],
+          [
+              "Sprint 5 – Milestone 5",
+              "[INDICONNECT] Hito 5 – Integración, Calidad y Dossier Final · App Inditex",
+              "14 Dec – 15 Jan",
+              "Milestone"
+          ],
+          [
+              "Sprint 5 – Milestone 5",
+              "[TODOS] Sprint Review Final & Defensa Grupal",
+              "15 Jan 2027",
+              "Ceremony"
+          ],
+          [
+              "Week 17",
+              "[TODOS] Prueba Presencial Final",
+              "22 Jan 2027",
+              "Assessment"
+          ]
+      ],
+      "statementTitle": "Milestone 3 brief",
+      "statementIntro": "Turn the prioritised Milestone 2 requirements into analysis and structured-design artefacts: a coherent, editable and traceable design document, linked to the Asana tasks and to the documentation landing. Format: team work with an individual check of understanding and contribution during reviews, defences or Sprint Reviews.",
+      "statementMinTitle": "Minimum deliverable",
+      "statementMin": [
+          "Problem analysis.",
+          "Alternatives.",
+          "High-level logical architecture.",
+          "DFDs or main flows.",
+          "Conceptual data model or ER diagram.",
+          "Business rules.",
+          "Low-fidelity wireframes.",
+          "Updated traceability matrix.",
+          "Glossary."
+      ],
+      "statementEvTitle": "Mandatory evidence",
+      "statementEv": [
+          "Design document and annexes.",
+          "Editable source diagrams in .drawio format.",
+          "Low-fidelity wireframes or prototypes.",
+          "Link to Asana and to the updated documentation landing.",
+          "Updated traceability matrix: need → requirement → process or DFD → component → screen.",
+          "Change log: what changed, who changed it, when and why."
+      ],
+      "statementNote": "Summarised from the brief as recorded in the Asana task and by the team; the “Delivery conditions” section is not archived because its text is not available.",
+      "planTitle": "Milestone 3 work plan",
+      "planCaption": "Milestone 3 subtasks, their exit criterion and where each result ends up",
+      "planHeaders": [
+          "Subtask",
+          "Exit criterion",
+          "Where it ends up"
+      ],
+      "plan": [
+          [
+              "Problem analysis",
+              "A section of the design document setting out the problem, actors and constraints, traceable to the Milestone 2 needs.",
+              "Section 2 of the design document"
+          ],
+          [
+              "Design alternatives",
+              "At least two reasoned alternatives per relevant decision, with the chosen one and the reason.",
+              "Section 3 of the design document"
+          ],
+          [
+              "DFD view of blocks A1–A7",
+              "One DFD per functional block, consistent with the Milestone 2 backlog.",
+              "Each block's PDF and section 5"
+          ],
+          [
+              "ER view of blocks A1–A7",
+              "An entity-relationship model per block, with no contradictions between blocks.",
+              "Each block's PDF and section 6"
+          ],
+          [
+              "Architecture view of blocks A1–A7",
+              "Components and interfaces per block, aligned with the DFD and the ER model.",
+              "Each block's PDF and section 4"
+          ],
+          [
+              "Wireframes of blocks A1–A7",
+              "A low-fidelity wireframe of each block's key screens, traceable to its requirements.",
+              "Each block's PDF and section 8"
+          ],
+          [
+              "Business rules",
+              "A catalogue of rules with an identifier, linked to the requirements that originate them.",
+              "Section 7 of the design document"
+          ],
+          [
+              "Updated traceability matrix",
+              "A need → requirement → process or DFD → component → screen matrix, updated from Milestone 2.",
+              "Section 9 and Annex A"
+          ],
+          [
+              "Glossary",
+              "Domain terms defined once and used the same way throughout the document.",
+              "Section 11 of the design document"
+          ],
+          [
+              "Milestone 3 change log",
+              "A record of what changed, who, when and why, since Milestone 2.",
+              "Section 12 of the design document"
+          ],
+          [
+              "Editable source diagrams (.drawio)",
+              "DFD, ER, architecture and navigation of blocks A1–A7 as .drawio files in the repository.",
+              "docs/hito3 folder: 8 files with 37 diagrams"
+          ],
+          [
+              "Milestone 3 Word document (analysis and architecture)",
+              "A coherent, editable and traceable design document that brings everything together.",
+              "Design section of this landing"
+          ],
+          [
+              "Links to Asana and to the landing in the document",
+              "The document links to the Asana board and to the documentation landing, and the landing reflects Milestone 3.",
+              "Cover and section 13 of the document"
+          ],
+          [
+              "Individual feasibility analysis",
+              "A personal analysis with a verdict per dimension and risks, based on the current hypotheses H-01 to H-03.",
+              "Each member's own document; not published here"
+          ],
+          [
+              "Cross-review and delivery of Milestone 3",
+              "Review by the three members and delivery on 13 Nov 2026.",
+              "Pending: cross-review before 13 November"
+          ]
+      ],
+      "linksTitle": "Where everything is",
+      "links": [
+          [
+              "Course Asana board (private, members only)",
+              "https://app.asana.com/1/1210398551117865/project/1218693735718662/board/1218693735718678"
+          ],
+          [
+              "Documentation landing",
+              "https://albrtoguerrero.github.io/indiconnect-landing/"
+          ],
+          [
+              "Repository",
+              "https://github.com/albrtoguerrero/indiconnect-landing"
+          ],
+          [
+              "Milestone 3 files (document, PDFs and .drawio)",
+              "https://github.com/albrtoguerrero/indiconnect-landing/tree/main/docs/hito3"
+          ]
+      ],
+      "linksHeaders": [
+          "Resource",
+          "Address"
+      ],
+      "linksCaption": "Project links"
   },
 
   evolution: {

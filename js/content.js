@@ -46,6 +46,9 @@ window.CONTENT = {
       criteria: "Criterios de aceptación",
       updated: "Actualizado"
     },
+    heroTimelineTitle: "Cronograma del proyecto",
+    heroTimelineLink: "Ver el archivo de Asana",
+    heroDefence: "Defensa grupal: 15 de enero de 2027",
     searchBtn: "Buscar",
     promptsLink: "Ver los prompts de esta sección",
     searchTitle: "Buscar en la documentación",
@@ -81,6 +84,7 @@ window.CONTENT = {
     { id: "trazabilidad", label: "Trazabilidad" },
     { id: "diseno", label: "Diseño" },
     { id: "avances", label: "Avances" },
+    { id: "asana", label: "Archivo Asana" },
     { id: "evolucion", label: "Evolución" },
     { id: "uso-ia", label: "Uso de IA" },
     { id: "equipo", label: "Equipo" }
@@ -288,7 +292,8 @@ window.CONTENT = {
         dates: "26 oct – 13 nov 2026",
         milestone: "Hito 3",
         text: "Análisis del problema, diseño estructurado y alternativas.",
-        status: "Pendiente"
+        status: "En curso",
+        note: "Documento de diseño y anexos subidos a Asana el 9 de noviembre. Falta la revisión cruzada del equipo y el Sprint Review del 13 de noviembre."
       },
       {
         name: "Sprint 4",
@@ -601,6 +606,399 @@ window.CONTENT = {
         "Apartado 12 del documento de diseño, además del registro de cada bloque."
       ]
     ]
+  },
+
+  archive: {
+      "title": "Archivo de Asana",
+      "intro": "Copia en esta página de lo que el equipo lleva en Asana, para que se conserve aunque dejemos de tener acceso al tablero: calendario, entregas, enunciado del Hito 3 y plan de trabajo. Está montado a mano con lo visible en el tablero y con el plan del equipo.",
+      "limits": "Qué no incluye: los comentarios y los ficheros adjuntos de Asana, las tareas de los otros grupos (Food4All y LearnCode), las subtareas de los Hitos 1, 2 y 4 y el panel de métricas del tablero. Los datos son de la fecha indicada y no se sincronizan solos.",
+      "asOf": "Copia a 9 de noviembre de 2026",
+      "ganttTitle": "Cronograma del proyecto",
+      "ganttCaption": "Cronograma de los cinco sprints, con las ceremonias y las fechas finales",
+      "ganttHint": "Barra: duración del sprint. Rombos: planning al inicio y review al final. Línea: hoy.",
+      "today": "Hoy",
+      "rows": [
+          {
+              "label": "Sprint 1 · Hito 1",
+              "start": "2026-09-21",
+              "end": "2026-10-02",
+              "status": "Entregado",
+              "events": [
+                  [
+                      "2026-09-21",
+                      "Planning"
+                  ],
+                  [
+                      "2026-10-02",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 2 · Hito 2",
+              "start": "2026-10-05",
+              "end": "2026-10-23",
+              "status": "Entregado",
+              "events": [
+                  [
+                      "2026-10-05",
+                      "Planning"
+                  ],
+                  [
+                      "2026-10-23",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 3 · Hito 3",
+              "start": "2026-10-26",
+              "end": "2026-11-13",
+              "status": "En curso",
+              "events": [
+                  [
+                      "2026-10-26",
+                      "Planning"
+                  ],
+                  [
+                      "2026-11-13",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 4 · Hito 4",
+              "start": "2026-11-16",
+              "end": "2026-12-11",
+              "status": "Pendiente",
+              "events": [
+                  [
+                      "2026-11-16",
+                      "Planning"
+                  ],
+                  [
+                      "2026-12-11",
+                      "Review"
+                  ]
+              ]
+          },
+          {
+              "label": "Sprint 5 · Hito 5",
+              "start": "2026-12-14",
+              "end": "2027-01-15",
+              "status": "Pendiente",
+              "events": [
+                  [
+                      "2026-12-14",
+                      "Planning"
+                  ],
+                  [
+                      "2027-01-15",
+                      "Review final y defensa"
+                  ]
+              ]
+          },
+          {
+              "label": "Prueba presencial final",
+              "start": "2027-01-22",
+              "end": "2027-01-22",
+              "status": "Pendiente",
+              "events": [
+                  [
+                      "2027-01-22",
+                      "Prueba presencial"
+                  ]
+              ]
+          }
+      ],
+      "axis": {
+          "start": "2026-09-14",
+          "end": "2027-01-31"
+      },
+      "deliveriesTitle": "Hitos y entregas",
+      "deliveriesCaption": "Hitos del proyecto, su enunciado y su estado de entrega",
+      "deliveriesHeaders": [
+          "Hito",
+          "Qué se entrega",
+          "Fechas",
+          "Estado",
+          "Entrega registrada"
+      ],
+      "deliveries": [
+          [
+              "Hito 1",
+              "Contexto, actores, alcance, exclusiones y elección razonada del enfoque",
+              "21 sep – 2 oct 2026",
+              "Entregado",
+              "Borrador entregado al equipo"
+          ],
+          [
+              "Hito 2",
+              "Necesidades, requisitos y criterios de aceptación",
+              "5 – 23 oct 2026",
+              "Entregado",
+              "Entregado el 23 de octubre en Asana"
+          ],
+          [
+              "Hito 3",
+              "Análisis del problema, diseño estructurado y alternativas",
+              "26 oct – 13 nov 2026",
+              "En curso",
+              "Documento de diseño y anexos subidos a Asana el 9 de noviembre; falta la revisión cruzada y el Sprint Review del 13 de noviembre"
+          ],
+          [
+              "Hito 4",
+              "Modelo de dominio, diseño detallado y construcción asistida por IA",
+              "16 nov – 11 dic 2026",
+              "Pendiente",
+              "—"
+          ],
+          [
+              "Hito 5",
+              "Integración, calidad, trazabilidad, dossier final y defensa o verificación individual",
+              "14 dic 2026 – 15 ene 2027",
+              "Pendiente",
+              "—"
+          ]
+      ],
+      "boardTitle": "Estructura del tablero",
+      "boardCaption": "Tareas del tablero de la asignatura que afectan a IndiConnect, por sección",
+      "boardHeaders": [
+          "Sección",
+          "Tarea",
+          "Fechas",
+          "Tipo"
+      ],
+      "board": [
+          [
+              "Sprint 1 – Hito 1",
+              "[TODOS] Sprint Planning – Sprint 1",
+              "21 sep",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 1 – Hito 1",
+              "[INDICONNECT] Hito 1 – Contexto, actores y alcance · App Inditex",
+              "21 sep – 2 oct",
+              "Hito"
+          ],
+          [
+              "Sprint 1 – Hito 1",
+              "[TODOS] Sprint Review & Retrospectiva – Sprint 1",
+              "2 oct",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 2 – Hito 2",
+              "[TODOS] Sprint Planning – Sprint 2",
+              "5 oct",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 2 – Hito 2",
+              "[INDICONNECT] Hito 2 – Requisitos y Criterios de Aceptación · App Inditex (8 subtareas)",
+              "5 – 23 oct",
+              "Hito"
+          ],
+          [
+              "Sprint 2 – Hito 2",
+              "[TODOS] Sprint Review & Retrospectiva – Sprint 2",
+              "23 oct",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 3 – Hito 3",
+              "[TODOS] Sprint Planning – Sprint 3 + Rotación de roles",
+              "26 oct",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 3 – Hito 3",
+              "[INDICONNECT] Hito 3 – Análisis y Diseño Estructurado (1 subtarea: «Análisis»)",
+              "26 oct – 13 nov",
+              "Hito"
+          ],
+          [
+              "Sprint 3 – Hito 3",
+              "[TODOS] Sprint Review & Retrospectiva – Sprint 3",
+              "13 nov",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 4 – Hito 4",
+              "[TODOS] Sprint Planning – Sprint 4",
+              "16 nov",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 4 – Hito 4",
+              "[INDICONNECT] Hito 4 – Modelo de dominio, diseño detallado y construcción asistida por IA (7 subtareas)",
+              "16 nov – 11 dic",
+              "Hito"
+          ],
+          [
+              "Sprint 4 – Hito 4",
+              "[TODOS] Sprint Review – Sprint 4",
+              "11 dic",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 5 – Hito 5",
+              "[TODOS] Sprint Planning – Sprint 5",
+              "14 dic",
+              "Ceremonia"
+          ],
+          [
+              "Sprint 5 – Hito 5",
+              "[INDICONNECT] Hito 5 – Integración, Calidad y Dossier Final · App Inditex",
+              "14 dic – 15 ene",
+              "Hito"
+          ],
+          [
+              "Sprint 5 – Hito 5",
+              "[TODOS] Sprint Review Final & Defensa Grupal",
+              "15 ene 2027",
+              "Ceremonia"
+          ],
+          [
+              "Semana 17",
+              "[TODOS] Prueba Presencial Final",
+              "22 ene 2027",
+              "Evaluación"
+          ]
+      ],
+      "statementTitle": "Enunciado del Hito 3",
+      "statementIntro": "Transformar los requisitos priorizados del Hito 2 en artefactos de análisis y diseño estructurado: un documento de diseño coherente, editable y trazable, vinculado a las tareas de Asana y a la landing documental. Modalidad: trabajo de equipo con comprobación individual de comprensión y contribución durante las revisiones, defensas o Sprint Reviews.",
+      "statementMinTitle": "Entregable mínimo",
+      "statementMin": [
+          "Análisis del problema.",
+          "Alternativas.",
+          "Arquitectura lógica de alto nivel.",
+          "DFD o flujos principales.",
+          "Modelo conceptual de datos o DER.",
+          "Reglas de negocio.",
+          "Wireframes de baja fidelidad.",
+          "Actualización de la matriz de trazabilidad.",
+          "Glosario."
+      ],
+      "statementEvTitle": "Evidencias obligatorias",
+      "statementEv": [
+          "Documento de diseño y anexos.",
+          "Diagramas fuente editables en formato .drawio.",
+          "Wireframes o prototipos de baja fidelidad.",
+          "Enlace a Asana y a la landing documental actualizada.",
+          "Matriz de trazabilidad actualizada: necesidad → requisito → proceso o DFD → componente → pantalla.",
+          "Registro de cambios: qué se cambió, quién lo cambió, cuándo y por qué."
+      ],
+      "statementNote": "Texto resumido del enunciado tal como lo recoge la tarea de Asana y el equipo; el apartado «Condiciones de la entrega» no está archivado porque no se dispone de su texto.",
+      "planTitle": "Plan de trabajo del Hito 3",
+      "planCaption": "Subtareas del Hito 3, su criterio de salida y dónde queda cada resultado",
+      "planHeaders": [
+          "Subtarea",
+          "Criterio de salida",
+          "Dónde queda"
+      ],
+      "plan": [
+          [
+              "Análisis del problema",
+              "Apartado del documento de diseño que plantea el problema, actores y restricciones, trazable a las necesidades del Hito 2.",
+              "Apartado 2 del documento de diseño"
+          ],
+          [
+              "Alternativas de diseño",
+              "Al menos dos alternativas razonadas por decisión relevante, con la elegida y el motivo.",
+              "Apartado 3 del documento de diseño"
+          ],
+          [
+              "Vista DFD de los bloques A1–A7",
+              "Un DFD por bloque funcional, coherente con el backlog del Hito 2.",
+              "PDF de cada bloque y apartado 5"
+          ],
+          [
+              "Vista DER de los bloques A1–A7",
+              "Modelo entidad-relación por bloque, sin contradicciones entre bloques.",
+              "PDF de cada bloque y apartado 6"
+          ],
+          [
+              "Vista de arquitectura de los bloques A1–A7",
+              "Componentes e interfaces por bloque, alineados con el DFD y el DER.",
+              "PDF de cada bloque y apartado 4"
+          ],
+          [
+              "Wireframes de los bloques A1–A7",
+              "Wireframe de baja fidelidad de las pantallas clave de cada bloque, trazable a sus requisitos.",
+              "PDF de cada bloque y apartado 8"
+          ],
+          [
+              "Reglas de negocio",
+              "Catálogo de reglas con identificador, enlazado a los requisitos que las originan.",
+              "Apartado 7 del documento de diseño"
+          ],
+          [
+              "Matriz de trazabilidad actualizada",
+              "Matriz necesidad → requisito → proceso o DFD → componente → pantalla, actualizada respecto al Hito 2.",
+              "Apartado 9 y Anexo A"
+          ],
+          [
+              "Glosario",
+              "Términos del dominio definidos de forma única y usados igual en todo el documento.",
+              "Apartado 11 del documento de diseño"
+          ],
+          [
+              "Registro de cambios del Hito 3",
+              "Registro de qué se cambió, quién, cuándo y por qué, desde el Hito 2.",
+              "Apartado 12 del documento de diseño"
+          ],
+          [
+              "Diagramas fuente editables (.drawio)",
+              "DFD, DER, arquitectura y navegación de los bloques A1–A7 como ficheros .drawio en el repositorio.",
+              "Carpeta docs/hito3: 8 ficheros con 37 diagramas"
+          ],
+          [
+              "Documento Word del Hito 3 (análisis y arquitectura)",
+              "Documento de diseño coherente, editable y trazable que integre todo lo anterior.",
+              "Sección Diseño de esta landing"
+          ],
+          [
+              "Enlaces a Asana y a la landing en el documento",
+              "El documento enlaza al tablero de Asana y a la landing documental, y la landing refleja el Hito 3.",
+              "Portada y apartado 13 del documento"
+          ],
+          [
+              "Análisis de viabilidad individual",
+              "Análisis personal con veredicto por dimensión y riesgos, basado en las hipótesis vigentes H-01 a H-03.",
+              "Documento individual de cada miembro; no se publica aquí"
+          ],
+          [
+              "Revisión cruzada y entrega del Hito 3",
+              "Revisión por los tres miembros y entrega el 13 nov 2026.",
+              "Pendiente: revisión cruzada antes del 13 de noviembre"
+          ]
+      ],
+      "linksTitle": "Dónde está todo",
+      "links": [
+          [
+              "Tablero de Asana de la asignatura (privado, solo miembros)",
+              "https://app.asana.com/1/1210398551117865/project/1218693735718662/board/1218693735718678"
+          ],
+          [
+              "Landing documental",
+              "https://albrtoguerrero.github.io/indiconnect-landing/"
+          ],
+          [
+              "Repositorio",
+              "https://github.com/albrtoguerrero/indiconnect-landing"
+          ],
+          [
+              "Ficheros del Hito 3 (documento, PDF y .drawio)",
+              "https://github.com/albrtoguerrero/indiconnect-landing/tree/main/docs/hito3"
+          ]
+      ],
+      "linksHeaders": [
+          "Recurso",
+          "Dirección"
+      ],
+      "linksCaption": "Enlaces del proyecto"
   },
 
   evolution: {
