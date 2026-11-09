@@ -41,6 +41,8 @@ window.CONTENT_EN = {
       "En curso": "In progress",
       "Entregado": "Delivered",
       "Sin validar": "Unvalidated",
+      "Respaldada por simulación": "Supported by simulation",
+      "Parcialmente respaldada por simulación": "Partly supported by simulation",
       "Fase 1": "Phase 1",
       "Fase 2": "Phase 2"
     },
@@ -91,6 +93,7 @@ window.CONTENT_EN = {
     { id: "riesgos", label: "Risks" },
     { id: "diseno", label: "Design" },
     { id: "requisitos", label: "Requirements" },
+    { id: "validacion", label: "Validation" },
     { id: "trazabilidad", label: "Traceability" },
     { id: "avances", label: "Progress" },
     { id: "documentacion", label: "Documentation" },
@@ -139,7 +142,7 @@ window.CONTENT_EN = {
   business: {
     title: "How it makes money",
     status: "Sin validar",
-    hypothesisNote: "Everything below is a working hypothesis, pending validation.",
+    hypothesisNote: "Everything below is a working hypothesis: tested with simulated interviews (see Simulated validation), pending validation with real people.",
     model: "The platform works as an internal business unit of the group and charges each brand a commission on every confirmed sub-order, in exchange for access to cross-brand demand.",
     example: {
       tag: "Illustrative example · invented numbers",
@@ -330,7 +333,7 @@ window.CONTENT_EN = {
   requirements: {
     title: "Needs and requirements",
     status: "Aprobado",
-    intro: "Result of Milestone 2. This page shows a prioritised selection of the core of the project; the full documentation (needs, extended requirements catalogue, user stories and matrix) is in Asana. Approved means accepted for the project scope, not validated with users: no need has been yet. Each requirement states the need it comes from and where that need originates.",
+    intro: "Result of Milestone 2. This page shows a prioritised selection of the core of the project; the full documentation (needs, extended requirements catalogue, user stories and matrix) is in Asana. Approved means accepted for the project scope, not validated with real users: no need has been yet. The hypotheses were tested with simulated interviews (see Simulated validation). Each requirement states the need it comes from and where that need originates.",
     sources: {
       title: "Sources",
       caption: "Sources consulted and discarded",
@@ -342,14 +345,14 @@ window.CONTENT_EN = {
         ["F-04", "Trade press on the 2025 acquisition of Lyst", "External", "Risk of the aggregator model's fragility"],
         ["F-05", "Statement and criteria of the subject's Milestone 2", "Academic", "Structure of the deliverables"],
         ["F-06", "Benchmarking of multi-brand apps and stores", "Pending", "No documented results yet; not used as a source"],
-        ["F-07", "User interviews", "Discarded", "The team has not carried them out (see Evolution); the needs remain to be validated with real users"]
+        ["F-07", "User interviews", "Simulated", "Not done with real people; 20 interviews were simulated (see Simulated validation) and the needs remain to be validated with real users"]
       ]
     },
     hypothesesTitle: "Hypotheses",
     hypotheses: [
-      { id: "H-01", text: "There is a real need to buy from several brands of the group at the same time.", state: "Sin validar" },
-      { id: "H-02", text: "A unified cart can generate additional sales; only then is the commission new money.", state: "Sin validar" },
-      { id: "H-03", text: "Seeing delivery times, shipping and conditions together reduces purchase friction.", state: "Sin validar" }
+      { id: "H-01", text: "There is a real need to buy from several brands of the group at the same time.", state: "Respaldada por simulación" },
+      { id: "H-02", text: "A unified cart can generate additional sales; only then is the commission new money.", state: "Parcialmente respaldada por simulación" },
+      { id: "H-03", text: "Seeing delivery times, shipping and conditions together reduces purchase friction.", state: "Respaldada por simulación" }
     ],
     constraintsTitle: "Constraints",
     constraints: [
@@ -977,6 +980,444 @@ window.CONTENT_EN = {
               "status": "Pendiente",
               "notes": "Entrega final del proyecto del agregador de apps Inditex.\n\n📌 Entregables:\n• Matriz de trazabilidad completa (necesidad → requisito → diseño → implementación)\n• Plan de calidad: métricas, revisiones, pruebas (unitarias, integración, aceptación)\n• Dossier final integrado (todos los hitos revisados y cohesionados)\n• Presentación de defensa (10-15 diapositivas)\n• Reflexión individual de cada miembro sobre su contribución y aprendizaje\n\n💬 Comentario sugerido: incluir lecciones aprendidas y qué harían diferente.\n\n📎 Adjuntar: dossier PDF + presentación + matriz de trazabilidad.",
               "subtasks": []
+          }
+      ]
+  },
+
+  validation: {
+      "title": "Simulated validation",
+      "asOf": "Simulated interviews · 9 Nov 2026",
+      "intro": "To test the hypotheses without real users at hand, the team ran a simulation of 20 interviews, as the course lecturer suggested. Each interview matches a shopper profile defined by the team, and the answers were generated with AI assistance following a single script. It helps refine the hypotheses and the design; it does not replace validation with real people.",
+      "limits": "Limits: these are synthetic people, not real ones. The answers are plausible but not measured; the percentages are not statistical and tend to be more coherent than a real sample. That is why the hypotheses are “supported by simulation”, not “validated”: the in-person test on 22 January is the chance to confirm them with real people.",
+      "methodTitle": "Method",
+      "method": [
+          "Sample: 20 profiles with age (19 to 62), occupation, buying frequency and attitude to shopping across several brands (from very favourable to sceptical).",
+          "One common script of 5 questions, put to each profile separately.",
+          "Each answer was classified as “Yes”, “Partly” or “No” against each hypothesis, and the concern themes were noted.",
+          "The results are counted automatically from the 20 cards below."
+      ],
+      "guideTitle": "Interview script",
+      "guide": [
+          "How often do you buy clothes online, and how many brands of the same group do you usually look at? (H-01)",
+          "Tell me about the last time you wanted to buy from two brands at once: how did you handle it? (H-01)",
+          "If you could put items from several brands in one cart and pay once, would you buy more? (H-02)",
+          "Would seeing delivery times, shipping and conditions together before paying help you? (H-03)",
+          "What would worry you about buying this way, through an intermediary?"
+      ],
+      "resultsTitle": "Results by hypothesis",
+      "resultsCaption": "Answers from the 20 interviews, by hypothesis",
+      "resultsHeaders": [
+          "Hypothesis",
+          "Yes",
+          "Partly",
+          "No",
+          "Status"
+      ],
+      "results": [
+          [
+              "H-01",
+              "10",
+              "6",
+              "4",
+              "Respaldada por simulación"
+          ],
+          [
+              "H-02",
+              "7",
+              "7",
+              "6",
+              "Parcialmente respaldada por simulación"
+          ],
+          [
+              "H-03",
+              "13",
+              "6",
+              "1",
+              "Respaldada por simulación"
+          ]
+      ],
+      "readTitle": "What the results say",
+      "read": [
+          "H-01: 10 of 20 yes and 6 partly. The need shows mostly in people who buy often and mix items; those who buy little or stay loyal to one brand do not feel it.",
+          "H-02: the weakest: 7 yes, 7 partly and 6 no. Many say they would buy the same, only faster: the perceived value is saving steps, not spending more. This affects the commission model, which depends on new sales.",
+          "H-03: 13 of 20 yes and 6 partly. The best supported: seeing delivery times, shipping and conditions together is asked for in almost every profile."
+      ],
+      "themesTitle": "Concerns and what they mean for the design",
+      "themesCaption": "Most frequent themes and their design consequence",
+      "themesHeaders": [
+          "Theme",
+          "Times",
+          "Design consequence"
+      ],
+      "themes": [
+          [
+              "Returns",
+              "8",
+              "Show each brand's return policy before paying and make clear who the customer contacts."
+          ],
+          [
+              "Shipping",
+              "6",
+              "Show shipping cost and time per sub-order and the total before confirming."
+          ],
+          [
+              "Final price",
+              "5",
+              "Always show the final price, with no charges added at payment."
+          ],
+          [
+              "Trust",
+              "5",
+              "Show visibly which brand sells each item and who handles incidents."
+          ],
+          [
+              "Sizing",
+              "3",
+              "Link each brand's size guide; not a cart problem, but it drives returns."
+          ]
+      ],
+      "nextTitle": "What we do with this",
+      "next": [
+          "Keep H-01 and H-03 as working hypotheses supported by simulation, to confirm with real people in the 22 January test.",
+          "Rethink H-02: the business model must not depend on the unified cart creating new sales; it stays a risk, not an assumption.",
+          "Carry the five concerns into the Milestone 4 acceptance criteria (cart, checkout and sub-orders)."
+      ],
+      "interviewsTitle": "Interviews",
+      "interviewsIntro": "The 20 cards with each profile's own answers (in Spanish). Unfold the one you want to read.",
+      "labels": {
+          "age": "years old",
+          "habit": "Buys",
+          "q": [
+              "How they shop today",
+              "With a single cart",
+              "What would worry them"
+          ],
+          "ratings": "Answer to the hypotheses",
+          "themes": "Themes",
+          "yes": "Yes",
+          "partly": "Partly",
+          "no": "No",
+          "synthetic": "Synthetic (simulated) person"
+      },
+      "themeNames": {
+          "devoluciones": "returns",
+          "envio": "shipping",
+          "precio": "final price",
+          "confianza": "trust",
+          "tallas": "sizing"
+      },
+      "codeNames": {
+          "s": "Yes",
+          "p": "Partly",
+          "n": "No"
+      },
+      "interviews": [
+          {
+              "id": "E-01",
+              "profile": "Estudiante de grado",
+              "age": 20,
+              "habit": "cada 1-2 meses, con presupuesto ajustado",
+              "h1": "s",
+              "h2": "s",
+              "h3": "s",
+              "themes": [
+                  "envio",
+                  "precio"
+              ],
+              "q1": "Casi siempre miro dos o tres marcas del mismo grupo, porque cada una tiene algo que me gusta. Acabo con dos pedidos y dos envíos.",
+              "q2": "Con un solo carrito compraría más, sobre todo si así llego al envío gratis. Hoy a veces dejo cosas fuera por no pagar dos envíos.",
+              "q3": "Me preocupa pagar dos veces los gastos de envío sin darme cuenta. Quiero verlos antes de pagar."
+          },
+          {
+              "id": "E-02",
+              "profile": "Estudiante de máster",
+              "age": 24,
+              "habit": "una vez al mes",
+              "h1": "s",
+              "h2": "p",
+              "h3": "s",
+              "themes": [
+                  "devoluciones"
+              ],
+              "q1": "Sí que compro en varias marcas, pero no el mismo día. Me guardo cosas en favoritos y las pido por separado.",
+              "q2": "Quizá compraría algo más, pero no mucho: ya sé lo que quiero cuando entro. Lo veo útil sobre todo para no repetir el proceso.",
+              "q3": "Lo que me frena es devolver: si es de dos marcas, no sé a quién escribir ni qué plazo tengo."
+          },
+          {
+              "id": "E-03",
+              "profile": "Diseñadora freelance",
+              "age": 29,
+              "habit": "una vez al mes, mira muchas marcas",
+              "h1": "s",
+              "h2": "s",
+              "h3": "s",
+              "themes": [
+                  "tallas"
+              ],
+              "q1": "Voy saltando entre marcas del mismo grupo constantemente. Para armar un conjunto necesito prendas de varias.",
+              "q2": "Un carrito único me ahorraría muchísimo tiempo y, sí, acabaría comprando más porque vería el conjunto completo.",
+              "q3": "Las tallas cambian de una marca a otra. Necesito una guía por marca, no una genérica."
+          },
+          {
+              "id": "E-04",
+              "profile": "Funcionaria",
+              "age": 38,
+              "habit": "cuatro veces al año",
+              "h1": "p",
+              "h2": "n",
+              "h3": "p",
+              "themes": [
+                  "confianza",
+                  "devoluciones"
+              ],
+              "q1": "Compro poco y casi siempre en la misma marca. A veces miro otra, pero no es lo habitual.",
+              "q2": "No creo que gastara más: compro lo que necesito. Eso sí, tener una sola factura y un solo pago sería cómodo.",
+              "q3": "No sé si me fiaría de una web que no es la tienda oficial. Querría saber quién responde si algo sale mal."
+          },
+          {
+              "id": "E-05",
+              "profile": "Madre de dos hijos",
+              "age": 41,
+              "habit": "cada mes, ropa para toda la familia",
+              "h1": "s",
+              "h2": "s",
+              "h3": "s",
+              "themes": [
+                  "envio",
+                  "devoluciones"
+              ],
+              "q1": "Compro para los niños y para mí en varias marcas. Hoy abro tres pestañas y tres carritos.",
+              "q2": "Sería un alivio. Si veo todo junto y el envío sale mejor, compraría más cosas de golpe.",
+              "q3": "Devolver desde casa con niños es un lío. Quiero saber de antemano la política de cada marca."
+          },
+          {
+              "id": "E-06",
+              "profile": "Ingeniero",
+              "age": 33,
+              "habit": "dos veces al año",
+              "h1": "p",
+              "h2": "p",
+              "h3": "s",
+              "themes": [
+                  "envio"
+              ],
+              "q1": "Compro cuando me hace falta algo concreto. A veces miro dos marcas para comparar precios, pero poco más.",
+              "q2": "Compraría lo mismo, pero más rápido. Para mí el valor está en ahorrar pasos.",
+              "q3": "Me importa ver el plazo de entrega y el precio total desde el principio, sin sorpresas al final."
+          },
+          {
+              "id": "E-07",
+              "profile": "Jubilada",
+              "age": 62,
+              "habit": "rara vez online, le ayuda su hija",
+              "h1": "n",
+              "h2": "n",
+              "h3": "p",
+              "themes": [
+                  "confianza"
+              ],
+              "q1": "Prefiero ir a la tienda. Online solo compro si mi hija me lo prepara.",
+              "q2": "No creo que comprara más online. Si fuera más sencillo ver todo junto, a lo mejor me animaría.",
+              "q3": "Me da miedo no saber con quién hablo si hay un problema. Necesito un teléfono o alguien claro."
+          },
+          {
+              "id": "E-08",
+              "profile": "Deportista aficionado",
+              "age": 27,
+              "habit": "dos o tres veces al año, ropa técnica",
+              "h1": "n",
+              "h2": "n",
+              "h3": "n",
+              "themes": [
+                  "tallas"
+              ],
+              "q1": "Soy fiel a una marca porque ya conozco su talla y su calidad. No suelo mirar otras.",
+              "q2": "No gastaría más: compro lo que necesito para entrenar. No me aporta mucho.",
+              "q3": "Lo que me importa es acertar con la talla y el material; un carrito conjunto no me lo resuelve."
+          },
+          {
+              "id": "E-09",
+              "profile": "Dependienta de comercio",
+              "age": 31,
+              "habit": "en rebajas y campañas",
+              "h1": "s",
+              "h2": "s",
+              "h3": "p",
+              "themes": [
+                  "precio"
+              ],
+              "q1": "En rebajas miro todas las marcas del grupo para pillar lo mejor. Hoy lo hago a mano, comparando precios.",
+              "q2": "Si veo todas las ofertas juntas, compraría más, seguro. Es justo lo que hago, pero con más esfuerzo.",
+              "q3": "Quiero que el precio que veo sea el final. Si hay cargos añadidos, me retiro."
+          },
+          {
+              "id": "E-10",
+              "profile": "Profesora",
+              "age": 45,
+              "habit": "por temporadas",
+              "h1": "p",
+              "h2": "p",
+              "h3": "s",
+              "themes": [
+                  "devoluciones"
+              ],
+              "q1": "Compro dos veces por temporada. A veces combino dos marcas, pero no es lo habitual.",
+              "q2": "Compraría quizá una o dos prendas más, no cambiaría mi presupuesto. Pero lo agradecería.",
+              "q3": "Que las devoluciones sean claras y sencillas. Si tengo que gestionar dos, no me compensa."
+          },
+          {
+              "id": "E-11",
+              "profile": "Estudiante de grado",
+              "age": 19,
+              "habit": "cada mes, ropa urbana",
+              "h1": "s",
+              "h2": "s",
+              "h3": "s",
+              "themes": [
+                  "precio",
+                  "envio"
+              ],
+              "q1": "Miro varias marcas a la vez desde el móvil. Me gusta combinar prendas de distintas tiendas.",
+              "q2": "Sí, compraría más. Si ya tengo algo en el carrito y veo otra cosa buena, la añado.",
+              "q3": "Los gastos de envío me echan para atrás. Quiero verlos claros al principio."
+          },
+          {
+              "id": "E-12",
+              "profile": "Directivo",
+              "age": 50,
+              "habit": "compras puntuales de ropa de trabajo y regalos",
+              "h1": "p",
+              "h2": "n",
+              "h3": "s",
+              "themes": [
+                  "confianza"
+              ],
+              "q1": "Compro cuando tengo un evento o un regalo. Casi siempre voy a una marca que conozco.",
+              "q2": "No cambiaría cuánto compro. Lo que valoro es el tiempo: menos pasos, menos tiempo perdido.",
+              "q3": "Me importa la seriedad: quién vende, cómo se factura y qué garantías tengo."
+          },
+          {
+              "id": "E-13",
+              "profile": "Creadora de contenido de moda",
+              "age": 25,
+              "habit": "varias veces al mes",
+              "h1": "s",
+              "h2": "s",
+              "h3": "s",
+              "themes": [
+                  "devoluciones"
+              ],
+              "q1": "Combino marcas del mismo grupo en cada compra, es mi forma de crear looks. Hoy lo hago con tres pestañas.",
+              "q2": "Un carrito único me haría comprar bastante más. Vería el look entero antes de pagar.",
+              "q3": "Devuelvo bastante. Si cada marca tiene condiciones distintas, necesito verlas antes."
+          },
+          {
+              "id": "E-14",
+              "profile": "Camarero",
+              "age": 35,
+              "habit": "poco, prefiere ir a la tienda",
+              "h1": "n",
+              "h2": "n",
+              "h3": "p",
+              "themes": [
+                  "tallas",
+                  "devoluciones"
+              ],
+              "q1": "Compro poco y casi siempre en tienda, porque quiero probarme las cosas.",
+              "q2": "No creo que comprara más. Si fuera más cómodo, igual compraría online alguna vez.",
+              "q3": "Sin probar, me da miedo fallar con la talla y tener que devolver."
+          },
+          {
+              "id": "E-15",
+              "profile": "Enfermera",
+              "age": 34,
+              "habit": "de noche, entre turnos",
+              "h1": "s",
+              "h2": "p",
+              "h3": "s",
+              "themes": [
+                  "envio"
+              ],
+              "q1": "Compro de madrugada, cuando salgo del turno, y entro en varias marcas porque voy con prisa.",
+              "q2": "Compraría más o menos lo mismo, pero lo haría más rápido y sin repetir los datos.",
+              "q3": "Necesito saber cuándo llega: trabajo por turnos y no siempre estoy en casa."
+          },
+          {
+              "id": "E-16",
+              "profile": "Arquitecto",
+              "age": 43,
+              "habit": "compras escogidas, gama alta",
+              "h1": "p",
+              "h2": "p",
+              "h3": "s",
+              "themes": [
+                  "confianza"
+              ],
+              "q1": "Compro poco pero bien. A veces comparo dos marcas del mismo grupo antes de decidir.",
+              "q2": "Compraría igual. Valoraría ver todo en un solo sitio con la misma facilidad.",
+              "q3": "Quiero tener claro que lo que compro es original y quién responde por ello."
+          },
+          {
+              "id": "E-17",
+              "profile": "Estudiante Erasmus",
+              "age": 22,
+              "habit": "cada mes, desde varios países",
+              "h1": "s",
+              "h2": "s",
+              "h3": "s",
+              "themes": [
+                  "envio",
+                  "devoluciones"
+              ],
+              "q1": "Compro en varios países y marcas del mismo grupo. Es un lío con los envíos y los plazos.",
+              "q2": "Sería genial. Si veo plazos y costes juntos para el mismo destino, compraría más de golpe.",
+              "q3": "Los envíos internacionales y las devoluciones. Necesito saberlo antes."
+          },
+          {
+              "id": "E-18",
+              "profile": "Autónomo",
+              "age": 48,
+              "habit": "poco, solo cuando le hace falta",
+              "h1": "n",
+              "h2": "p",
+              "h3": "p",
+              "themes": [
+                  "precio",
+                  "confianza"
+              ],
+              "q1": "Compro lo imprescindible y casi siempre en el mismo sitio. No pierdo tiempo comparando.",
+              "q2": "Quizá compraría algo más si me sale más barato todo junto, pero no es mi caso habitual.",
+              "q3": "No me fío de intermediarios. Si hay un cargo extra o algo raro, no sigo."
+          },
+          {
+              "id": "E-19",
+              "profile": "Recién licenciada",
+              "age": 26,
+              "habit": "cada dos meses, usa comparadores",
+              "h1": "s",
+              "h2": "p",
+              "h3": "s",
+              "themes": [
+                  "precio"
+              ],
+              "q1": "Uso comparadores para ver dónde sale más barato, también entre marcas del mismo grupo.",
+              "q2": "Compraría lo mismo, pero con menos pasos. Lo que ahorra es tiempo.",
+              "q3": "El precio final. No quiero ver sorpresas al pagar."
+          },
+          {
+              "id": "E-20",
+              "profile": "Padre de familia",
+              "age": 52,
+              "habit": "ocasional, por comodidad",
+              "h1": "p",
+              "h2": "n",
+              "h3": "p",
+              "themes": [
+                  "devoluciones"
+              ],
+              "q1": "Compro online por comodidad, normalmente en una sola marca.",
+              "q2": "No compraría más. Pero me parece cómodo ver las cosas en un solo sitio.",
+              "q3": "Que devolver no sea una odisea. Un solo sitio al que acudir sería lo ideal."
           }
       ]
   },
