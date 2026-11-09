@@ -433,6 +433,47 @@
     return el("details", attrs, kids);
   }
 
+  function renderValidation() {
+    fill("validacion", function (c, hid) {
+      var v = C.validation, lb = v.labels;
+      c.appendChild(heading(hid, v.title, el("span", { "class": "badge badge--sin-validar", text: v.asOf })));
+      c.appendChild(el("p", { "class": "lead", text: v.intro }));
+      c.appendChild(el("p", { "class": "note", text: v.limits }));
+      c.appendChild(el("div", { "class": "two-col two-col--top" }, [
+        el("div", {}, [subTitle(v.methodTitle), list(v.method)]),
+        el("div", {}, [subTitle(v.guideTitle), el("ol", {}, v.guide.map(function (q) { return el("li", { text: q }); }))])
+      ]));
+      c.appendChild(subTitle(v.resultsTitle));
+      c.appendChild(textTable({ caption: v.resultsCaption, headers: v.resultsHeaders, rows: v.results, badgeCol: 4 }));
+      c.appendChild(subTitle(v.readTitle));
+      c.appendChild(list(v.read));
+      c.appendChild(subTitle(v.themesTitle));
+      c.appendChild(textTable({ caption: v.themesCaption, headers: v.themesHeaders, rows: v.themes }));
+      c.appendChild(subTitle(v.nextTitle));
+      c.appendChild(list(v.next));
+      c.appendChild(subTitle(v.interviewsTitle));
+      c.appendChild(el("p", { "class": "note", text: v.interviewsIntro }));
+      c.appendChild(el("div", { "class": "hitos" }, v.interviews.map(function (iv) {
+        var codes = [iv.h1, iv.h2, iv.h3].map(function (k, n) { return "H-0" + (n + 1) + ": " + v.codeNames[k]; }).join(" · ");
+        var themes = iv.themes.map(function (t) { return v.themeNames[t]; }).join(", ");
+        var body = [
+          el("p", { "class": "note", text: lb.synthetic + " · " + lb.habit + ": " + iv.habit }),
+          el("h4", { text: lb.q[0] }), el("p", { text: iv.q1 }),
+          el("h4", { text: lb.q[1] }), el("p", { text: iv.q2 }),
+          el("h4", { text: lb.q[2] }), el("p", { text: iv.q3 }),
+          el("p", { "class": "note", text: lb.ratings + ": " + codes + " · " + lb.themes + ": " + themes })
+        ];
+        return el("details", { "class": "hito" }, [
+          el("summary", {}, [
+            el("span", { "class": "hito-name", text: iv.id + " · " + iv.profile + ", " + iv.age + " " + lb.age }),
+            el("span", { "class": "hito-dates", text: codes })
+          ]),
+          el("div", { "class": "hito-body" }, body)
+        ]);
+      })));
+    });
+  }
+
   function renderArchive() {
     fill("documentacion", function (c, hid) {
       var a = C.archive;
@@ -461,7 +502,7 @@
   var VIEWS = [
     { id: "contexto", sections: ["inicio", "problema", "como-funciona", "negocio"] },
     { id: "definicion", sections: ["alcance", "decisiones", "riesgos", "diseno"] },
-    { id: "requisitos", sections: ["requisitos", "trazabilidad"] },
+    { id: "requisitos", sections: ["requisitos", "validacion", "trazabilidad"] },
     { id: "seguimiento", sections: ["avances", "documentacion", "evolucion", "uso-ia", "equipo"] }
   ];
   var currentView = null;
@@ -557,6 +598,30 @@
     return el("h3", attrs);
   }
 
+  // Hipótesis con un desplegable que explica por qué tienen su estado.
+  function hypothesisList(items, lb) {
+    return el("ul", { "class": "id-list" }, items.map(function (it) {
+      var kids = [el("strong", { text: it.id }), el("span", { text: it.text }), it.state ? badge(it.state) : null];
+      if (it.why) {
+        var w = it.why, partial = /^Parcialmente/.test(it.state || "");
+        kids.push(el("details", { "class": "subnote hyp-why" }, [
+          el("summary", { text: partial ? lb.whyLabelPartial : lb.whyLabel }),
+          el("div", { "class": "subnote-body" }, [
+            el("p", { text: w.summary }),
+            list(w.points),
+            el("h5", { text: lb.quotesLabel }),
+            el("div", {}, w.quotes.map(function (qt) {
+              return el("blockquote", { "class": "hyp-quote" }, [el("p", { text: "«" + qt[1] + "»" }), el("footer", { text: qt[0] })]);
+            })),
+            el("p", { "class": "note", text: w.limit }),
+            el("p", {}, [el("a", { href: "#validacion", text: lb.seeAll })])
+          ])
+        ]));
+      }
+      return el("li", {}, kids);
+    }));
+  }
+
   function idList(items) {
     return el("ul", { "class": "id-list" }, items.map(function (it) {
       return el("li", {}, [
@@ -621,7 +686,7 @@
       c.appendChild(subTitle(r.sources.title, "req-fuentes"));
       c.appendChild(textTable(r.sources));
       c.appendChild(el("div", { "class": "two-col two-col--top", id: "req-hipotesis" }, [
-        el("div", {}, [subTitle(r.hypothesesTitle), idList(r.hypotheses)]),
+        el("div", {}, [subTitle(r.hypothesesTitle), hypothesisList(r.hypotheses, r.hypothesesWhy)]),
         el("div", {}, [subTitle(r.constraintsTitle), idList(r.constraints)])
       ]));
       c.appendChild(subTitle(r.exclusionsTitle, "req-exclusiones"));
@@ -973,7 +1038,7 @@
   /* ---------- idioma ---------- */
 
   var HOSTS = ["inicio", "problema", "como-funciona", "negocio", "alcance", "decisiones", "riesgos",
-    "requisitos", "trazabilidad", "diseno", "avances", "documentacion", "evolucion", "uso-ia", "equipo"];
+    "requisitos", "validacion", "trazabilidad", "diseno", "avances", "documentacion", "evolucion", "uso-ia", "equipo"];
 
   function clear(node) {
     while (node.firstChild) { node.removeChild(node.firstChild); }
@@ -999,6 +1064,7 @@
     renderDesign();
     renderProgress();
     renderArchive();
+    renderValidation();
     renderEvolution();
     renderAiUse();
     renderTeam();

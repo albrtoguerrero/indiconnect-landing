@@ -533,3 +533,13 @@ main { position: relative; }
 .subnote { margin-top: .6rem; border: 1px solid var(--border); border-radius: 8px; }
 .subnote > summary { padding: .55rem .8rem; cursor: pointer; font-weight: 600; font-size: .92rem; }
 .subnote-body { padding: 0 .9rem .8rem; }
+
+.badge--respaldada-por-simulacion { background: var(--b-ok-bg); color: var(--b-ok-fg); }
+.badge--parcialmente-respaldada-por-simulacion { background: var(--b-warn-bg); color: var(--b-warn-fg); }
+.badge--simulada { background: var(--b-info-bg); color: var(--b-info-fg); }
+
+.hyp-why { flex: 1 1 100%; margin-top: .3rem; }
+.hyp-why p, .hyp-why li { font-size: .95rem; }
+.hyp-quote { margin: .5rem 0; padding: .1rem .9rem; border-left: 3px solid var(--border); color: var(--muted); }
+.hyp-quote p { margin: .3rem 0; font-style: italic; }
+.hyp-quote footer { font-size: .85rem; margin-bottom: .3rem; }
