@@ -47,8 +47,10 @@ window.CONTENT = {
       updated: "Actualizado"
     },
     heroTimelineTitle: "Cronograma del proyecto",
-    heroTimelineLink: "Ver el archivo de Asana",
+    heroTimelineLink: "Ver la documentación",
     heroDefence: "Defensa grupal: 15 de enero de 2027",
+    viewLabels: { contexto: "Contexto", definicion: "Definición", requisitos: "Requisitos", seguimiento: "Seguimiento" },
+    viewsLabel: "Vistas de la página",
     searchBtn: "Buscar",
     promptsLink: "Ver los prompts de esta sección",
     searchTitle: "Buscar en la documentación",
@@ -80,11 +82,11 @@ window.CONTENT = {
     { id: "alcance", label: "Alcance" },
     { id: "decisiones", label: "Decisiones" },
     { id: "riesgos", label: "Riesgos" },
+    { id: "diseno", label: "Diseño" },
     { id: "requisitos", label: "Requisitos" },
     { id: "trazabilidad", label: "Trazabilidad" },
-    { id: "diseno", label: "Diseño" },
     { id: "avances", label: "Avances" },
-    { id: "asana", label: "Archivo Asana" },
+    { id: "documentacion", label: "Documentación" },
     { id: "evolucion", label: "Evolución" },
     { id: "uso-ia", label: "Uso de IA" },
     { id: "equipo", label: "Equipo" }
@@ -299,7 +301,7 @@ window.CONTENT = {
         name: "Sprint 4",
         dates: "16 nov – 11 dic 2026",
         milestone: "Hito 4",
-        text: "Modelo de dominio y diseño orientado a objetos.",
+        text: "Modelo de dominio, diseño detallado y construcción asistida por IA.",
         status: "Pendiente"
       },
       {
@@ -609,264 +611,10 @@ window.CONTENT = {
   },
 
   archive: {
-      "title": "Archivo de Asana",
-      "intro": "Copia en esta página de lo que el equipo lleva en Asana, para que se conserve aunque dejemos de tener acceso al tablero: calendario, entregas, enunciado del Hito 3 y plan de trabajo. Está montado a mano con lo visible en el tablero y con el plan del equipo.",
-      "limits": "Qué no incluye: los comentarios y los ficheros adjuntos de Asana, las tareas de los otros grupos (Food4All y LearnCode), las subtareas de los Hitos 1, 2 y 4 y el panel de métricas del tablero. Los datos son de la fecha indicada y no se sincronizan solos.",
+      "title": "Documentación",
+      "intro": "Copia en esta landing de lo que el equipo lleva en el tablero de Asana de la asignatura, para que se conserve aunque dejemos de tener acceso. Procede de la exportación del tablero del 9 de noviembre de 2026: cada hito se despliega con su descripción y sus subtareas.",
+      "limits": "Qué no incluye: los comentarios y los ficheros adjuntos de Asana, las tareas de los otros grupos (Food4All y LearnCode), las ceremonias de sprint y el panel de métricas. Las descripciones están copiadas tal cual del tablero, en español, y los datos son de la fecha indicada: no se sincronizan solos.",
       "asOf": "Copia a 9 de noviembre de 2026",
-      "ganttTitle": "Cronograma del proyecto",
-      "ganttCaption": "Cronograma de los cinco sprints, con las ceremonias y las fechas finales",
-      "ganttHint": "Barra: duración del sprint. Rombos: planning al inicio y review al final. Línea: hoy.",
-      "today": "Hoy",
-      "rows": [
-          {
-              "label": "Sprint 1 · Hito 1",
-              "start": "2026-09-21",
-              "end": "2026-10-02",
-              "status": "Entregado",
-              "events": [
-                  [
-                      "2026-09-21",
-                      "Planning"
-                  ],
-                  [
-                      "2026-10-02",
-                      "Review"
-                  ]
-              ]
-          },
-          {
-              "label": "Sprint 2 · Hito 2",
-              "start": "2026-10-05",
-              "end": "2026-10-23",
-              "status": "Entregado",
-              "events": [
-                  [
-                      "2026-10-05",
-                      "Planning"
-                  ],
-                  [
-                      "2026-10-23",
-                      "Review"
-                  ]
-              ]
-          },
-          {
-              "label": "Sprint 3 · Hito 3",
-              "start": "2026-10-26",
-              "end": "2026-11-13",
-              "status": "En curso",
-              "events": [
-                  [
-                      "2026-10-26",
-                      "Planning"
-                  ],
-                  [
-                      "2026-11-13",
-                      "Review"
-                  ]
-              ]
-          },
-          {
-              "label": "Sprint 4 · Hito 4",
-              "start": "2026-11-16",
-              "end": "2026-12-11",
-              "status": "Pendiente",
-              "events": [
-                  [
-                      "2026-11-16",
-                      "Planning"
-                  ],
-                  [
-                      "2026-12-11",
-                      "Review"
-                  ]
-              ]
-          },
-          {
-              "label": "Sprint 5 · Hito 5",
-              "start": "2026-12-14",
-              "end": "2027-01-15",
-              "status": "Pendiente",
-              "events": [
-                  [
-                      "2026-12-14",
-                      "Planning"
-                  ],
-                  [
-                      "2027-01-15",
-                      "Review final y defensa"
-                  ]
-              ]
-          },
-          {
-              "label": "Prueba presencial final",
-              "start": "2027-01-22",
-              "end": "2027-01-22",
-              "status": "Pendiente",
-              "events": [
-                  [
-                      "2027-01-22",
-                      "Prueba presencial"
-                  ]
-              ]
-          }
-      ],
-      "axis": {
-          "start": "2026-09-14",
-          "end": "2027-01-31"
-      },
-      "deliveriesTitle": "Hitos y entregas",
-      "deliveriesCaption": "Hitos del proyecto, su enunciado y su estado de entrega",
-      "deliveriesHeaders": [
-          "Hito",
-          "Qué se entrega",
-          "Fechas",
-          "Estado",
-          "Entrega registrada"
-      ],
-      "deliveries": [
-          [
-              "Hito 1",
-              "Contexto, actores, alcance, exclusiones y elección razonada del enfoque",
-              "21 sep – 2 oct 2026",
-              "Entregado",
-              "Borrador entregado al equipo"
-          ],
-          [
-              "Hito 2",
-              "Necesidades, requisitos y criterios de aceptación",
-              "5 – 23 oct 2026",
-              "Entregado",
-              "Entregado el 23 de octubre en Asana"
-          ],
-          [
-              "Hito 3",
-              "Análisis del problema, diseño estructurado y alternativas",
-              "26 oct – 13 nov 2026",
-              "En curso",
-              "Documento de diseño y anexos subidos a Asana el 9 de noviembre; falta la revisión cruzada y el Sprint Review del 13 de noviembre"
-          ],
-          [
-              "Hito 4",
-              "Modelo de dominio, diseño detallado y construcción asistida por IA",
-              "16 nov – 11 dic 2026",
-              "Pendiente",
-              "—"
-          ],
-          [
-              "Hito 5",
-              "Integración, calidad, trazabilidad, dossier final y defensa o verificación individual",
-              "14 dic 2026 – 15 ene 2027",
-              "Pendiente",
-              "—"
-          ]
-      ],
-      "boardTitle": "Estructura del tablero",
-      "boardCaption": "Tareas del tablero de la asignatura que afectan a IndiConnect, por sección",
-      "boardHeaders": [
-          "Sección",
-          "Tarea",
-          "Fechas",
-          "Tipo"
-      ],
-      "board": [
-          [
-              "Sprint 1 – Hito 1",
-              "[TODOS] Sprint Planning – Sprint 1",
-              "21 sep",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 1 – Hito 1",
-              "[INDICONNECT] Hito 1 – Contexto, actores y alcance · App Inditex",
-              "21 sep – 2 oct",
-              "Hito"
-          ],
-          [
-              "Sprint 1 – Hito 1",
-              "[TODOS] Sprint Review & Retrospectiva – Sprint 1",
-              "2 oct",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 2 – Hito 2",
-              "[TODOS] Sprint Planning – Sprint 2",
-              "5 oct",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 2 – Hito 2",
-              "[INDICONNECT] Hito 2 – Requisitos y Criterios de Aceptación · App Inditex (8 subtareas)",
-              "5 – 23 oct",
-              "Hito"
-          ],
-          [
-              "Sprint 2 – Hito 2",
-              "[TODOS] Sprint Review & Retrospectiva – Sprint 2",
-              "23 oct",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 3 – Hito 3",
-              "[TODOS] Sprint Planning – Sprint 3 + Rotación de roles",
-              "26 oct",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 3 – Hito 3",
-              "[INDICONNECT] Hito 3 – Análisis y Diseño Estructurado (1 subtarea: «Análisis»)",
-              "26 oct – 13 nov",
-              "Hito"
-          ],
-          [
-              "Sprint 3 – Hito 3",
-              "[TODOS] Sprint Review & Retrospectiva – Sprint 3",
-              "13 nov",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 4 – Hito 4",
-              "[TODOS] Sprint Planning – Sprint 4",
-              "16 nov",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 4 – Hito 4",
-              "[INDICONNECT] Hito 4 – Modelo de dominio, diseño detallado y construcción asistida por IA (7 subtareas)",
-              "16 nov – 11 dic",
-              "Hito"
-          ],
-          [
-              "Sprint 4 – Hito 4",
-              "[TODOS] Sprint Review – Sprint 4",
-              "11 dic",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 5 – Hito 5",
-              "[TODOS] Sprint Planning – Sprint 5",
-              "14 dic",
-              "Ceremonia"
-          ],
-          [
-              "Sprint 5 – Hito 5",
-              "[INDICONNECT] Hito 5 – Integración, Calidad y Dossier Final · App Inditex",
-              "14 dic – 15 ene",
-              "Hito"
-          ],
-          [
-              "Sprint 5 – Hito 5",
-              "[TODOS] Sprint Review Final & Defensa Grupal",
-              "15 ene 2027",
-              "Ceremonia"
-          ],
-          [
-              "Semana 17",
-              "[TODOS] Prueba Presencial Final",
-              "22 ene 2027",
-              "Evaluación"
-          ]
-      ],
       "statementTitle": "Enunciado del Hito 3",
       "statementIntro": "Transformar los requisitos priorizados del Hito 2 en artefactos de análisis y diseño estructurado: un documento de diseño coherente, editable y trazable, vinculado a las tareas de Asana y a la landing documental. Modalidad: trabajo de equipo con comprobación individual de comprensión y contribución durante las revisiones, defensas o Sprint Reviews.",
       "statementMinTitle": "Entregable mínimo",
@@ -891,7 +639,7 @@ window.CONTENT = {
           "Registro de cambios: qué se cambió, quién lo cambió, cuándo y por qué."
       ],
       "statementNote": "Texto resumido del enunciado tal como lo recoge la tarea de Asana y el equipo; el apartado «Condiciones de la entrega» no está archivado porque no se dispone de su texto.",
-      "planTitle": "Plan de trabajo del Hito 3",
+      "planTitle": "Plan de trabajo del equipo para el Hito 3",
       "planCaption": "Subtareas del Hito 3, su criterio de salida y dónde queda cada resultado",
       "planHeaders": [
           "Subtarea",
@@ -998,7 +746,236 @@ window.CONTENT = {
           "Recurso",
           "Dirección"
       ],
-      "linksCaption": "Enlaces del proyecto"
+      "linksCaption": "Enlaces del proyecto",
+      "hitosTitle": "Hitos",
+      "hitoLabel": "Hito",
+      "descTitle": "Descripción del hito",
+      "subtasksTitle": "Subtareas",
+      "subtasksCaption": "Subtareas del hito en el tablero",
+      "subtasksHeaders": [
+          "Subtarea",
+          "Responsable",
+          "Fecha",
+          "Estado"
+      ],
+      "doneLabel": "Hecha",
+      "pendingLabel": "Pendiente",
+      "noOwner": "Sin asignar",
+      "noSubtasks": "Este hito no tiene subtareas en el tablero.",
+      "notesOf": "Notas de",
+      "planNote": "Estas 15 subtareas son el plan interno del equipo; en el tablero de la asignatura el Hito 3 solo tiene la subtarea «Análisis».",
+      "hitos": [
+          {
+              "n": 1,
+              "title": "Contexto, actores y alcance",
+              "start": "2026-09-21",
+              "end": "2026-10-02",
+              "status": "Entregado",
+              "notes": "Definir el contexto del sistema agregador de apps Inditex (Zara, Pull&Bear, Massimo Dutti, etc.).\n\n📌 Entregables:\n• Descripción del contexto del sistema\n• Identificación de actores (usuarios finales, sistemas Inditex, pasarelas de pago…)\n• Alcance funcional y exclusiones razonadas\n• Elección razonada del enfoque (monolito vs microservicios, nativo vs web…)\n\n💬 Comentario sugerido al entregar: indicar qué apps de Inditex se integran y cuáles quedan fuera del alcance.\n\n📎 Adjuntar: documento PDF con diagrama de contexto (UML o C4 nivel 1).",
+              "subtasks": [
+                  {
+                      "name": "Naming",
+                      "owner": "Alberto Guerrero",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": ""
+                  },
+                  {
+                      "name": "Integrantes del Grupo",
+                      "owner": "Lucía Guerra",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": "Alberto Guerrero Morales, Mikel Fernández Moriel y Lucía Guerra Escudero."
+                  },
+                  {
+                      "name": "Mercado",
+                      "owner": "Mikel Moriel",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": "Ámbito: España (territorio nacional)\n    Cliente: Comprador online en España\n    Moneda e idioma: Euro (€) y español\n    Contexto: E-commerce de moda (ropa, calzado y accesorios). En 2024, 29,4 millones de personas compraron por internet en España, el 76% adquirió moda y el 83,6% utilizó el smartphone."
+                  },
+                  {
+                      "name": "Competencia",
+                      "owner": "Lucía Guerra",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": "Competencia directa: Las webs y apps oficiales e independientes de Zara, Pull&Bear, Stradivarius y Bershka.\n    Alternativas del mercado: Marketplaces de moda multimarca como Zalando, ASOS o Farfetch.\n\n----------------------------------------\n\n—— ANÁLISIS DE COMPETENCIA ——\n\n1. Nombre actual del proyecto\n\nPara esta entrega vamos a mantener el nombre actual, ya que se trata de un proyecto académico y de un MVP, por lo que el objetivo principal ahora mismo es desarrollar y validar la idea.\nAun así, consideramos que la comprobación del nombre debería hacerse desde las primeras fases de un proyecto. De esta forma se pueden evitar problemas posteriores relacionados con marcas registradas, nombres de empresas, dominios web o usuarios en redes sociales.\n\n2. Cómo elegiríamos un nombre en futuros proyectos\n\nEn futuros proyectos seguiríamos un proceso más claro antes de decidir el nombre definitivo.\nPrimero definiríamos qué queremos transmitir con la marca: qué hace el producto, a quién va dirigido y qué imagen queremos dar.\nDespués generaríamos varias opciones de nombres, intentando evitar nombres demasiado genéricos o descriptivos. Buscaríamos nombres fáciles de recordar, pronunciar y utilizar tanto en España como, si fuese necesario, en otros países.\nUna vez tengamos varias opciones, comprobaríamos:\n    Si el nombre está registrado como marca en la OEPM o en la EUIPO.\n    Si existe alguna sociedad con un nombre igual o muy parecido en el Registro Mercantil Central.\n    Si están disponibles dominios como .com, .es, .io o .app.\n    Si el nombre o uno similar ya se está utilizando en Instagram, TikTok, X, LinkedIn, App Store o Play Store.\nDespués de estas comprobaciones compararíamos los candidatos teniendo en cuenta principalmente la disponibilidad legal y digital, pero también que el nombre sea fácil de recordar y que pueda utilizarse en otros mercados en el futuro.\nComo referencia, podríamos valorar cada nombre de esta forma: 40 % disponibilidad legal, 30 % disponibilidad digital, 20 % facilidad para recordarlo y pronunciarlo y 10 % posibilidad de utilizarlo internacionalmente.\n\n3. Uso de IA como apoyo para buscar nombres\n\nTambién podemos utilizar herramientas de IA para ayudarnos en la fase inicial de búsqueda de nombres, aunque la comprobación final tendría que realizarse siempre en las fuentes oficiales.\nUn prompt que podríamos utilizar sería:\n\n> Necesito buscar un nombre para un proyecto que consiste en [descripción del proyecto].\nPropón 10 nombres diferentes que sean fáciles de recordar y que no sean excesivamente genéricos o descriptivos.\nPara las mejores opciones, indica posibles variantes del nombre para redes sociales y dominios web, qué clases de Niza podrían estar relacionadas con el proyecto y qué alternativas podríamos utilizar si el nombre ya estuviese registrado.\nLa disponibilidad de los nombres se comprobará posteriormente en la OEPM, EUIPO, Registro Mercantil y registradores de dominios.\n\n4. Qué vamos a hacer a partir de ahora\n\nPara este proyecto mantendremos el nombre actual para no modificar el alcance de la entrega. Además, dejaremos este procedimiento documentado para tenerlo en cuenta desde el principio en futuros proyectos.\nDe esta forma, antes de decidir definitivamente un nombre, comprobaremos primero su disponibilidad legal, comercial y digital, evitando tener que cambiarlo cuando el proyecto ya esté avanzado."
+                  },
+                  {
+                      "name": "Alcance",
+                      "owner": "Lucía Guerra",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": "Dentro del alcance:\n    Catálogo simulado de productos de Zara, Pull&Bear, Stradivarius y Bershka.\n    Carrito de compra unificado multimarca.\n    Checkout y pago único simulado.\n    Creación de un pedido global (Order) fragmentado en subpedidos (SubOrders) por marca.\nFuera del alcance:\n    Integración comercial real con Inditex o pasarela de pago real.\n    Logística de envíos reales, devoluciones, promociones y atención al cliente.\n    Scraping de webs oficiales o recopilación de datos reales de clientes."
+                  },
+                  {
+                      "name": "Actores",
+                      "owner": "Lucía Guerra",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": "Cliente: Usuario en España que navega por el catálogo, añade productos al carrito unificado y realiza la compra.\n    Administrador de Plataforma: Gestiona el catálogo de productos y supervisa el estado de los pedidos y subpedidos.\n    Sistema de Marca: Entidad simulada correspondiente a cada marca (Zara, Pull&Bear, Stradivarius, Bershka) que recibe y gestiona la parte del pedido correspondiente."
+                  },
+                  {
+                      "name": "Landing Documental",
+                      "owner": "Alberto Guerrero",
+                      "due": "2026-09-23",
+                      "done": true,
+                      "notes": "Landing documental y comercial del proyecto (agregador de marcas con carrito unificado y subpedidos por marca). Recoge los avances documentados y el planteamiento comercial. Enlace a la landing: https://albrtoguerrero.github.io/indiconnect-landing/"
+                  }
+              ]
+          },
+          {
+              "n": 2,
+              "title": "Requisitos y Criterios de Aceptación",
+              "start": "2026-10-01",
+              "end": "2026-10-23",
+              "status": "Entregado",
+              "notes": "Elicitar y documentar los requisitos del agregador de apps Inditex.\n\n📌 Entregables:\n• Necesidades identificadas (entrevistas, benchmarking de apps Inditex)\n• Requisitos funcionales y no funcionales (rendimiento, seguridad, accesibilidad)\n• User Stories con criterios de aceptación (formato Gherkin recomendado)\n• Matriz de trazabilidad inicial (necesidad → requisito)\n\n💬 Comentario sugerido: indicar fuentes de información usadas para elicitar requisitos.\n\n📎 Adjuntar: documento de requisitos + backlog en formato tabla.",
+              "subtasks": [
+                  {
+                      "name": "ENLACE LANDING COMERCIAL ",
+                      "owner": "",
+                      "due": "",
+                      "done": true,
+                      "notes": "https://albrtoguerrero.github.io/indiconnect-landing/comercial/"
+                  },
+                  {
+                      "name": "Necesidades identificadas",
+                      "owner": "Mikel Moriel",
+                      "due": "2026-10-21",
+                      "done": true,
+                      "notes": ""
+                  },
+                  {
+                      "name": "Especificaciones de requisitos en la web",
+                      "owner": "Alberto Guerrero",
+                      "due": "2026-10-23",
+                      "done": true,
+                      "notes": ""
+                  },
+                  {
+                      "name": "ENLACE LANDING DOCUMENTAL",
+                      "owner": "Alberto Guerrero",
+                      "due": "2026-10-23",
+                      "done": true,
+                      "notes": "https://albrtoguerrero.github.io/indiconnect-landing/"
+                  },
+                  {
+                      "name": "User stories ",
+                      "owner": "Alberto Guerrero",
+                      "due": "2026-10-24",
+                      "done": true,
+                      "notes": ""
+                  },
+                  {
+                      "name": "Requisitos funcionales",
+                      "owner": "Lucía Guerra",
+                      "due": "2026-10-24",
+                      "done": true,
+                      "notes": ""
+                  },
+                  {
+                      "name": "Requisitos no funcionales",
+                      "owner": "Lucía Guerra",
+                      "due": "2026-10-24",
+                      "done": true,
+                      "notes": ""
+                  },
+                  {
+                      "name": "Matriz de trazabilidad",
+                      "owner": "Mikel Moriel",
+                      "due": "2026-10-24",
+                      "done": true,
+                      "notes": ""
+                  }
+              ]
+          },
+          {
+              "n": 3,
+              "title": "Análisis y Diseño Estructurado",
+              "start": "2026-10-26",
+              "end": "2026-11-13",
+              "status": "En curso",
+              "notes": "Análisis del problema y diseño estructurado del agregador de apps Inditex.\n\n📌 Entregables:\n• Análisis del problema: árbol de problemas, causas y efectos\n• Arquitectura de alto nivel (diagrama de componentes)\n• Diseño estructurado: DFD o diagramas de flujo principales\n• Evaluación de alternativas de diseño con justificación\n• Prototipo de baja fidelidad (wireframes) de las pantallas principales\n\n💬 Comentario sugerido: justificar la elección de arquitectura frente a alternativas descartadas.\n\n📎 Adjuntar: documento de diseño + wireframes (Figma, Balsamiq o similar).",
+              "subtasks": [
+                  {
+                      "name": "Análisis",
+                      "owner": "",
+                      "due": "",
+                      "done": false,
+                      "notes": ""
+                  }
+              ]
+          },
+          {
+              "n": 4,
+              "title": "Modelo de dominio, diseño detallado y construcción asistida por IA",
+              "start": "2026-11-16",
+              "end": "2026-12-11",
+              "status": "Pendiente",
+              "notes": "Marco docente actualizado · 08/11/2026\n\nHito 4: Modelo de dominio, diseño detallado y construcción asistida por IA. Inicio 16/11/2026; entrega 11/12/2026; peso integrado conservado: 12% (0.12). Sin porcentajes extra para código, herramienta IA o landing. Se preservan estado, roles, responsables y fechas existentes; el equipo confirma responsables de subtareas pendientes.\n\nAcordar equipo/docente un alcance acotado desde requisitos, criterios de aceptación y artefactos reales de H3 (referencia 1218693472298303). Candidato, no obligación: catálogo ficticio multimarca → variantes → cesta → cantidades → totales/disponibilidad. No imponer totalidad del producto, login ni nuevas funciones no aprobadas. Explicitar los servicios externos simulados; no exigir APIs Inditex reales ni IA dentro del producto.\n\nBacklog en siete bloques: alcance/requisitos/aceptación; modelo de dominio/diseño OO; entorno/repositorio; secuencias/construcción del flujo principal; estados/excepciones/construcción; revisión IA/refactor/contraste diseño-código; entrega/demo/documentación/trazabilidad.\n\nCalendario orientativo dentro de H4: 16/11 comienza alcance/modelo/entorno; 20/11 primer incremento y responsabilidades; 23/11 enseñanza/aplicación de interacciones y secuencias al flujo principal; 27/11 estados y excepciones; 30/11 revisión y refactor; 04/12 clínica de demo previa y correcciones; 11/12 entrega. Objetivos de siete bloques: 20/20/20/23/27/30 de noviembre y 11 de diciembre. No exigir construcción antes de la enseñanza necesaria.\n\nDiseño: distinguir modelo de dominio conceptual de clases de código. Aplicar UML pertinente; representar clases reales si existen. Se admiten funciones/componentes si se justifica correspondencia con responsabilidades del diseño. Aprender y explicar abstracción, encapsulación, herencia y polimorfismo, sin forzar herencia ni patrones. Mantener diagramas editables .drawio con draw.io.\n\nDefinición de terminado: programa ejecutable de extremo a extremo para el alcance acordado; código exportable y repositorio Git versionado, README de instalación/ejecución/comprobación, dependencias y datos ficticios. Entorno reproducible y seguro; Git local/exportable válido, sin GitHub público ni cuentas premium obligatorias. Secuencias e interacciones coherentes con implementación; estados y excepciones relevantes sin cantidad fija; comprobaciones básicas desde construcción. Trazabilidad requisito → diseño → módulo/archivo → comprobación → evidencia. Landing documental y comercial actualizada, con registro quién, qué, cuándo y por qué. Cada alumno explica, modifica y verifica una parte.\n\nUso de IA como asistencia a programar, no como obligación funcional del producto: registrar objetivo, herramienta, prompts, respuesta relevante, cambios, revisión humana y versión. Entregar prompts revisados/anonimizados; sin secretos ni datos personales. Los prompts son evidencia, no sustituyen responsabilidad ni verificación humana. Demostrar implementación y modelos en Review4. H5 permanece exactamente integración, calidad y dossier final.\n\nContenido previo conservado · referencia histórica (ejemplos previos no amplían el alcance aprobado ni obligan a patrones o APIs)\n\nModelo de dominio y diseño orientado a objetos del agregador de apps Inditex.\n\n📌 Entregables:\n• Modelo de dominio: diagrama de clases UML con relaciones\n• Diagrama de secuencia de los casos de uso principales (login, búsqueda, carrito unificado)\n• Diagrama de estados (pedido, sesión de usuario)\n• Patrones de diseño aplicados y justificación (Adapter para APIs Inditex, Facade…)\n• Actualización de la matriz de trazabilidad\n\n💬 Comentario sugerido: justificar qué patrones GoF se aplican y por qué.\n\n📎 Adjuntar: diagramas UML (StarUML, draw.io o similar) + documento.",
+              "subtasks": [
+                  {
+                      "name": "H4-01 · Alcance funcional de construcción, requisitos y criterios de aceptación",
+                      "owner": "",
+                      "due": "2026-11-20",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nInicio 16/11, objetivo orientativo 20/11. Acordar equipo/docente alcance acotado desde requisitos y artefactos reales H3 1218693472298303, IDs y criterios verificables, entradas/salidas/exclusiones. Candidato no obligatorio: catálogo ficticio multimarca → variantes → cesta → cantidades → totales/disponibilidad. No exigir totalidad del producto ni nuevas funciones no aprobadas. Servicios externos simulados explícitos; preparar comprobaciones y trazabilidad. Responsabilidades pendientes equipo confirma, primer incremento 20/11 según enseñanza. H4 entrega 11/12, 12% integrado sin porcentaje extra."
+                  },
+                  {
+                      "name": "H4-02 · Modelo de dominio y diseño OO",
+                      "owner": "",
+                      "due": "2026-11-20",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nInicio 16/11, objetivo orientativo 20/11; modelo desde alcance acordado y requisitos H3, responsabilidades y diseño detallado. Modelo de dominio conceptual distinto de clases de código. UML pertinente: clases reales si existen; funciones/componentes admitidos justificando correspondencia. Aprender/explicar abstracción, encapsulación, herencia y polimorfismo sin forzar herencia/patrones ni IA dentro producto. Diagramas editables .drawio con draw.io, trazabilidad al requisito y actualización con código. Responsable pendiente equipo confirma. H4 entrega 11/12, 12% integrado, sin peso extra."
+                  },
+                  {
+                      "name": "H4-03 · Entorno y repositorio reproducible y seguro",
+                      "owner": "",
+                      "due": "2026-11-20",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nInicio 16/11, objetivo orientativo 20/11. Preparar código exportable/repositorio Git versionado; Git local/exportable válido, no GitHub público ni cuentas premium obligatorias. README de instalación/ejecución/comprobación, dependencias y datos ficticios, configuración sin secretos ni datos personales. Servicios externos explícitamente simulados, no APIs Inditex reales obligatorias. Comprobar reproducción y primer incremento tras enseñanza necesaria. Responsable pendiente equipo confirma. H4 entrega 11/12, 12% integrado, sin peso extra."
+                  },
+                  {
+                      "name": "H4-04 · Interacciones, secuencias y construcción del flujo principal",
+                      "owner": "",
+                      "due": "2026-11-23",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nPreparación 16/11, primer incremento/responsabilidades 20/11 según enseñanza; aplicar secuencias/flujo después de enseñanza 23/11, objetivo orientativo 23/11. Implementar extremo a extremo el alcance acordado desde H3; candidato catálogo ficticio/variantes/cesta/cantidades/totales-disponibilidad, no obligatorio completo. UML editable .drawio con draw.io y correspondencia con clases reales o funciones/componentes justificados; comprobaciones básicas desde construcción. Servicios externos simulados. IA asistencia: objetivo/herramienta/prompts/respuesta relevante/cambios/revisión humana/versión, anonimizados sin secretos/datos personales. Responsable pendiente equipo confirma. Entrega 11/12, sin peso extra."
+                  },
+                  {
+                      "name": "H4-05 · Estados, excepciones y construcción",
+                      "owner": "",
+                      "due": "2026-11-27",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nPreparación desde 16/11; aplicar estados/excepciones tras enseñanza 27/11, objetivo orientativo 27/11. Seleccionar e implementar transiciones, validaciones y excepciones relevantes al alcance acordado sin cantidad fija; candidatos cantidades inválidas, variante no disponible o cesta vacía solo si corresponden a requisitos aprobados. Datos ficticios/servicios simulados. Modelos editables .drawio con draw.io coherentes con módulos/archivos, comprobaciones básicas y evidencia esperado/observado/version. Revisión humana de ayuda IA, sin secretos/datos personales. Responsable pendiente equipo confirma. H4 entrega 11/12, 12% integrado sin peso extra."
+                  },
+                  {
+                      "name": "H4-06 · Revisión IA, refactor y contraste diseño/código",
+                      "owner": "",
+                      "due": "2026-11-30",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nPreparación desde 16/11; revisión/refactor tras construcción y enseñanza previas, objetivo orientativo 30/11. Contrastar modelo conceptual/diseño detallado/código; simplificar sin forzar herencia/patrones. Revisar propuestas IA críticamente y comprobar antes/después. Registrar objetivo, herramienta, prompts, respuesta relevante, cambios, revisión humana y versión; prompts revisados/anonimizados sin secretos/datos personales. Prompts son evidencia, no sustituyen responsabilidad. Trazabilidad requisito → diseño → módulo/archivo → comprobación → evidencia. Cada alumno explica/modifica/verifica parte. Clínica demo 04/12; entrega H4 11/12, sin peso extra. Responsable pendiente equipo confirma."
+                  },
+                  {
+                      "name": "H4-07 · Entrega, demo, documentación y trazabilidad",
+                      "owner": "",
+                      "due": "2026-12-11",
+                      "done": false,
+                      "notes": "Marco docente actualizado · 08/11/2026\nPreparación desde 16/11; clínica de demo previa/correcciones explícita 04/12; entrega 11/12, 12% integrado sin extra para código/IA/landing. Programa ejecutable extremo a extremo alcance acordado, código exportable/repositorio Git local o remoto versionado, README/dependencias/datos ficticios y ejecución reproducible segura. Diagramas editables .drawio con draw.io; estados y excepciones relevantes sin cantidad fija y comprobaciones desde construcción. Trazabilidad requisito → diseño → módulo/archivo → comprobación → evidencia. Landing documental/comercial actualizada; cambios quién/qué/cuándo/por qué; prompts revisados/anonimizados y registro IA/revisión humana/version sin secretos/datos personales. Cada alumno explica, modifica y verifica parte. Demo implementación+modelos en Review4 y handover H5 exactamente integración/calidad/dossier, sin editar H5. Responsable pendiente equipo confirma."
+                  }
+              ]
+          },
+          {
+              "n": 5,
+              "title": "Integración, Calidad y Dossier Final",
+              "start": "2026-12-14",
+              "end": "2027-01-15",
+              "status": "Pendiente",
+              "notes": "Entrega final del proyecto del agregador de apps Inditex.\n\n📌 Entregables:\n• Matriz de trazabilidad completa (necesidad → requisito → diseño → implementación)\n• Plan de calidad: métricas, revisiones, pruebas (unitarias, integración, aceptación)\n• Dossier final integrado (todos los hitos revisados y cohesionados)\n• Presentación de defensa (10-15 diapositivas)\n• Reflexión individual de cada miembro sobre su contribución y aprendizaje\n\n💬 Comentario sugerido: incluir lecciones aprendidas y qué harían diferente.\n\n📎 Adjuntar: dossier PDF + presentación + matriz de trazabilidad.",
+              "subtasks": []
+          }
+      ]
   },
 
   evolution: {
