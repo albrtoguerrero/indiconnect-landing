@@ -305,7 +305,7 @@ window.CONTENT_EN = {
         milestone: "Milestone 3",
         text: "Problem analysis, structured design and alternatives.",
         status: "En curso",
-        note: "Design document and annexes uploaded to Asana on 9 November. The team cross-review and the 13 November Sprint Review are still to come."
+        note: "Design document and annexes uploaded to Asana on 9 November. The 13 November Sprint Review is still to come."
       },
       {
         name: "Sprint 4",
@@ -483,7 +483,7 @@ window.CONTENT_EN = {
   design: {
     "title": "System design (Milestone 3)",
     "intro": "Every functional block, A1 to A7, is designed with four views: processes (DFD), data (ER), architecture and interfaces (low-fidelity wireframes). The views are delivered as PDF and their diagrams are also available as editable .drawio files.",
-    "status": "Status on 9 November 2026: the per-block views, their editable sources and the design document (version 1.0, awaiting the team's cross-review) are delivered. Only the link from each deliverable to Asana is still in progress.",
+    "status": "Status on 9 November 2026: the per-block views, their editable sources and the design document (version 1.0) are delivered. Only the link from each deliverable to Asana is still in progress.",
     "docLabel": "Open the design document (Word, 88 pages, in Spanish)",
     "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
     "blocksCaption": "Design views per functional block",
