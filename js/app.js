@@ -123,36 +123,29 @@
           el("a", { "class": "btn", href: C.hero.cta.href, text: C.hero.cta.label }),
           C.hero.cta2 ? el("a", { "class": "btn btn--ghost", href: C.hero.cta2.href, text: C.hero.cta2.label }) : null
         ]),
-        el("p", { "class": "legal legal--hero", text: C.legal })
       ]),
-      renderSnapshot()
+      renderHeroTimeline()
     ]));
   }
 
-  // Resumen calculado a partir de los propios datos: nada de esto se escribe a mano.
-  function renderSnapshot() {
-    var s = C.ui.snapshot;
+  // Cronograma de la portada: se calcula a partir de C.progress, sin datos escritos a mano.
+  function renderHeroTimeline() {
     var sp = C.progress.sprints;
-    var current = sp.filter(function (x) { return x.status === "En curso"; })[0] ||
-      sp.filter(function (x) { return x.status === "Pendiente"; })[0] || sp[sp.length - 1];
-    var delivered = sp.filter(function (x) { return x.status === "Entregado"; }).length;
-    var approved = C.decisions.items.filter(function (d) { return d.status === "Aprobado"; }).length;
-    var rows = [
-      [s.current, current.milestone + " · " + current.name, current.status],
-      [s.delivered, delivered + " " + C.ui.ofWord + " " + sp.length],
-      [s.decisions, approved + " " + C.ui.ofWord + " " + C.decisions.items.length + " " + C.ui.approved],
-      [s.needs, String(C.requirements.needs.rows.length)],
-      [s.criteria, String(C.traceability.rows.length)],
-      [s.updated, formatDate(C.lastUpdated)]
-    ];
-    return el("aside", { "class": "snapshot", "aria-labelledby": "snapshot-title" }, [
-      el("h2", { id: "snapshot-title", "class": "snapshot-title", text: s.title }),
-      el("dl", {}, rows.map(function (r) {
-        return el("div", {}, [
-          el("dt", { text: r[0] }),
-          el("dd", {}, [document.createTextNode(r[1] + (r[2] ? " " : "")), r[2] ? badge(r[2]) : null])
+    return el("aside", { "class": "hero-steps", "aria-labelledby": "hero-steps-title" }, [
+      el("h2", { id: "hero-steps-title", "class": "hero-steps-title", text: C.ui.heroTimelineTitle }),
+      el("ol", {}, sp.map(function (x) {
+        var attrs = { "class": "hero-step hero-step--" + slug(x.status) };
+        if (x.status === "En curso") { attrs["aria-current"] = "step"; }
+        return el("li", attrs, [
+          el("span", { "class": "hero-step-dot", "aria-hidden": "true" }),
+          el("div", {}, [
+            el("p", { "class": "hero-step-name" }, [document.createTextNode(x.milestone + " · " + x.name + " "), badge(x.status)]),
+            el("p", { "class": "hero-step-dates", text: x.dates })
+          ])
         ]);
-      }))
+      })),
+      el("p", { "class": "hero-step-defence", text: C.ui.heroDefence }),
+      el("a", { "class": "hero-step-link", href: "#asana", text: C.ui.heroTimelineLink + " →" })
     ]);
   }
 
@@ -362,6 +355,101 @@
           ])
         ]);
       })));
+    });
+  }
+
+  function isoToUtc(iso) {
+    var p = iso.split("-");
+    return Date.UTC(+p[0], +p[1] - 1, +p[2]);
+  }
+
+  // Cronograma de barras: las posiciones se calculan a partir de las fechas ISO de C.archive.
+  function renderGantt(a) {
+    var t0 = isoToUtc(a.axis.start), t1 = isoToUtc(a.axis.end), span = t1 - t0;
+    function pct(iso) { return Math.max(0, Math.min(100, (isoToUtc(iso) - t0) / span * 100)); }
+    function two(n) { return ("0" + n).slice(-2); }
+    var months = [];
+    var d = new Date(t0);
+    d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1));
+    while (d.getTime() < t1) {
+      months.push({
+        left: pct(d.getUTCFullYear() + "-" + two(d.getUTCMonth() + 1) + "-01"),
+        label: d.toLocaleDateString(C.ui.locale || "es-ES", { month: "short", timeZone: "UTC" })
+      });
+      d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1));
+    }
+    var now = new Date();
+    var todayIso = now.getFullYear() + "-" + two(now.getMonth() + 1) + "-" + two(now.getDate());
+    var todayIn = isoToUtc(todayIso) >= t0 && isoToUtc(todayIso) <= t1;
+
+    var axis = el("div", { "class": "gantt-axis", "aria-hidden": "true" }, months.map(function (m) {
+      return el("span", { style: "left:" + m.left + "%", text: m.label });
+    }));
+    var rows = a.rows.map(function (r) {
+      var l = pct(r.start), w = Math.max(0.6, pct(r.end) - l);
+      var kids = [];
+      if (r.start !== r.end) {
+        kids.push(el("span", { "class": "gantt-bar gantt-bar--" + slug(r.status), style: "left:" + l + "%;width:" + w + "%" }));
+      }
+      r.events.forEach(function (e) {
+        kids.push(el("span", { "class": "gantt-ev gantt-ev--" + slug(r.status), style: "left:" + pct(e[0]) + "%", title: e[1] + " · " + formatDate(e[0]) }));
+      });
+      return el("li", { "class": "gantt-row" }, [
+        el("div", { "class": "gantt-label" }, [document.createTextNode(r.label + " "), badge(r.status)]),
+        el("div", { "class": "gantt-track" }, kids)
+      ]);
+    });
+    var parts = [
+      el("div", { "class": "gantt-head" }, [el("span"), axis]),
+      el("ol", { "class": "gantt-rows" }, rows)
+    ];
+    if (todayIn) {
+      parts.push(el("div", { "class": "gantt-today-wrap", "aria-hidden": "true" }, [
+        el("span"),
+        el("div", { "class": "gantt-today-area" }, [
+          el("span", { "class": "gantt-today", style: "left:" + pct(todayIso) + "%" }, [el("em", { text: a.today })])
+        ])
+      ]));
+    }
+    return el("div", { "class": "panel" }, [
+      el("div", { "class": "gantt", role: "group", "aria-label": a.ganttCaption }, parts),
+      el("p", { "class": "note", text: a.ganttHint })
+    ]);
+  }
+
+  function renderArchive() {
+    fill("asana", function (c, hid) {
+      var a = C.archive;
+      c.appendChild(heading(hid, a.title, el("span", { "class": "badge badge--sin-validar", text: a.asOf })));
+      c.appendChild(el("p", { "class": "lead", text: a.intro }));
+      c.appendChild(el("p", { "class": "note", text: a.limits }));
+      c.appendChild(subTitle(a.ganttTitle));
+      c.appendChild(renderGantt(a));
+      c.appendChild(subTitle(a.deliveriesTitle));
+      c.appendChild(textTable({ caption: a.deliveriesCaption, headers: a.deliveriesHeaders, badgeCol: 3, rows: a.deliveries }));
+      c.appendChild(subTitle(a.statementTitle));
+      c.appendChild(el("p", { text: a.statementIntro }));
+      c.appendChild(el("div", { "class": "two-col two-col--top" }, [
+        el("div", {}, [el("h4", { text: a.statementMinTitle }), list(a.statementMin)]),
+        el("div", {}, [el("h4", { text: a.statementEvTitle }), list(a.statementEv)])
+      ]));
+      c.appendChild(el("p", { "class": "note", text: a.statementNote }));
+      c.appendChild(subTitle(a.planTitle));
+      c.appendChild(textTable({ caption: a.planCaption, headers: a.planHeaders, rows: a.plan }));
+      c.appendChild(subTitle(a.boardTitle));
+      c.appendChild(textTable({ caption: a.boardCaption, headers: a.boardHeaders, rows: a.board }));
+      c.appendChild(subTitle(a.linksTitle));
+      var table = el("table", { "class": "table--text" }, [
+        el("caption", { text: a.linksCaption }),
+        el("thead", {}, [el("tr", {}, a.linksHeaders.map(function (h) { return el("th", { scope: "col", text: h }); }))]),
+        el("tbody", {}, a.links.map(function (r) {
+          return el("tr", {}, [
+            el("th", { scope: "row", text: r[0] }),
+            el("td", {}, [el("a", { href: r[1], rel: "noopener", text: r[1] })])
+          ]);
+        }))
+      ]);
+      c.appendChild(tableWrap(a.linksCaption, table));
     });
   }
 
@@ -704,7 +792,7 @@
       var h2 = host.querySelector("h2");
       var section = h2 ? h2.textContent : id;
       [].forEach.call(host.querySelectorAll("h3, h4, p, summary, tr, pre, li"), function (n) {
-        if (n.closest(".filter, .snapshot-title") || n.classList.contains("tag")) { return; }
+        if (n.closest(".filter, .hero-steps-title") || n.classList.contains("tag")) { return; }
         if (n.tagName === "LI" && n.querySelector("p, h3, h4, ul, summary, pre")) { return; }
         if (n.tagName === "P" && n.closest("tr")) { return; }
         var raw = n.tagName === "TR"
@@ -824,7 +912,7 @@
   /* ---------- idioma ---------- */
 
   var HOSTS = ["inicio", "problema", "como-funciona", "negocio", "alcance", "decisiones", "riesgos",
-    "requisitos", "trazabilidad", "diseno", "avances", "evolucion", "uso-ia", "equipo"];
+    "requisitos", "trazabilidad", "diseno", "avances", "asana", "evolucion", "uso-ia", "equipo"];
 
   function clear(node) {
     while (node.firstChild) { node.removeChild(node.firstChild); }
@@ -848,6 +936,7 @@
     renderTraceability();
     renderDesign();
     renderProgress();
+    renderArchive();
     renderEvolution();
     renderAiUse();
     renderTeam();
