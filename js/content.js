@@ -295,7 +295,7 @@ window.CONTENT = {
         milestone: "Hito 3",
         text: "Análisis del problema, diseño estructurado y alternativas.",
         status: "En curso",
-        note: "Documento de diseño y anexos subidos a Asana el 9 de noviembre. Falta la revisión cruzada del equipo y el Sprint Review del 13 de noviembre."
+        note: "Documento de diseño y anexos subidos a Asana el 9 de noviembre. Falta el Sprint Review del 13 de noviembre."
       },
       {
         name: "Sprint 4",
@@ -476,7 +476,7 @@ window.CONTENT = {
   design: {
     "title": "Diseño del sistema (Hito 3)",
     "intro": "Cada bloque funcional, de A1 a A7, se diseña con cuatro vistas: procesos (DFD), datos (DER), arquitectura e interfaces (wireframes de baja fidelidad). Las vistas se entregan en PDF y sus diagramas, además, como ficheros .drawio editables.",
-    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque, sus fuentes editables y el documento de diseño (versión 1.0, pendiente de la revisión cruzada del equipo) están entregados. Solo queda en curso el enlace desde cada entregable a Asana.",
+    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque, sus fuentes editables y el documento de diseño (versión 1.0) están entregados. Solo queda en curso el enlace desde cada entregable a Asana.",
     "docLabel": "Abrir el documento de diseño (Word, 88 páginas)",
     "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
     "blocksCaption": "Vistas de diseño por bloque funcional",
