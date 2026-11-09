@@ -1,15 +1,40 @@
 {
   "source": "asana",
-  "project": "Ingeniería del Software - Proyecto grupal",
-  "syncedAt": "2026-11-09T14:25:00.000Z",
-  "total": 16,
-  "done": 3,
+  "via": "export del tablero, 9 nov 2026",
+  "project": "A- Universidad Europe ISW – Plantilla Base Scrum (Introducción Ingeniería del Software)",
+  "syncedAt": "2026-11-09T17:18:28.000Z",
+  "total": 17,
+  "done": 5,
   "sections": [
-    { "key": "sprint-1", "total": 3, "done": 3 },
-    { "key": "sprint-2", "total": 3, "done": 0 },
-    { "key": "sprint-3", "total": 3, "done": 0 },
-    { "key": "sprint-4", "total": 3, "done": 0 },
-    { "key": "sprint-5", "total": 3, "done": 0 },
-    { "key": "landing", "total": 1, "done": 0 }
+    {
+      "key": "sprint-1",
+      "total": 3,
+      "done": 3
+    },
+    {
+      "key": "sprint-2",
+      "total": 3,
+      "done": 2
+    },
+    {
+      "key": "sprint-3",
+      "total": 3,
+      "done": 0
+    },
+    {
+      "key": "sprint-4",
+      "total": 3,
+      "done": 0
+    },
+    {
+      "key": "sprint-5",
+      "total": 3,
+      "done": 0
+    },
+    {
+      "key": "otros",
+      "total": 2,
+      "done": 0
+    }
   ]
 }

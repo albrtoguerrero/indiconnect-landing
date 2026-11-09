@@ -1,7 +1,8 @@
 // Sincroniza el avance de Asana con data/asana.json (lo lee la sección Avances).
 //
 // Uso:   ASANA_TOKEN=<token personal> node tools/sync-asana.mjs
-// Opcional: ASANA_PROJECT_GID (por defecto, el proyecto grupal de Scrum).
+// Opcional: ASANA_PROJECT_GID (por defecto, el tablero Scrum de la asignatura).
+// Solo cuenta las tareas de IndiConnect y las comunes ([INDICONNECT] y [TODOS]); las de otros grupos se ignoran.
 //
 // Solo se publican recuentos por sprint: nunca nombres de tarea, personas ni enlaces.
 // El token no se escribe en ningún fichero; se lee del entorno (en GitHub, de un secret).
@@ -11,7 +12,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const TOKEN = process.env.ASANA_TOKEN;
-const PROJECT = process.env.ASANA_PROJECT_GID || "1218940853525794";
+const PROJECT = process.env.ASANA_PROJECT_GID || "1218693735718662";
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "asana.json");
 
 if (!TOKEN) {
@@ -28,7 +29,7 @@ async function api(path) {
 }
 
 async function allTasks() {
-  const fields = "completed,memberships.section.name,memberships.project.gid";
+  const fields = "name,completed,memberships.section.name,memberships.project.gid";
   let url = "/projects/" + PROJECT + "/tasks?limit=100&opt_fields=" + fields;
   const tasks = [];
   while (url) {
@@ -45,7 +46,8 @@ const tasks = await allTasks();
 
 const buckets = new Map();
 sections.forEach((s) => buckets.set(s.name, { name: s.name, total: 0, done: 0 }));
-tasks.forEach((t) => {
+const OURS = /\[(INDICONNECT|TODOS)\]/i;
+tasks.filter((t) => OURS.test(t.name || "")).forEach((t) => {
   const m = (t.memberships || []).find((x) => x.project && x.project.gid === PROJECT);
   const name = m && m.section ? m.section.name : "Sin sección";
   if (!buckets.has(name)) { buckets.set(name, { name, total: 0, done: 0 }); }
