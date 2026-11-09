@@ -136,11 +136,11 @@
     var current = sp.filter(function (x) { return x.status === "En curso"; })[0] ||
       sp.filter(function (x) { return x.status === "Pendiente"; })[0] || sp[sp.length - 1];
     var delivered = sp.filter(function (x) { return x.status === "Entregado"; }).length;
-    var drafts = C.decisions.items.filter(function (d) { return d.status === "Borrador"; }).length;
+    var approved = C.decisions.items.filter(function (d) { return d.status === "Aprobado"; }).length;
     var rows = [
       [s.current, current.milestone + " · " + current.name, current.status],
       [s.delivered, delivered + " " + C.ui.ofWord + " " + sp.length],
-      [s.decisions, drafts + " " + C.ui.ofWord + " " + C.decisions.items.length + " " + C.ui.inDraft],
+      [s.decisions, approved + " " + C.ui.ofWord + " " + C.decisions.items.length + " " + C.ui.approved],
       [s.needs, String(C.requirements.needs.rows.length)],
       [s.criteria, String(C.traceability.rows.length)],
       [s.updated, formatDate(C.lastUpdated)]
@@ -527,6 +527,36 @@
     });
   }
 
+  function renderDesign() {
+    fill("diseno", function (c, hid) {
+      var d = C.design;
+      c.appendChild(heading(hid, d.title));
+      c.appendChild(el("p", { "class": "lead", text: d.intro }));
+      c.appendChild(el("p", { "class": "note", text: d.status }));
+      if (d.docFile) {
+        c.appendChild(el("p", {}, [el("a", { href: "docs/hito3/" + d.docFile, download: "", text: d.docLabel })]));
+      }
+      var table = el("table", { "class": "table--text" }, [
+        el("caption", { text: d.blocksCaption }),
+        el("thead", {}, [el("tr", {}, d.blocksHeaders.map(function (h) {
+          return el("th", { scope: "col", text: h });
+        }))]),
+        el("tbody", {}, d.blocks.map(function (b) {
+          return el("tr", {}, [
+            el("th", { scope: "row", text: b.name }),
+            el("td", { text: b.text }),
+            el("td", {}, [el("a", { href: "docs/hito3/" + b.pdf, text: d.pdfLabel })]),
+            el("td", {}, [el("a", { href: "docs/hito3/" + b.drawio, download: "", text: d.drawioLabel })])
+          ]);
+        }))
+      ]);
+      c.appendChild(tableWrap(d.blocksCaption, table));
+      c.appendChild(el("p", { "class": "note", text: d.openNote }));
+      c.appendChild(subTitle(d.evidenceTitle));
+      c.appendChild(textTable({ caption: d.evidenceCaption, headers: d.evidenceHeaders, badgeCol: 1, rows: d.evidence }));
+    });
+  }
+
   function renderEvolution() {
     fill("evolucion", function (c, hid) {
       var e = C.evolution;
@@ -559,6 +589,26 @@
           el("p", { text: p.text })
         ]);
       })));
+      if (a.model) {
+        c.appendChild(el("h3", { "class": "sub-title", text: a.modelTitle }));
+        c.appendChild(el("dl", { "class": "ai-model" }, a.model.map(function (r) {
+          return el("div", {}, [el("dt", { text: r[0] }), el("dd", { text: r[1] })]);
+        })));
+        c.appendChild(el("p", { "class": "note", text: a.modelNote }));
+      }
+      if (a.rules) {
+        c.appendChild(el("h3", { "class": "sub-title", text: a.rulesTitle }));
+        c.appendChild(el("p", { "class": "lead", text: a.rulesIntro }));
+        c.appendChild(el("ul", { "class": "cards cards--rules" }, a.rules.map(function (r) {
+          return el("li", { "class": "card" }, [
+            el("h4", { text: r.title }),
+            el("p", { text: r.text })
+          ]);
+        })));
+      }
+      if (a.logLink) {
+        c.appendChild(el("p", {}, [el("a", { "class": "btn btn--ghost", href: a.logLink.href, text: a.logLink.label })]));
+      }
     });
   }
 
@@ -774,7 +824,7 @@
   /* ---------- idioma ---------- */
 
   var HOSTS = ["inicio", "problema", "como-funciona", "negocio", "alcance", "decisiones", "riesgos",
-    "requisitos", "trazabilidad", "avances", "evolucion", "uso-ia", "equipo"];
+    "requisitos", "trazabilidad", "diseno", "avances", "evolucion", "uso-ia", "equipo"];
 
   function clear(node) {
     while (node.firstChild) { node.removeChild(node.firstChild); }
@@ -796,6 +846,7 @@
     renderRisks();
     renderRequirements();
     renderTraceability();
+    renderDesign();
     renderProgress();
     renderEvolution();
     renderAiUse();

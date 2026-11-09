@@ -1,0 +1,15 @@
+{
+  "source": "asana",
+  "project": "Ingeniería del Software - Proyecto grupal",
+  "syncedAt": "2026-11-09T14:25:00.000Z",
+  "total": 16,
+  "done": 3,
+  "sections": [
+    { "key": "sprint-1", "total": 3, "done": 3 },
+    { "key": "sprint-2", "total": 3, "done": 0 },
+    { "key": "sprint-3", "total": 3, "done": 0 },
+    { "key": "sprint-4", "total": 3, "done": 0 },
+    { "key": "sprint-5", "total": 3, "done": 0 },
+    { "key": "landing", "total": 1, "done": 0 }
+  ]
+}

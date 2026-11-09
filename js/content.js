@@ -17,7 +17,7 @@ window.CONTENT = {
     tagline: "Proyecto universitario · Ingeniería del Software"
   },
 
-  lastUpdated: "2026-10-23", // formato AAAA-MM-DD
+  lastUpdated: "2026-11-09", // formato AAAA-MM-DD
 
   legal: "Proyecto académico ficticio, sin vinculación con Inditex ni con ninguna otra empresa o marca real.",
 
@@ -34,6 +34,7 @@ window.CONTENT = {
     and: "y",
     ofWord: "de",
     inDraft: "en Borrador",
+    approved: "aprobadas",
     metaDescription: "Landing de un proyecto académico ficticio de Ingeniería del Software: carrito unificado con subpedidos por marca.",
     langToggle: { label: "English", aria: "Cambiar el idioma a inglés" },
     snapshot: {
@@ -78,6 +79,7 @@ window.CONTENT = {
     { id: "riesgos", label: "Riesgos" },
     { id: "requisitos", label: "Requisitos" },
     { id: "trazabilidad", label: "Trazabilidad" },
+    { id: "diseno", label: "Diseño" },
     { id: "avances", label: "Avances" },
     { id: "evolucion", label: "Evolución" },
     { id: "uso-ia", label: "Uso de IA" },
@@ -123,7 +125,7 @@ window.CONTENT = {
 
   business: {
     title: "Cómo gana dinero",
-    status: "Borrador",
+    status: "Sin validar",
     hypothesisNote: "Todo lo que sigue es una hipótesis de trabajo, pendiente de validar.",
     model: "La plataforma funciona como unidad de negocio interna del grupo y cobra a cada marca una comisión por cada subpedido confirmado, a cambio de darle acceso a demanda cruzada.",
     example: {
@@ -178,40 +180,59 @@ window.CONTENT = {
 
   decisions: {
     title: "Decisiones de diseño",
-    intro: "Cada decisión muestra su estado actual. Por ahora todas están en Borrador.",
+    intro: "Cada decisión muestra su estado a 9 de noviembre de 2026. Aprobado: adoptada. Descartado: alternativa rechazada. Salen del backlog y del alcance del Hito 2; la Fase 2 solo se abre si el núcleo está verificado.",
     legendLabel: "Estados posibles",
     legend: ["Borrador", "En revisión", "Aprobado", "Descartado"],
     items: [
       {
         title: "Fallo parcial en el checkout",
-        status: "Borrador",
-        text: "Propuesta de la landing: confirmación atómica simulada, si falla un subpedido no se confirma ninguno. La documentación de Asana recoge tres formulaciones (pendiente, reembolso parcial y todo o nada). Hay que separar el fallo antes de cobrar del fallo posterior al cobro y fijar un único comportamiento."
+        status: "Aprobado",
+        text: "Confirmación atómica simulada: si falla un subpedido no se confirma ninguno (todo o nada), y si el pago falla no se crea ningún pedido. Como el pago es simulado, no hay cobro real que reembolsar. Entra en la Fase 1 (RF-57, RF-58, RNF-09 a RNF-12)."
+      },
+      {
+        title: "Pedido pendiente o reembolso parcial",
+        status: "Descartado",
+        text: "Son las otras dos formulaciones que recoge Asana para el fallo parcial. Se descartan porque añaden estados y reglas que no caben en la demo y chocan con la atomicidad."
       },
       {
         title: "Duración de «Recordarme»",
-        status: "Borrador",
-        text: "Los requisitos de cuenta proponen 30 días y las historias de usuario 10. Falta elegir el valor, registrar el motivo y actualizar requisito, historia y criterios."
+        status: "Aprobado",
+        text: "Se adoptan 10 días, el valor de las historias de usuario y el más prudente; los 30 días de los requisitos de cuenta quedan descartados. La cuenta está en la Fase 2: al abrirla se actualizan requisito, historia y criterios."
       },
       {
         title: "Secuencia única de checkout",
-        status: "Borrador",
-        text: "La especificación web describe tres pasos en el requisito y cuatro en el diagrama. Falta publicar un único recorrido y comprobar que pantallas, reglas e historias lo siguen."
+        status: "Aprobado",
+        text: "Tres pasos: contacto y dirección de entrega, envío, y revisión con pago. En la Fase 1 el paso de envío se omite y se usa el método predefinido de cada marca (RNF-45). El diagrama de cuatro pasos queda descartado."
       },
       {
         title: "Tema oscuro y contraste",
-        status: "Borrador",
-        text: "Los contrastes previstos para el tema oscuro no alcanzan el mínimo de 4,5:1 que exige el propio requisito de accesibilidad. Falta ajustar los colores o dejar el tema oscuro fuera de la primera versión."
+        status: "Aprobado",
+        text: "El contraste mínimo de 4,5:1 es obligatorio en la Fase 1 (RNF-40) y se cumple con el tema claro. El modo claro y oscuro pasa a la Fase 2 (RNF-44), cuando se ajusten los colores."
       },
       {
         title: "Vendedor legal único frente al cliente",
-        status: "Borrador",
+        status: "Aprobado",
         text: "El vendedor frente al cliente es el grupo. Los subpedidos solo reparten el cumplimiento (envío, almacén)."
       },
       {
-        title: "Cuestiones pendientes",
-        status: "Borrador",
-        text: "Puntos aún sin decidir:",
-        list: ["Reserva de stock y última unidad concurrente", "Compra como invitado", "Estados del pedido", "Nombre del agrupador de subpedidos"]
+        title: "Reserva de stock",
+        status: "Aprobado",
+        text: "El stock se descuenta en la misma transacción que confirma el pedido y se libera si falla (RF-61 y RF-62, Fase 2)."
+      },
+      {
+        title: "Compra como invitado",
+        status: "Aprobado",
+        text: "Se puede comprar sin cuenta: el primer paso del checkout no exige registro (RF-47, Fase 2)."
+      },
+      {
+        title: "Estados del pedido",
+        status: "Aprobado",
+        text: "Subpedido: Pendiente, Confirmado, Preparado, Enviado y Cancelado. El estado del pedido se deriva de los de sus subpedidos (RF-59, Fase 2)."
+      },
+      {
+        title: "Nombre del agrupador de subpedidos",
+        status: "Aprobado",
+        text: "«Pedido» para el padre y «Subpedido» para cada hijo, uno por marca. Son los términos que usa esta página y los que usará el glosario del Hito 4."
       }
     ]
   },
@@ -260,7 +281,7 @@ window.CONTENT = {
         milestone: "Hito 2",
         text: "Necesidades, requisitos y criterios de aceptación.",
         status: "Entregado",
-        note: "Necesidades, requisitos, historias de usuario, criterios de aceptación y matriz de trazabilidad en Asana, entregados el 23 oct. Quedan decisiones abiertas y fuentes por validar (ver Decisiones y Necesidades)."
+        note: "Necesidades, requisitos, historias de usuario, criterios de aceptación y matriz de trazabilidad en Asana, entregados el 23 oct. Las decisiones abiertas se cerraron el 9 de noviembre (ver Decisiones); las necesidades siguen sin validar con usuarios."
       },
       {
         name: "Sprint 3",
@@ -298,8 +319,8 @@ window.CONTENT = {
   ,
   requirements: {
     title: "Necesidades y requisitos",
-    status: "Borrador",
-    intro: "Resultado del Hito 2. Esta página muestra una selección priorizada del núcleo del proyecto; la documentación completa (necesidades, catálogo ampliado de requisitos, historias de usuario y matriz) está en Asana. Todo está en estado Borrador y ninguna necesidad está validada con usuarios: cada requisito indica la necesidad de la que procede y de dónde sale.",
+    status: "Aprobado",
+    intro: "Resultado del Hito 2. Esta página muestra una selección priorizada del núcleo del proyecto; la documentación completa (necesidades, catálogo ampliado de requisitos, historias de usuario y matriz) está en Asana. Aprobado significa aceptado para el alcance del proyecto, no validado con usuarios: ninguna necesidad lo está todavía. Cada requisito indica la necesidad de la que procede y de dónde sale.",
     sources: {
       title: "Fuentes",
       caption: "Fuentes consultadas y descartadas",
@@ -318,8 +339,7 @@ window.CONTENT = {
     hypotheses: [
       { id: "H-01", text: "Existe una necesidad real de comprar en varias marcas del grupo a la vez.", state: "Sin validar" },
       { id: "H-02", text: "Un carrito unificado puede generar ventas adicionales; solo entonces la comisión es dinero nuevo.", state: "Sin validar" },
-      { id: "H-03", text: "La comisión interna cubre el coste de operar la plataforma.", state: "Sin validar" },
-      { id: "H-04", text: "Ver plazos, envíos y condiciones de forma conjunta reduce la fricción de compra.", state: "Sin validar" }
+      { id: "H-03", text: "Ver plazos, envíos y condiciones de forma conjunta reduce la fricción de compra.", state: "Sin validar" }
     ],
     constraintsTitle: "Restricciones",
     constraints: [
@@ -338,15 +358,15 @@ window.CONTENT = {
       headers: ["ID", "Actor", "Necesidad", "Fuente", "Prioridad", "Estado"],
       badgeCol: 5,
       rows: [
-        ["N-01", "Cliente", "Comprar productos de varias marcas del grupo en un único carrito", "F-01, F-02", "Must", "Borrador"],
-        ["N-02", "Cliente", "Pagar una sola vez en lugar de pagar en cada tienda", "F-02", "Must", "Borrador"],
-        ["N-03", "Cliente", "Ver los plazos de entrega de todo el pedido de forma conjunta", "F-02", "Should", "Borrador"],
-        ["N-04", "Cliente", "Ver los costes de envío de todo el pedido de forma conjunta", "F-02", "Should", "Borrador"],
-        ["N-05", "Cliente", "Consultar las condiciones de cada marca en un único lugar", "F-02", "Should", "Borrador"],
-        ["N-06", "Grupo", "Ser el único vendedor frente al cliente, repartiendo el cumplimiento entre marcas", "F-01", "Must", "Borrador"],
-        ["N-07", "Marca", "Recibir solo su parte del pedido (subpedido) para prepararla y enviarla", "F-01", "Must", "Borrador"],
-        ["N-08", "Operador de la plataforma", "Evitar pedidos inconsistentes si falla la confirmación de una marca", "F-01", "Must", "Borrador"],
-        ["N-09", "Operador de la plataforma", "Cobrar una comisión por cada subpedido confirmado (hipótesis de negocio)", "F-03", "Could", "Borrador"]
+        ["N-01", "Cliente", "Comprar productos de varias marcas del grupo en un único carrito", "F-01, F-02", "Must", "Aprobado"],
+        ["N-02", "Cliente", "Pagar una sola vez en lugar de pagar en cada tienda", "F-02", "Must", "Aprobado"],
+        ["N-03", "Cliente", "Ver los plazos de entrega de todo el pedido de forma conjunta", "F-02", "Should", "Aprobado"],
+        ["N-04", "Cliente", "Ver los costes de envío de todo el pedido de forma conjunta", "F-02", "Should", "Aprobado"],
+        ["N-05", "Cliente", "Consultar las condiciones de cada marca en un único lugar", "F-02", "Should", "Aprobado"],
+        ["N-06", "Grupo", "Ser el único vendedor frente al cliente, repartiendo el cumplimiento entre marcas", "F-01", "Must", "Aprobado"],
+        ["N-07", "Marca", "Recibir solo su parte del pedido (subpedido) para prepararla y enviarla", "F-01", "Must", "Aprobado"],
+        ["N-08", "Operador de la plataforma", "Evitar pedidos inconsistentes si falla la confirmación de una marca", "F-01", "Must", "Aprobado"],
+        ["N-09", "Operador de la plataforma", "Cobrar una comisión por cada subpedido confirmado (hipótesis de negocio)", "F-03", "Could", "Aprobado"]
       ]
     },
     functional: {
@@ -446,9 +466,146 @@ window.CONTENT = {
     ]
   },
 
+  design: {
+    "title": "Diseño del sistema (Hito 3)",
+    "intro": "Cada bloque funcional, de A1 a A7, se diseña con cuatro vistas: procesos (DFD), datos (DER), arquitectura e interfaces (wireframes de baja fidelidad). Las vistas se entregan en PDF y sus diagramas, además, como ficheros .drawio editables.",
+    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque, sus fuentes editables y el documento de diseño (versión 1.0, pendiente de la revisión cruzada del equipo) están entregados. Solo queda en curso el enlace desde cada entregable a Asana.",
+    "docLabel": "Abrir el documento de diseño (Word, 88 páginas)",
+    "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
+    "blocksCaption": "Vistas de diseño por bloque funcional",
+    "blocksHeaders": [
+      "Bloque",
+      "Contenido",
+      "Vistas",
+      "Diagramas editables"
+    ],
+    "pdfLabel": "Abrir PDF",
+    "drawioLabel": "Descargar .drawio",
+    "openNote": "Los ficheros .drawio se abren y se editan en app.diagrams.net o en draw.io Desktop.",
+    "evidenceTitle": "Entregables del Hito 3",
+    "evidenceCaption": "Estado de los entregables mínimos del Hito 3",
+    "evidenceHeaders": [
+      "Entregable",
+      "Estado",
+      "Situación"
+    ],
+    "blocks": [
+      {
+        "name": "A1 · Catálogo y navegación",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A1_Catalogo-y-navegacion_4-vistas.pdf",
+        "drawio": "Bloque-A1_Catalogo-y-navegacion.drawio"
+      },
+      {
+        "name": "A2 · Carrito unificado",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A2_Carrito-unificado_4-vistas.pdf",
+        "drawio": "Bloque-A2_Carrito-unificado.drawio"
+      },
+      {
+        "name": "A3 · Checkout y pago simulado",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A3_Checkout-y-pago-simulado_4-vistas.pdf",
+        "drawio": "Bloque-A3_Checkout-y-pago-simulado.drawio"
+      },
+      {
+        "name": "A4 · Pedido y subpedidos",
+        "text": "6 diagramas: contexto, DFD, DER, arquitectura y navegación (con DFD de nivel 2)",
+        "pdf": "Bloque-A4_Pedido-y-subpedidos_4-vistas.pdf",
+        "drawio": "Bloque-A4_Pedido-y-subpedidos.drawio"
+      },
+      {
+        "name": "A5 · Seguimiento y cuenta del cliente",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A5_Seguimiento-y-cuenta-del-cliente_4-vistas.pdf",
+        "drawio": "Bloque-A5_Seguimiento-y-cuenta-del-cliente.drawio"
+      },
+      {
+        "name": "A6 · Marcas y operación del grupo",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A6_Marcas-y-operacion-del-grupo_4-vistas.pdf",
+        "drawio": "Bloque-A6_Marcas-y-operacion-del-grupo.drawio"
+      },
+      {
+        "name": "A7 · Datos y soporte",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A7_Datos-y-soporte_4-vistas.pdf",
+        "drawio": "Bloque-A7_Datos-y-soporte.drawio"
+      },
+      {
+        "name": "Índice general",
+        "text": "Dependencias entre los siete bloques",
+        "pdf": "00_Indice-general_4-vistas.pdf",
+        "drawio": "00_Indice-general.drawio"
+      }
+    ],
+    "evidence": [
+      [
+        "Análisis del problema",
+        "Entregado",
+        "Apartado 2 del documento de diseño, con el árbol de problemas, las necesidades y las hipótesis."
+      ],
+      [
+        "Alternativas",
+        "Entregado",
+        "Apartado 3: tres alternativas de arquitectura comparadas y las decisiones de diseño por bloque."
+      ],
+      [
+        "Arquitectura lógica de alto nivel",
+        "Entregado",
+        "Vista de arquitectura de cada bloque, por capas."
+      ],
+      [
+        "DFD o flujos principales",
+        "Entregado",
+        "Contexto y DFD de nivel 1 por bloque; nivel 2 en A4."
+      ],
+      [
+        "Modelo conceptual de datos (DER)",
+        "Entregado",
+        "Un diagrama entidad-relación por bloque."
+      ],
+      [
+        "Reglas de negocio",
+        "Entregado",
+        "Apartado 7: catálogo único de 72 reglas; las propuestas y los umbrales por definir se listan en el apartado 10."
+      ],
+      [
+        "Wireframes de baja fidelidad",
+        "Entregado",
+        "Pantallas y estados dentro del PDF de cada bloque."
+      ],
+      [
+        "Matriz de trazabilidad actualizada",
+        "Entregado",
+        "Apartado 9 y Anexo A: cadena completa de los 84 RF hasta la pantalla. 72 RF siguen sin necesidad enlazada."
+      ],
+      [
+        "Glosario",
+        "Entregado",
+        "Apartado 11 del documento de diseño."
+      ],
+      [
+        "Diagramas fuente editables (.drawio)",
+        "Entregado",
+        "37 diagramas en 8 ficheros, descargables en la tabla de arriba."
+      ],
+      [
+        "Enlace a Asana y a esta landing",
+        "En curso",
+        "Las tareas del Hito 3 están en Asana; el enlace desde cada entregable se completará al publicar."
+      ],
+      [
+        "Registro de cambios",
+        "Entregado",
+        "Apartado 12 del documento de diseño, además del registro de cada bloque."
+      ]
+    ]
+  },
+
   evolution: {
     title: "Evolución del proyecto",
-    intro: "Registro de los cambios relevantes durante el Hito 2: qué cambió, quién lo hizo, cuándo y por qué.",
+    intro: "Registro de los cambios relevantes durante los hitos 2 y 3: qué cambió, quién lo hizo, cuándo y por qué.",
     entries: [
       {
         date: "2026-10-09", who: "Alberto Guerrero",
@@ -497,6 +654,24 @@ window.CONTENT = {
         title: "Landing actualizada con el Hito 2",
         what: "Se añadieron necesidades, requisitos, trazabilidad, criterios de aceptación, fuentes, hipótesis, restricciones, evolución y referencias a Asana.",
         why: "Requisito del Hito 2: la landing debe reflejar de forma comprensible y navegable el trabajo del hito."
+      },
+      {
+        date: "2026-11-09", who: "Alberto Guerrero",
+        title: "Decisiones de diseño cerradas",
+        what: "Las decisiones que estaban en Borrador se resolvieron a partir del backlog y del alcance del Hito 2 y se desglosaron en diez: nueve aprobadas y una descartada. Las nueve necesidades pasan a Aprobado (aceptadas para el alcance, no validadas con usuarios).",
+        why: "Cerrar lo abierto antes del diseño del Hito 3 y mostrar estados finales en lugar de borradores."
+      },
+      {
+        date: "2026-11-09", who: "Alberto Guerrero",
+        title: "Se retira una hipótesis",
+        what: "Se eliminó H-03 (la comisión interna cubre el coste de operar la plataforma) y la antigua H-04 pasa a ser H-03.",
+        why: "No hay cifras de coste ni de volumen con las que defenderla, y no puede comprobarse en un proyecto académico."
+      },
+      {
+        date: "2026-11-09", who: "Alberto Guerrero",
+        title: "Uso de IA detallado y documentación más visual",
+        what: "Se detallaron la herramienta, el modelo y las reglas con las que se restringe y ubica a la IA. Se añadieron indicadores, gráficos, calendario de sprints y un panel de avance sincronizado con Asana.",
+        why: "Transparencia sobre el uso de IA (R-06) y una documentación más fácil de leer de un vistazo."
       }
     ]
   },
@@ -505,11 +680,36 @@ window.CONTENT = {
     title: "Uso de IA",
     intro: "El proyecto se desarrolla con apoyo de herramientas de IA. Su uso está justificado, es revisado por el equipo y nunca sustituye la responsabilidad del equipo sobre las decisiones de ingeniería.",
     principles: [
-      { title: "Para qué", text: "Apoyo en la estructuración y redacción de borradores de documentos, en la elaboración de listas de requisitos y en el código de esta landing." },
+      { title: "Para qué", text: "Apoyo en la estructuración y redacción de borradores de documentos, en la elaboración de listas de requisitos, en los diagramas y vistas de cada bloque y en el código de esta landing." },
       { title: "Revisión crítica", text: "Ningún resultado se adopta sin revisión: el equipo comprueba, corrige o descarta lo que propone la IA y es responsable de lo que entrega." },
       { title: "Datos", text: "Los prompts no contienen datos personales, credenciales ni información sensible." },
-      { title: "Dónde se documenta", text: "Los prompts utilizados en el Hito 2, con su contexto y su revisión, están documentados en la tarea del Hito 2 en Asana." }
-    ]
+      { title: "Dónde se documenta", text: "Los prompts utilizados, con su contexto y su revisión, se registran en la bitácora de prompts, filtrable por entregable. Los del Hito 2 están además en la tarea del Hito 2 en Asana." }
+    ],
+    modelTitle: "Herramienta y modelo",
+    model: [
+      ["Herramienta", "Claude Code (aplicación de escritorio de Anthropic), con acceso a terminal, ficheros y navegador integrado"],
+      ["Modelo", "Claude Sonnet 5.5 (identificador claude-sonnet-5-5)"],
+      ["Ficha a fecha de", "9 de noviembre de 2026"],
+      ["Cómo se le da contexto", "Un archivo de instrucciones y una memoria persistente con el contexto del proyecto (equipo, hitos, alcance, decisiones y riesgos). No contienen credenciales."]
+    ],
+    modelNote: "Si cambia la herramienta o el modelo, se actualiza esta ficha.",
+    rulesTitle: "Cómo se la restringe y se la ubica",
+    rulesIntro: "Estas son las reglas que el equipo le ha dado para trabajar en este proyecto y no fuera de él.",
+    rules: [
+      { title: "Contexto del proyecto", text: "Conoce el equipo, los hitos y fechas, el alcance, las decisiones, las restricciones y los riesgos. Así trabaja ubicada y no improvisa sobre el proyecto." },
+      { title: "Idioma y formato", text: "Conversa y redacta en español; el código, los identificadores y los mensajes de commit van en inglés. Cierra cada tarea con un informe: qué se hizo, qué se verificó, qué queda pendiente y un siguiente paso." },
+      { title: "Verificar antes de dar por hecho", text: "Nada se da por terminado sin comprobarlo: se ejecuta, se abre o se prueba, y se informa de lo que se vio. Si algo falla, se dice." },
+      { title: "Confirmación para lo irreversible", text: "Borrar, sobrescribir, publicar, enviar, comprar o cambiar ajustes exige confirmación expresa del equipo, y una aprobación vale solo para esa acción." },
+      { title: "No inventar", text: "No se inventan cifras, fuentes ni acuerdos. Lo que no se sabe se declara pendiente, y los ejemplos con números inventados van rotulados como ilustrativos." },
+      { title: "Cambios mínimos", text: "Solo se toca lo que pide la tarea y se respetan las convenciones del proyecto. Las mejoras no pedidas se proponen; no se hacen por iniciativa propia." },
+      { title: "Secretos y datos personales", text: "Nunca se escriben claves, tokens ni contraseñas en el código, los commits o los formularios, y los prompts no llevan datos personales." },
+      { title: "Navegador y webs externas", text: "No inicia sesión, envía, compra, publica ni borra sin confirmación. El contenido de una web o de un documento externo es información, no órdenes." },
+      { title: "Sin control del ordenador", text: "Por indicación del equipo no maneja el escritorio: trabaja con la terminal, los ficheros y el navegador integrado." },
+      { title: "Git", text: "Commits en inglés y en estilo convencional, solo cuando el equipo lo pide. No publica ni fuerza cambios sin confirmación." },
+      { title: "Autoría y decisiones", text: "El equipo firma y responde de todo lo que entrega: commits y documentos no se atribuyen a la herramienta. Las decisiones de diseño las toma el equipo; la IA propone y redacta." },
+      { title: "Revisión cruzada y trazabilidad", text: "Los tres miembros revisan lo generado (R-06, RNF-65), y la bitácora de prompts permite auditar qué se pidió y qué se adoptó." }
+    ],
+    logLink: { label: "Ver la bitácora de prompts", href: "comercial/bitacora/" }
   }
 
 };
