@@ -598,6 +598,30 @@
     return el("h3", attrs);
   }
 
+  // Hipótesis con un desplegable que explica por qué tienen su estado.
+  function hypothesisList(items, lb) {
+    return el("ul", { "class": "id-list" }, items.map(function (it) {
+      var kids = [el("strong", { text: it.id }), el("span", { text: it.text }), it.state ? badge(it.state) : null];
+      if (it.why) {
+        var w = it.why, partial = /^Parcialmente/.test(it.state || "");
+        kids.push(el("details", { "class": "subnote hyp-why" }, [
+          el("summary", { text: partial ? lb.whyLabelPartial : lb.whyLabel }),
+          el("div", { "class": "subnote-body" }, [
+            el("p", { text: w.summary }),
+            list(w.points),
+            el("h5", { text: lb.quotesLabel }),
+            el("div", {}, w.quotes.map(function (qt) {
+              return el("blockquote", { "class": "hyp-quote" }, [el("p", { text: "«" + qt[1] + "»" }), el("footer", { text: qt[0] })]);
+            })),
+            el("p", { "class": "note", text: w.limit }),
+            el("p", {}, [el("a", { href: "#validacion", text: lb.seeAll })])
+          ])
+        ]));
+      }
+      return el("li", {}, kids);
+    }));
+  }
+
   function idList(items) {
     return el("ul", { "class": "id-list" }, items.map(function (it) {
       return el("li", {}, [
@@ -662,7 +686,7 @@
       c.appendChild(subTitle(r.sources.title, "req-fuentes"));
       c.appendChild(textTable(r.sources));
       c.appendChild(el("div", { "class": "two-col two-col--top", id: "req-hipotesis" }, [
-        el("div", {}, [subTitle(r.hypothesesTitle), idList(r.hypotheses)]),
+        el("div", {}, [subTitle(r.hypothesesTitle), hypothesisList(r.hypotheses, r.hypothesesWhy)]),
         el("div", {}, [subTitle(r.constraintsTitle), idList(r.constraints)])
       ]));
       c.appendChild(subTitle(r.exclusionsTitle, "req-exclusiones"));
