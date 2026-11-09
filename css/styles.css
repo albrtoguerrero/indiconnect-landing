@@ -491,29 +491,45 @@ tr[hidden] { display: none; }
 .hero-step-defence { margin-top: 1.2rem; font-size: .9rem; color: var(--muted); }
 .hero-step-link { display: inline-block; margin-top: .6rem; font-weight: 600; }
 
-/* ===== Cronograma de barras (archivo de Asana) ===== */
-.gantt { --lab: 11rem; position: relative; }
-.gantt-head, .gantt-row, .gantt-today-wrap { display: grid; grid-template-columns: var(--lab) 1fr; gap: 0 .75rem; align-items: center; }
-.gantt-axis { position: relative; height: 1.4rem; border-bottom: 1px solid var(--border); }
-.gantt-axis span { position: absolute; top: 0; transform: translateX(-50%); font-size: .75rem; color: var(--muted); text-transform: capitalize; }
-.gantt-rows { list-style: none; margin: 0; padding: 0; }
-.gantt-row { padding: .45rem 0; border-bottom: 1px dashed var(--border); }
-.gantt-label { font-size: .88rem; font-weight: 600; }
-.gantt-track { position: relative; height: 1.5rem; }
-.gantt-bar { position: absolute; top: .35rem; height: .8rem; border-radius: 999px; background: var(--border); }
-.gantt-bar--entregado { background: var(--b-ok-fg); }
-.gantt-bar--en-curso { background: var(--primary); }
-.gantt-ev { position: absolute; top: .3rem; width: .9rem; height: .9rem; transform: translateX(-50%) rotate(45deg); background: var(--surface); border: 2px solid var(--muted); }
-.gantt-ev--entregado { border-color: var(--b-ok-fg); }
-.gantt-ev--en-curso { border-color: var(--primary); }
-.gantt-today-wrap { position: absolute; inset: 1.4rem 0 0 0; pointer-events: none; }
-.gantt-today-area { position: relative; height: 100%; }
-.gantt-today { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px solid var(--accent); }
-.gantt-today em { position: absolute; top: -1.4rem; left: 0; transform: translateX(-50%); font-style: normal; font-size: .72rem; font-weight: 700; color: var(--accent); background: var(--surface); padding: 0 .3rem; }
-@media (max-width: 40rem) {
-  .gantt { --lab: 1fr; }
-  .gantt-head { display: none; }
-  .gantt-row { grid-template-columns: 1fr; gap: .25rem; }
-  .gantt-today-wrap { display: none; }
+/* ===== Vistas: una sola parte de la landing a la vez ===== */
+main { position: relative; }
+/* Oculta sin quitar el diseño: así los gráficos miden bien aunque la vista no se vea. */
+.view-off {
+  position: absolute; left: 0; right: 0; top: 0; height: 0; overflow: hidden;
+  visibility: hidden; pointer-events: none;
 }
-@media print { .gantt-today-wrap { display: none; } }
+.view-tabs { border-bottom: 1px solid var(--border); background: var(--bg); }
+.view-tabs ul { display: flex; gap: .4rem; list-style: none; margin: 0; padding: .6rem 0; overflow-x: auto; }
+.view-tabs a {
+  display: inline-block; padding: .45rem 1rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  text-decoration: none; white-space: nowrap; color: var(--muted); border: 1px solid transparent;
+}
+.view-tabs a:hover { color: var(--text); background: var(--surface-2); }
+.view-tabs a[aria-current="page"] { color: var(--on-primary); background: var(--primary); }
+@media (min-width: 64rem) {
+  .view-tabs { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(6px); }
+}
+@media print {
+  .view-off { position: static; height: auto; overflow: visible; visibility: visible; }
+  .view-tabs { display: none; }
+}
+
+/* ===== Documentación: hitos desplegables ===== */
+.hitos { display: grid; gap: .75rem; margin-bottom: 1.5rem; }
+.hito { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.hito > summary {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .9rem; padding: .9rem 1.1rem;
+  cursor: pointer; list-style: none;
+}
+.hito > summary::-webkit-details-marker { display: none; }
+.hito > summary::before { content: "▸"; color: var(--muted); transition: transform .15s; }
+.hito[open] > summary::before { transform: rotate(90deg); }
+.hito-name { font-weight: 700; }
+.hito-dates { margin-left: auto; color: var(--muted); font-size: .9rem; }
+.hito-body { padding: 0 1.1rem 1.1rem; border-top: 1px solid var(--border); }
+.hito-body h4 { margin: 1.2rem 0 .4rem; }
+.hito-body h5 { margin: 1rem 0 .3rem; font-size: .95rem; color: var(--muted); }
+.hito-body ul { padding-left: 1.2rem; }
+.subnote { margin-top: .6rem; border: 1px solid var(--border); border-radius: 8px; }
+.subnote > summary { padding: .55rem .8rem; cursor: pointer; font-weight: 600; font-size: .92rem; }
+.subnote-body { padding: 0 .9rem .8rem; }

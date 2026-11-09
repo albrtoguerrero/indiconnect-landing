@@ -145,7 +145,7 @@
         ]);
       })),
       el("p", { "class": "hero-step-defence", text: C.ui.heroDefence }),
-      el("a", { "class": "hero-step-link", href: "#asana", text: C.ui.heroTimelineLink + " →" })
+      el("a", { "class": "hero-step-link", href: "#documentacion", text: C.ui.heroTimelineLink + " →" })
     ]);
   }
 
@@ -358,86 +358,89 @@
     });
   }
 
-  function isoToUtc(iso) {
-    var p = iso.split("-");
-    return Date.UTC(+p[0], +p[1] - 1, +p[2]);
+  // Convierte las notas de Asana (texto plano) en párrafos, listas y rótulos.
+  function notesToNodes(text) {
+    var nodes = [], ul = null;
+    String(text || "").split("\n").forEach(function (raw) {
+      var t = raw.trim();
+      if (!t || /^-{3,}$/.test(t)) { ul = null; return; }
+      var item = null;
+      if (/^[•\-–]\s+/.test(t)) { item = t.replace(/^[•\-–]\s+/, ""); }
+      else if (/^\s{4}\S/.test(raw)) { item = t; }
+      if (item !== null) {
+        if (!ul) { ul = el("ul"); nodes.push(ul); }
+        ul.appendChild(el("li", { text: item }));
+        return;
+      }
+      ul = null;
+      var h = t.match(/^[—–-]{2,}\s*(.+?)\s*[—–-]{2,}$/);
+      nodes.push(h ? el("h5", { text: h[1] }) : el("p", { text: t }));
+    });
+    return nodes;
   }
 
-  // Cronograma de barras: las posiciones se calculan a partir de las fechas ISO de C.archive.
-  function renderGantt(a) {
-    var t0 = isoToUtc(a.axis.start), t1 = isoToUtc(a.axis.end), span = t1 - t0;
-    function pct(iso) { return Math.max(0, Math.min(100, (isoToUtc(iso) - t0) / span * 100)); }
-    function two(n) { return ("0" + n).slice(-2); }
-    var months = [];
-    var d = new Date(t0);
-    d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1));
-    while (d.getTime() < t1) {
-      months.push({
-        left: pct(d.getUTCFullYear() + "-" + two(d.getUTCMonth() + 1) + "-01"),
-        label: d.toLocaleDateString(C.ui.locale || "es-ES", { month: "short", timeZone: "UTC" })
-      });
-      d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1));
-    }
-    var now = new Date();
-    var todayIso = now.getFullYear() + "-" + two(now.getMonth() + 1) + "-" + two(now.getDate());
-    var todayIn = isoToUtc(todayIso) >= t0 && isoToUtc(todayIso) <= t1;
+  function dateOrDash(iso) { return iso ? formatDate(iso) : "—"; }
 
-    var axis = el("div", { "class": "gantt-axis", "aria-hidden": "true" }, months.map(function (m) {
-      return el("span", { style: "left:" + m.left + "%", text: m.label });
-    }));
-    var rows = a.rows.map(function (r) {
-      var l = pct(r.start), w = Math.max(0.6, pct(r.end) - l);
-      var kids = [];
-      if (r.start !== r.end) {
-        kids.push(el("span", { "class": "gantt-bar gantt-bar--" + slug(r.status), style: "left:" + l + "%;width:" + w + "%" }));
-      }
-      r.events.forEach(function (e) {
-        kids.push(el("span", { "class": "gantt-ev gantt-ev--" + slug(r.status), style: "left:" + pct(e[0]) + "%", title: e[1] + " · " + formatDate(e[0]) }));
-      });
-      return el("li", { "class": "gantt-row" }, [
-        el("div", { "class": "gantt-label" }, [document.createTextNode(r.label + " "), badge(r.status)]),
-        el("div", { "class": "gantt-track" }, kids)
-      ]);
-    });
-    var parts = [
-      el("div", { "class": "gantt-head" }, [el("span"), axis]),
-      el("ol", { "class": "gantt-rows" }, rows)
+  function hitoDetails(a, h) {
+    var kids = [
+      el("summary", {}, [
+        el("span", { "class": "hito-name", text: a.hitoLabel + " " + h.n + " · " + h.title }),
+        badge(h.status),
+        el("span", { "class": "hito-dates", text: dateOrDash(h.start) + " – " + dateOrDash(h.end) })
+      ])
     ];
-    if (todayIn) {
-      parts.push(el("div", { "class": "gantt-today-wrap", "aria-hidden": "true" }, [
-        el("span"),
-        el("div", { "class": "gantt-today-area" }, [
-          el("span", { "class": "gantt-today", style: "left:" + pct(todayIso) + "%" }, [el("em", { text: a.today })])
-        ])
-      ]));
+    var body = [];
+    if (h.notes) {
+      body.push(el("h4", { text: a.descTitle }));
+      notesToNodes(h.notes).forEach(function (n) { body.push(n); });
     }
-    return el("div", { "class": "panel" }, [
-      el("div", { "class": "gantt", role: "group", "aria-label": a.ganttCaption }, parts),
-      el("p", { "class": "note", text: a.ganttHint })
-    ]);
+    if (h.n === 3) {
+      body.push(el("h4", { text: a.statementTitle }));
+      body.push(el("p", { text: a.statementIntro }));
+      body.push(el("div", { "class": "two-col two-col--top" }, [
+        el("div", {}, [el("h5", { text: a.statementMinTitle }), list(a.statementMin)]),
+        el("div", {}, [el("h5", { text: a.statementEvTitle }), list(a.statementEv)])
+      ]));
+      body.push(el("p", { "class": "note", text: a.statementNote }));
+    }
+    body.push(el("h4", { text: a.subtasksTitle }));
+    if (h.subtasks.length) {
+      body.push(textTable({
+        caption: a.subtasksCaption + " · " + a.hitoLabel + " " + h.n,
+        headers: a.subtasksHeaders,
+        rows: h.subtasks.map(function (s) {
+          return [s.name, s.owner || a.noOwner, dateOrDash(s.due), s.done ? a.doneLabel : a.pendingLabel];
+        })
+      }));
+      h.subtasks.forEach(function (s) {
+        if (!s.notes) { return; }
+        body.push(el("details", { "class": "subnote" }, [
+          el("summary", { text: a.notesOf + " «" + s.name + "»" }),
+          el("div", { "class": "subnote-body" }, notesToNodes(s.notes))
+        ]));
+      });
+    } else {
+      body.push(el("p", { "class": "note", text: a.noSubtasks }));
+    }
+    if (h.n === 3) {
+      body.push(el("h4", { text: a.planTitle }));
+      body.push(el("p", { "class": "note", text: a.planNote }));
+      body.push(textTable({ caption: a.planCaption, headers: a.planHeaders, rows: a.plan }));
+    }
+    kids.push(el("div", { "class": "hito-body" }, body));
+    var attrs = { "class": "hito hito--" + slug(h.status) };
+    if (h.status === "En curso") { attrs.open = ""; }
+    return el("details", attrs, kids);
   }
 
   function renderArchive() {
-    fill("asana", function (c, hid) {
+    fill("documentacion", function (c, hid) {
       var a = C.archive;
       c.appendChild(heading(hid, a.title, el("span", { "class": "badge badge--sin-validar", text: a.asOf })));
       c.appendChild(el("p", { "class": "lead", text: a.intro }));
       c.appendChild(el("p", { "class": "note", text: a.limits }));
-      c.appendChild(subTitle(a.ganttTitle));
-      c.appendChild(renderGantt(a));
-      c.appendChild(subTitle(a.deliveriesTitle));
-      c.appendChild(textTable({ caption: a.deliveriesCaption, headers: a.deliveriesHeaders, badgeCol: 3, rows: a.deliveries }));
-      c.appendChild(subTitle(a.statementTitle));
-      c.appendChild(el("p", { text: a.statementIntro }));
-      c.appendChild(el("div", { "class": "two-col two-col--top" }, [
-        el("div", {}, [el("h4", { text: a.statementMinTitle }), list(a.statementMin)]),
-        el("div", {}, [el("h4", { text: a.statementEvTitle }), list(a.statementEv)])
-      ]));
-      c.appendChild(el("p", { "class": "note", text: a.statementNote }));
-      c.appendChild(subTitle(a.planTitle));
-      c.appendChild(textTable({ caption: a.planCaption, headers: a.planHeaders, rows: a.plan }));
-      c.appendChild(subTitle(a.boardTitle));
-      c.appendChild(textTable({ caption: a.boardCaption, headers: a.boardHeaders, rows: a.board }));
+      c.appendChild(subTitle(a.hitosTitle));
+      c.appendChild(el("div", { "class": "hitos" }, a.hitos.map(function (h) { return hitoDetails(a, h); })));
       c.appendChild(subTitle(a.linksTitle));
       var table = el("table", { "class": "table--text" }, [
         el("caption", { text: a.linksCaption }),
@@ -451,6 +454,62 @@
       ]);
       c.appendChild(tableWrap(a.linksCaption, table));
     });
+  }
+
+  /* ---------- vistas: la landing se reparte en cuatro, sin un único scroll ---------- */
+
+  var VIEWS = [
+    { id: "contexto", sections: ["inicio", "problema", "como-funciona", "negocio"] },
+    { id: "definicion", sections: ["alcance", "decisiones", "riesgos", "diseno"] },
+    { id: "requisitos", sections: ["requisitos", "trazabilidad"] },
+    { id: "seguimiento", sections: ["avances", "documentacion", "evolucion", "uso-ia", "equipo"] }
+  ];
+  var currentView = null;
+
+  function viewOfSection(secId) {
+    for (var i = 0; i < VIEWS.length; i++) {
+      if (VIEWS[i].sections.indexOf(secId) !== -1) { return VIEWS[i].id; }
+    }
+    return null;
+  }
+
+  function viewOfNode(node) {
+    var sec = node && node.closest ? node.closest("main > section") : null;
+    return sec ? viewOfSection(sec.id) : null;
+  }
+
+  function applyView(id) {
+    if (!id) { id = VIEWS[0].id; }
+    currentView = id;
+    VIEWS.forEach(function (v) {
+      v.sections.forEach(function (s) {
+        var n = document.getElementById(s);
+        if (n) { n.classList.toggle("view-off", v.id !== id); }
+      });
+    });
+    [].forEach.call(document.querySelectorAll("#view-tabs a"), function (a) {
+      if (a.getAttribute("data-view") === id) { a.setAttribute("aria-current", "page"); }
+      else { a.removeAttribute("aria-current"); }
+    });
+  }
+
+  function renderViewTabs() {
+    var host = document.getElementById("view-tabs");
+    if (!host) { return; }
+    host.setAttribute("aria-label", C.ui.viewsLabel);
+    host.appendChild(el("div", { "class": "container" }, [el("ul", {}, VIEWS.map(function (v) {
+      return el("li", {}, [el("a", { href: "#" + v.sections[0], "data-view": v.id, text: C.ui.viewLabels[v.id] })]);
+    }))]));
+  }
+
+  function routeFromHash(initial) {
+    var id = "";
+    try { id = decodeURIComponent((window.location.hash || "").slice(1)); } catch (e) { id = ""; }
+    var target = id ? document.getElementById(id) : null;
+    var view = target ? viewOfNode(target) || viewOfSection(id) : (currentView || VIEWS[0].id);
+    applyView(view);
+    if (target) { target.scrollIntoView({ block: "start" }); }
+    else if (!initial) { window.scrollTo(0, 0); }
   }
 
   function renderTeam() {
@@ -815,6 +874,8 @@
 
   function goTo(item) {
     var n = item.node;
+    var v = viewOfNode(n);
+    if (v) { applyView(v); }
     var d = n.closest("details");
     while (d) { d.open = true; d = d.parentElement ? d.parentElement.closest("details") : null; }
     if (n.hidden) { n.hidden = false; }
@@ -912,7 +973,7 @@
   /* ---------- idioma ---------- */
 
   var HOSTS = ["inicio", "problema", "como-funciona", "negocio", "alcance", "decisiones", "riesgos",
-    "requisitos", "trazabilidad", "diseno", "avances", "asana", "evolucion", "uso-ia", "equipo"];
+    "requisitos", "trazabilidad", "diseno", "avances", "documentacion", "evolucion", "uso-ia", "equipo"];
 
   function clear(node) {
     while (node.firstChild) { node.removeChild(node.firstChild); }
@@ -920,11 +981,12 @@
 
   function renderAll() {
     C = pick();
-    HOSTS.concat(["site-nav", "brand-link", "site-footer"]).forEach(function (id) {
+    HOSTS.concat(["site-nav", "brand-link", "site-footer", "view-tabs"]).forEach(function (id) {
       var n = document.getElementById(id);
       if (n) { clear(n); if (n.hasAttribute("aria-labelledby")) { n.removeAttribute("aria-labelledby"); } }
     });
     renderChrome();
+    renderViewTabs();
     renderHero();
     renderProblem();
     renderHow();
@@ -941,6 +1003,7 @@
     renderAiUse();
     renderTeam();
     renderFooter();
+    applyView(currentView);
     initNavSpy();
     initSearchUi();
     if (paintTheme) { paintTheme(); }
@@ -949,6 +1012,8 @@
   /* ---------- arranque ---------- */
 
   renderAll();
+  routeFromHash(true);
+  window.addEventListener("hashchange", function () { routeFromHash(false); });
   initTheme();
   var lbtn = document.getElementById("lang-toggle");
   if (lbtn && window.IC_LANG) {
