@@ -469,7 +469,9 @@ window.CONTENT = {
   design: {
     "title": "Diseño del sistema (Hito 3)",
     "intro": "Cada bloque funcional, de A1 a A7, se diseña con cuatro vistas: procesos (DFD), datos (DER), arquitectura e interfaces (wireframes de baja fidelidad). Las vistas se entregan en PDF y sus diagramas, además, como ficheros .drawio editables.",
-    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque y sus fuentes editables están entregadas. El documento de diseño que las reúne sigue en preparación y es lo que cubren los apartados «En curso» y «Pendiente» de la tabla inferior.",
+    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque, sus fuentes editables y el documento de diseño (versión 1.0, pendiente de la revisión cruzada del equipo) están entregados. Solo queda en curso el enlace desde cada entregable a Asana.",
+    "docLabel": "Abrir el documento de diseño (Word, 88 páginas)",
+    "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
     "blocksCaption": "Vistas de diseño por bloque funcional",
     "blocksHeaders": [
       "Bloque",
@@ -540,13 +542,13 @@ window.CONTENT = {
     "evidence": [
       [
         "Análisis del problema",
-        "En curso",
-        "La base está en la sección Problema; falta el apartado dentro del documento de diseño."
+        "Entregado",
+        "Apartado 2 del documento de diseño, con el árbol de problemas, las necesidades y las hipótesis."
       ],
       [
         "Alternativas",
-        "Pendiente",
-        "Alternativas razonadas por decisión de diseño."
+        "Entregado",
+        "Apartado 3: tres alternativas de arquitectura comparadas y las decisiones de diseño por bloque."
       ],
       [
         "Arquitectura lógica de alto nivel",
@@ -565,8 +567,8 @@ window.CONTENT = {
       ],
       [
         "Reglas de negocio",
-        "En curso",
-        "Cada bloque recoge las suyas; falta el catálogo único."
+        "Entregado",
+        "Apartado 7: catálogo único de 72 reglas; las propuestas y los umbrales por definir se listan en el apartado 10."
       ],
       [
         "Wireframes de baja fidelidad",
@@ -575,13 +577,13 @@ window.CONTENT = {
       ],
       [
         "Matriz de trazabilidad actualizada",
-        "En curso",
-        "Cada bloque traza sus requisitos a las cuatro vistas; falta la cadena completa hasta la pantalla."
+        "Entregado",
+        "Apartado 9 y Anexo A: cadena completa de los 84 RF hasta la pantalla. 72 RF siguen sin necesidad enlazada."
       ],
       [
         "Glosario",
-        "Pendiente",
-        "Términos del dominio definidos de forma única."
+        "Entregado",
+        "Apartado 11 del documento de diseño."
       ],
       [
         "Diagramas fuente editables (.drawio)",
@@ -595,8 +597,8 @@ window.CONTENT = {
       ],
       [
         "Registro de cambios",
-        "En curso",
-        "Cada bloque lleva el suyo; falta el del hito."
+        "Entregado",
+        "Apartado 12 del documento de diseño, además del registro de cada bloque."
       ]
     ]
   },

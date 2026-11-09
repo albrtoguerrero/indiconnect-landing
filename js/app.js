@@ -533,6 +533,9 @@
       c.appendChild(heading(hid, d.title));
       c.appendChild(el("p", { "class": "lead", text: d.intro }));
       c.appendChild(el("p", { "class": "note", text: d.status }));
+      if (d.docFile) {
+        c.appendChild(el("p", {}, [el("a", { href: "docs/hito3/" + d.docFile, download: "", text: d.docLabel })]));
+      }
       var table = el("table", { "class": "table--text" }, [
         el("caption", { text: d.blocksCaption }),
         el("thead", {}, [el("tr", {}, d.blocksHeaders.map(function (h) {

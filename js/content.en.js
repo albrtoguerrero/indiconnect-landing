@@ -472,7 +472,9 @@ window.CONTENT_EN = {
   design: {
     "title": "System design (Milestone 3)",
     "intro": "Every functional block, A1 to A7, is designed with four views: processes (DFD), data (ER), architecture and interfaces (low-fidelity wireframes). The views are delivered as PDF and their diagrams are also available as editable .drawio files.",
-    "status": "Status on 9 November 2026: the per-block views and their editable sources are delivered. The design document that brings them together is still in preparation, which is what the “In progress” and “Pending” rows of the table below cover.",
+    "status": "Status on 9 November 2026: the per-block views, their editable sources and the design document (version 1.0, awaiting the team's cross-review) are delivered. Only the link from each deliverable to Asana is still in progress.",
+    "docLabel": "Open the design document (Word, 88 pages, in Spanish)",
+    "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
     "blocksCaption": "Design views per functional block",
     "blocksHeaders": [
       "Block",
@@ -543,13 +545,13 @@ window.CONTENT_EN = {
     "evidence": [
       [
         "Problem analysis",
-        "En curso",
-        "The basis is in the Problem section; the section inside the design document is missing."
+        "Entregado",
+        "Section 2 of the design document, with the problem tree, needs and hypotheses."
       ],
       [
         "Alternatives",
-        "Pendiente",
-        "Reasoned alternatives for each design decision."
+        "Entregado",
+        "Section 3: three architecture alternatives compared, plus the per-block design decisions."
       ],
       [
         "High-level logical architecture",
@@ -568,8 +570,8 @@ window.CONTENT_EN = {
       ],
       [
         "Business rules",
-        "En curso",
-        "Each block lists its own; the single catalogue is missing."
+        "Entregado",
+        "Section 7: a single catalogue of 72 rules; proposed rules and thresholds to define are listed in section 10."
       ],
       [
         "Low-fidelity wireframes",
@@ -578,13 +580,13 @@ window.CONTENT_EN = {
       ],
       [
         "Updated traceability matrix",
-        "En curso",
-        "Each block traces its requirements to the four views; the full chain down to the screen is missing."
+        "Entregado",
+        "Section 9 and Annex A: the full chain for the 84 FRs down to the screen. 72 FRs still have no linked need."
       ],
       [
         "Glossary",
-        "Pendiente",
-        "Domain terms defined once."
+        "Entregado",
+        "Section 11 of the design document."
       ],
       [
         "Editable source diagrams (.drawio)",
@@ -598,8 +600,8 @@ window.CONTENT_EN = {
       ],
       [
         "Change log",
-        "En curso",
-        "Each block keeps its own; the milestone log is missing."
+        "Entregado",
+        "Section 12 of the design document, besides each block's own log."
       ]
     ]
   },
