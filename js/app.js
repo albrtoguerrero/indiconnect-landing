@@ -527,6 +527,33 @@
     });
   }
 
+  function renderDesign() {
+    fill("diseno", function (c, hid) {
+      var d = C.design;
+      c.appendChild(heading(hid, d.title));
+      c.appendChild(el("p", { "class": "lead", text: d.intro }));
+      c.appendChild(el("p", { "class": "note", text: d.status }));
+      var table = el("table", { "class": "table--text" }, [
+        el("caption", { text: d.blocksCaption }),
+        el("thead", {}, [el("tr", {}, d.blocksHeaders.map(function (h) {
+          return el("th", { scope: "col", text: h });
+        }))]),
+        el("tbody", {}, d.blocks.map(function (b) {
+          return el("tr", {}, [
+            el("th", { scope: "row", text: b.name }),
+            el("td", { text: b.text }),
+            el("td", {}, [el("a", { href: "docs/hito3/" + b.pdf, text: d.pdfLabel })]),
+            el("td", {}, [el("a", { href: "docs/hito3/" + b.drawio, download: "", text: d.drawioLabel })])
+          ]);
+        }))
+      ]);
+      c.appendChild(tableWrap(d.blocksCaption, table));
+      c.appendChild(el("p", { "class": "note", text: d.openNote }));
+      c.appendChild(subTitle(d.evidenceTitle));
+      c.appendChild(textTable({ caption: d.evidenceCaption, headers: d.evidenceHeaders, badgeCol: 1, rows: d.evidence }));
+    });
+  }
+
   function renderEvolution() {
     fill("evolucion", function (c, hid) {
       var e = C.evolution;
@@ -794,7 +821,7 @@
   /* ---------- idioma ---------- */
 
   var HOSTS = ["inicio", "problema", "como-funciona", "negocio", "alcance", "decisiones", "riesgos",
-    "requisitos", "trazabilidad", "avances", "evolucion", "uso-ia", "equipo"];
+    "requisitos", "trazabilidad", "diseno", "avances", "evolucion", "uso-ia", "equipo"];
 
   function clear(node) {
     while (node.firstChild) { node.removeChild(node.firstChild); }
@@ -816,6 +843,7 @@
     renderRisks();
     renderRequirements();
     renderTraceability();
+    renderDesign();
     renderProgress();
     renderEvolution();
     renderAiUse();

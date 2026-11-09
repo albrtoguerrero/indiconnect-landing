@@ -79,6 +79,7 @@ window.CONTENT = {
     { id: "riesgos", label: "Riesgos" },
     { id: "requisitos", label: "Requisitos" },
     { id: "trazabilidad", label: "Trazabilidad" },
+    { id: "diseno", label: "Diseño" },
     { id: "avances", label: "Avances" },
     { id: "evolucion", label: "Evolución" },
     { id: "uso-ia", label: "Uso de IA" },
@@ -462,6 +463,141 @@ window.CONTENT = {
       { name: "Requisitos no funcionales", text: "Cuatro categorías: seguridad y privacidad; rendimiento y arquitectura; diseño, usabilidad y accesibilidad; mantenibilidad.", url: "" },
       { name: "Matriz de trazabilidad", text: "Subtarea con la matriz necesidad → requisito.", url: "" },
       { name: "Especificaciones de requisitos en la web", text: "Subtarea de actualización de esta landing.", url: "" }
+    ]
+  },
+
+  design: {
+    "title": "Diseño del sistema (Hito 3)",
+    "intro": "Cada bloque funcional, de A1 a A7, se diseña con cuatro vistas: procesos (DFD), datos (DER), arquitectura e interfaces (wireframes de baja fidelidad). Las vistas se entregan en PDF y sus diagramas, además, como ficheros .drawio editables.",
+    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque y sus fuentes editables están entregadas. El documento de diseño que las reúne sigue en preparación y es lo que cubren los apartados «En curso» y «Pendiente» de la tabla inferior.",
+    "blocksCaption": "Vistas de diseño por bloque funcional",
+    "blocksHeaders": [
+      "Bloque",
+      "Contenido",
+      "Vistas",
+      "Diagramas editables"
+    ],
+    "pdfLabel": "Abrir PDF",
+    "drawioLabel": "Descargar .drawio",
+    "openNote": "Los ficheros .drawio se abren y se editan en app.diagrams.net o en draw.io Desktop.",
+    "evidenceTitle": "Entregables del Hito 3",
+    "evidenceCaption": "Estado de los entregables mínimos del Hito 3",
+    "evidenceHeaders": [
+      "Entregable",
+      "Estado",
+      "Situación"
+    ],
+    "blocks": [
+      {
+        "name": "A1 · Catálogo y navegación",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A1_Catalogo-y-navegacion_4-vistas.pdf",
+        "drawio": "Bloque-A1_Catalogo-y-navegacion.drawio"
+      },
+      {
+        "name": "A2 · Carrito unificado",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A2_Carrito-unificado_4-vistas.pdf",
+        "drawio": "Bloque-A2_Carrito-unificado.drawio"
+      },
+      {
+        "name": "A3 · Checkout y pago simulado",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A3_Checkout-y-pago-simulado_4-vistas.pdf",
+        "drawio": "Bloque-A3_Checkout-y-pago-simulado.drawio"
+      },
+      {
+        "name": "A4 · Pedido y subpedidos",
+        "text": "6 diagramas: contexto, DFD, DER, arquitectura y navegación (con DFD de nivel 2)",
+        "pdf": "Bloque-A4_Pedido-y-subpedidos_4-vistas.pdf",
+        "drawio": "Bloque-A4_Pedido-y-subpedidos.drawio"
+      },
+      {
+        "name": "A5 · Seguimiento y cuenta del cliente",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A5_Seguimiento-y-cuenta-del-cliente_4-vistas.pdf",
+        "drawio": "Bloque-A5_Seguimiento-y-cuenta-del-cliente.drawio"
+      },
+      {
+        "name": "A6 · Marcas y operación del grupo",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A6_Marcas-y-operacion-del-grupo_4-vistas.pdf",
+        "drawio": "Bloque-A6_Marcas-y-operacion-del-grupo.drawio"
+      },
+      {
+        "name": "A7 · Datos y soporte",
+        "text": "5 diagramas: contexto, DFD, DER, arquitectura y navegación",
+        "pdf": "Bloque-A7_Datos-y-soporte_4-vistas.pdf",
+        "drawio": "Bloque-A7_Datos-y-soporte.drawio"
+      },
+      {
+        "name": "Índice general",
+        "text": "Dependencias entre los siete bloques",
+        "pdf": "00_Indice-general_4-vistas.pdf",
+        "drawio": "00_Indice-general.drawio"
+      }
+    ],
+    "evidence": [
+      [
+        "Análisis del problema",
+        "En curso",
+        "La base está en la sección Problema; falta el apartado dentro del documento de diseño."
+      ],
+      [
+        "Alternativas",
+        "Pendiente",
+        "Alternativas razonadas por decisión de diseño."
+      ],
+      [
+        "Arquitectura lógica de alto nivel",
+        "Entregado",
+        "Vista de arquitectura de cada bloque, por capas."
+      ],
+      [
+        "DFD o flujos principales",
+        "Entregado",
+        "Contexto y DFD de nivel 1 por bloque; nivel 2 en A4."
+      ],
+      [
+        "Modelo conceptual de datos (DER)",
+        "Entregado",
+        "Un diagrama entidad-relación por bloque."
+      ],
+      [
+        "Reglas de negocio",
+        "En curso",
+        "Cada bloque recoge las suyas; falta el catálogo único."
+      ],
+      [
+        "Wireframes de baja fidelidad",
+        "Entregado",
+        "Pantallas y estados dentro del PDF de cada bloque."
+      ],
+      [
+        "Matriz de trazabilidad actualizada",
+        "En curso",
+        "Cada bloque traza sus requisitos a las cuatro vistas; falta la cadena completa hasta la pantalla."
+      ],
+      [
+        "Glosario",
+        "Pendiente",
+        "Términos del dominio definidos de forma única."
+      ],
+      [
+        "Diagramas fuente editables (.drawio)",
+        "Entregado",
+        "37 diagramas en 8 ficheros, descargables en la tabla de arriba."
+      ],
+      [
+        "Enlace a Asana y a esta landing",
+        "En curso",
+        "Las tareas del Hito 3 están en Asana; el enlace desde cada entregable se completará al publicar."
+      ],
+      [
+        "Registro de cambios",
+        "En curso",
+        "Cada bloque lleva el suyo; falta el del hito."
+      ]
     ]
   },
 

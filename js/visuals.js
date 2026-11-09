@@ -636,6 +636,7 @@
     "riesgos": "M12 3l8 3v6c0 4.5-3.2 8.2-8 9-4.8-.8-8-4.5-8-9V6l8-3zM12 8.5v4M12 15.5v.01",
     "requisitos": "M9 6h11M9 12h11M9 18h11M3.5 6l1.2 1.2L7 5M3.5 12l1.2 1.2L7 11M3.5 18l1.2 1.2L7 17",
     "trazabilidad": "M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1",
+    "diseno": "M4 4h16v10H4zM8 20h8M12 14v6M7 9h4M7 11.5h7",
     "avances": "M4 20h16M7 17v-5M12 17V6M17 17v-8",
     "evolucion": "M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0M12 7v5l3 2",
     "uso-ia": "M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z",
@@ -643,7 +644,7 @@
   };
   var GROUPS = [
     { es: "Contexto", en: "Context", ids: ["problema", "como-funciona", "negocio"] },
-    { es: "Definición", en: "Definition", ids: ["alcance", "decisiones", "riesgos", "requisitos", "trazabilidad"] },
+    { es: "Definición", en: "Definition", ids: ["alcance", "decisiones", "riesgos", "requisitos", "trazabilidad", "diseno"] },
     { es: "Seguimiento", en: "Tracking", ids: ["avances", "evolucion", "uso-ia", "equipo"] }
   ];
   var SIDE = {

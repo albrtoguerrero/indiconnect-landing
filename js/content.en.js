@@ -86,6 +86,7 @@ window.CONTENT_EN = {
     { id: "riesgos", label: "Risks" },
     { id: "requisitos", label: "Requirements" },
     { id: "trazabilidad", label: "Traceability" },
+    { id: "diseno", label: "Design" },
     { id: "avances", label: "Progress" },
     { id: "evolucion", label: "Evolution" },
     { id: "uso-ia", label: "Use of AI" },
@@ -465,6 +466,141 @@ window.CONTENT_EN = {
       { name: "Non-functional requirements", text: "Four categories: security and privacy; performance and architecture; design, usability and accessibility; maintainability.", url: "" },
       { name: "Traceability matrix", text: "Subtask with the need → requirement matrix.", url: "" },
       { name: "Requirement specifications on the web", text: "Subtask for updating this landing page.", url: "" }
+    ]
+  },
+
+  design: {
+    "title": "System design (Milestone 3)",
+    "intro": "Every functional block, A1 to A7, is designed with four views: processes (DFD), data (ER), architecture and interfaces (low-fidelity wireframes). The views are delivered as PDF and their diagrams are also available as editable .drawio files.",
+    "status": "Status on 9 November 2026: the per-block views and their editable sources are delivered. The design document that brings them together is still in preparation, which is what the “In progress” and “Pending” rows of the table below cover.",
+    "blocksCaption": "Design views per functional block",
+    "blocksHeaders": [
+      "Block",
+      "Content",
+      "Views",
+      "Editable diagrams"
+    ],
+    "pdfLabel": "Open PDF",
+    "drawioLabel": "Download .drawio",
+    "openNote": "The .drawio files can be opened and edited in app.diagrams.net or draw.io Desktop. The PDFs are written in Spanish.",
+    "evidenceTitle": "Milestone 3 deliverables",
+    "evidenceCaption": "Status of the minimum Milestone 3 deliverables",
+    "evidenceHeaders": [
+      "Deliverable",
+      "Status",
+      "Situation"
+    ],
+    "blocks": [
+      {
+        "name": "A1 · Catalogue and navigation",
+        "text": "5 diagrams: context, DFD, ER, architecture and navigation",
+        "pdf": "Bloque-A1_Catalogo-y-navegacion_4-vistas.pdf",
+        "drawio": "Bloque-A1_Catalogo-y-navegacion.drawio"
+      },
+      {
+        "name": "A2 · Unified cart",
+        "text": "5 diagrams: context, DFD, ER, architecture and navigation",
+        "pdf": "Bloque-A2_Carrito-unificado_4-vistas.pdf",
+        "drawio": "Bloque-A2_Carrito-unificado.drawio"
+      },
+      {
+        "name": "A3 · Checkout and simulated payment",
+        "text": "5 diagrams: context, DFD, ER, architecture and navigation",
+        "pdf": "Bloque-A3_Checkout-y-pago-simulado_4-vistas.pdf",
+        "drawio": "Bloque-A3_Checkout-y-pago-simulado.drawio"
+      },
+      {
+        "name": "A4 · Order and sub-orders",
+        "text": "6 diagrams: context, DFD, ER, architecture and navigation (with a level-2 DFD)",
+        "pdf": "Bloque-A4_Pedido-y-subpedidos_4-vistas.pdf",
+        "drawio": "Bloque-A4_Pedido-y-subpedidos.drawio"
+      },
+      {
+        "name": "A5 · Tracking and customer account",
+        "text": "5 diagrams: context, DFD, ER, architecture and navigation",
+        "pdf": "Bloque-A5_Seguimiento-y-cuenta-del-cliente_4-vistas.pdf",
+        "drawio": "Bloque-A5_Seguimiento-y-cuenta-del-cliente.drawio"
+      },
+      {
+        "name": "A6 · Brands and group operations",
+        "text": "5 diagrams: context, DFD, ER, architecture and navigation",
+        "pdf": "Bloque-A6_Marcas-y-operacion-del-grupo_4-vistas.pdf",
+        "drawio": "Bloque-A6_Marcas-y-operacion-del-grupo.drawio"
+      },
+      {
+        "name": "A7 · Data and support",
+        "text": "5 diagrams: context, DFD, ER, architecture and navigation",
+        "pdf": "Bloque-A7_Datos-y-soporte_4-vistas.pdf",
+        "drawio": "Bloque-A7_Datos-y-soporte.drawio"
+      },
+      {
+        "name": "General index",
+        "text": "Dependencies between the seven blocks",
+        "pdf": "00_Indice-general_4-vistas.pdf",
+        "drawio": "00_Indice-general.drawio"
+      }
+    ],
+    "evidence": [
+      [
+        "Problem analysis",
+        "En curso",
+        "The basis is in the Problem section; the section inside the design document is missing."
+      ],
+      [
+        "Alternatives",
+        "Pendiente",
+        "Reasoned alternatives for each design decision."
+      ],
+      [
+        "High-level logical architecture",
+        "Entregado",
+        "An architecture view for every block, by layers."
+      ],
+      [
+        "DFDs or main flows",
+        "Entregado",
+        "Context and level-1 DFD per block; level 2 in A4."
+      ],
+      [
+        "Conceptual data model (ER)",
+        "Entregado",
+        "One entity-relationship diagram per block."
+      ],
+      [
+        "Business rules",
+        "En curso",
+        "Each block lists its own; the single catalogue is missing."
+      ],
+      [
+        "Low-fidelity wireframes",
+        "Entregado",
+        "Screens and states inside each block's PDF."
+      ],
+      [
+        "Updated traceability matrix",
+        "En curso",
+        "Each block traces its requirements to the four views; the full chain down to the screen is missing."
+      ],
+      [
+        "Glossary",
+        "Pendiente",
+        "Domain terms defined once."
+      ],
+      [
+        "Editable source diagrams (.drawio)",
+        "Entregado",
+        "37 diagrams in 8 files, downloadable in the table above."
+      ],
+      [
+        "Link to Asana and to this landing",
+        "En curso",
+        "Hito 3 tasks are in Asana; the link from each deliverable will be completed on publication."
+      ],
+      [
+        "Change log",
+        "En curso",
+        "Each block keeps its own; the milestone log is missing."
+      ]
     ]
   },
 
