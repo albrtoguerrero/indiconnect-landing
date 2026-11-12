@@ -13,6 +13,13 @@
    "file": "lucia.json",
    "prompts": 21,
    "actions": 181
+  },
+  {
+   "id": "mikel",
+   "name": "Mikel Moriel",
+   "file": "mikel.json",
+   "prompts": 66,
+   "actions": 174
   }
  ]
 }

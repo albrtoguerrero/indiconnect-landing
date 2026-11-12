@@ -1517,6 +1517,18 @@ window.CONTENT = {
         title: "Revisión cruzada de A1, A2, A5, A6 y A7",
         what: "Se actualizaron los supuestos de enlace de los cinco bloques, se precisó qué cuenta como subpedido confirmado en la comisión y el resumen de ventas, se incorporó la decisión de «Recordarme» (10 días) en A5, se aclaró que el reinicio de A7 borra y recarga en una sola transacción, y seis wireframes de A4, A5 y A6 pasaron a mostrar «Confirmado» en lugar de «Pendiente».",
         why: "Revisión obligatoria del Hito 3 por alguien distinto del autor antes de la entrega."
+      },
+      {
+        date: "2026-11-12", who: "Mikel Moriel",
+        title: "Criterios de aceptación de A1, A5, A6 y A7",
+        what: "Se añadieron 18 criterios de aceptación en formato Dado/Cuando/Entonces: CA-08 a CA-15 para A6 (apartado 9.4) y CA-16 a CA-25 para A1, A5 y A7 (apartado 9.5), enlazados con sus requisitos y necesidades. Las partes que dependen de reglas propuestas quedan marcadas para validar en equipo.",
+        why: "Esos cuatro bloques no tenían ningún criterio, y era un pendiente del Hito 3: cada requisito clave debe poder comprobarse con una prueba."
+      },
+      {
+        date: "2026-11-12", who: "Mikel Moriel",
+        title: "Decisiones cerradas antes de la entrega",
+        what: "RC-09: en la Fase 1 las condiciones de compra se muestran sin casilla; la aceptación registrada llega en la Fase 2 con RF-43. Quedan decididas también las reglas A1·RN-03 (filtros combinados con Y), A6·RN-04 (una marca dada de baja mantiene sus subpedidos en curso) y A6·RN-06 (un cambio de comisión solo afecta a los subpedidos que se creen después).",
+        why: "Cerrar las cuestiones abiertas del Hito 3 para que los criterios de aceptación no dependan de reglas sin decidir."
       }
     ]
   },

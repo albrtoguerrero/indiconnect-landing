@@ -1522,6 +1522,18 @@ window.CONTENT_EN = {
         title: "Cross-review of A1, A2, A5, A6 and A7",
         what: "The link assumptions of the five blocks were updated, the meaning of a confirmed sub-order for commission and the sales summary was made precise, the «Remember me» decision (10 days) was added to A5, the A7 reset was clarified to delete and reload in a single transaction, and six wireframes of A4, A5 and A6 now show «Confirmed» instead of «Pending».",
         why: "Mandatory Milestone 3 review by someone other than the author before delivery."
+      },
+      {
+        date: "2026-11-12", who: "Mikel Moriel",
+        title: "Acceptance criteria for A1, A5, A6 and A7",
+        what: "18 acceptance criteria were added in Given/When/Then form: CA-08 to CA-15 for A6 (section 9.4) and CA-16 to CA-25 for A1, A5 and A7 (section 9.5), linked to their requirements and needs. Parts that depend on proposed rules are flagged for team validation.",
+        why: "Those four blocks had no criteria, which was an open item of Milestone 3: every key requirement must be testable."
+      },
+      {
+        date: "2026-11-12", who: "Mikel Moriel",
+        title: "Decisions closed before delivery",
+        what: "RC-09: in Phase 1 the purchase terms are shown without a checkbox; recorded acceptance arrives in Phase 2 with RF-43. Rules A1·RN-03 (filters combined with AND), A6·RN-04 (a deactivated brand keeps its sub-orders in progress) and A6·RN-06 (a commission change only affects sub-orders created afterwards) were also decided.",
+        why: "To close Milestone 3's open questions so that the acceptance criteria do not depend on undecided rules."
       }
     ]
   },
