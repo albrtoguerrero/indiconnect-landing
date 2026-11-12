@@ -17,7 +17,7 @@ window.CONTENT = {
     tagline: "Proyecto universitario · Ingeniería del Software"
   },
 
-  lastUpdated: "2026-11-09", // formato AAAA-MM-DD
+  lastUpdated: "2026-11-12", // formato AAAA-MM-DD
 
   legal: "Proyecto académico ficticio, sin vinculación con Inditex ni con ninguna otra empresa o marca real.",
 
@@ -478,8 +478,8 @@ window.CONTENT = {
   design: {
     "title": "Diseño del sistema (Hito 3)",
     "intro": "Cada bloque funcional, de A1 a A7, se diseña con cuatro vistas: procesos (DFD), datos (DER), arquitectura e interfaces (wireframes de baja fidelidad). Las vistas se entregan en PDF y sus diagramas, además, como ficheros .drawio editables.",
-    "status": "Estado a 9 de noviembre de 2026: las vistas por bloque, sus fuentes editables y el documento de diseño (versión 1.0) están entregados. Solo queda en curso el enlace desde cada entregable a Asana.",
-    "docLabel": "Abrir el documento de diseño (Word, 88 páginas)",
+    "status": "Estado a 12 de noviembre de 2026: las vistas por bloque, sus fuentes editables y el documento de diseño (versión 1.2, con la revisión cruzada de A2, A3, A4 y A6) están entregados. Solo queda en curso el enlace desde cada entregable a Asana.",
+    "docLabel": "Abrir el documento de diseño (Word, versión 1.2)",
     "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
     "blocksCaption": "Vistas de diseño por bloque funcional",
     "blocksHeaders": [
@@ -587,7 +587,7 @@ window.CONTENT = {
       [
         "Matriz de trazabilidad actualizada",
         "Entregado",
-        "Apartado 9 y Anexo A: cadena completa de los 84 RF hasta la pantalla. 72 RF siguen sin necesidad enlazada."
+        "Apartado 9 y Anexo A: cadena completa de los 84 RF hasta la pantalla. 50 RF enlazados con una necesidad (33 directos y 17 indirectos); los otros 34, de soporte o conveniencia."
       ],
       [
         "Glosario",
@@ -597,7 +597,7 @@ window.CONTENT = {
       [
         "Diagramas fuente editables (.drawio)",
         "Entregado",
-        "37 diagramas en 8 ficheros, descargables en la tabla de arriba."
+        "40 diagramas en 9 ficheros: los de la tabla de arriba más IndiConnect_Alternativas-y-flujos.drawio (visión de conjunto)."
       ],
       [
         "Enlace a Asana y a esta landing",
@@ -702,7 +702,7 @@ window.CONTENT = {
           [
               "Diagramas fuente editables (.drawio)",
               "DFD, DER, arquitectura y navegación de los bloques A1–A7 como ficheros .drawio en el repositorio.",
-              "Carpeta docs/hito3: 8 ficheros con 37 diagramas"
+              "Carpeta docs/hito3: 9 ficheros con 40 diagramas"
           ],
           [
               "Documento Word del Hito 3 (análisis y arquitectura)",
@@ -1487,6 +1487,36 @@ window.CONTENT = {
         title: "Uso de IA detallado y documentación más visual",
         what: "Se detallaron la herramienta, el modelo y las reglas con las que se restringe y ubica a la IA. Se añadieron indicadores, gráficos, calendario de sprints y un panel de avance sincronizado con Asana.",
         why: "Transparencia sobre el uso de IA (R-06) y una documentación más fácil de leer de un vistazo."
+      },
+      {
+        date: "2026-11-10", who: "Lucía Guerra",
+        title: "Evaluación ponderada de alternativas y visión de conjunto del flujo",
+        what: "Se añadió al documento de diseño una cuarta alternativa (monolito sin módulos), un filtro eliminatorio, una matriz ponderada con análisis de sensibilidad y tres diagramas de conjunto: DFD de contexto, DFD de nivel 1 de la compra y diagrama de flujo del checkout, con su fuente .drawio.",
+        why: "Justificar la arquitectura elegida frente a las descartadas con criterios explícitos y dar una visión del flujo de compra que los DFD por bloque no ofrecían."
+      },
+      {
+        date: "2026-11-10", who: "Lucía Guerra",
+        title: "Matriz de trazabilidad: requisitos enlazados con necesidades",
+        what: "Se revisaron los 72 requisitos que figuraban sin necesidad: 38 se enlazaron (21 de forma directa y 17 indirecta) y 34 se clasificaron como soporte o conveniencia. Pasan a estar enlazados 50 de los 84.",
+        why: "Que la matriz diga de qué necesidad sale cada requisito o, si no sale de ninguna, por qué está en el proyecto."
+      },
+      {
+        date: "2026-11-12", who: "Equipo",
+        title: "Responsables por bloque",
+        what: "Alberto Guerrero revisa y defiende A1, A5 y A7; Mikel Moriel, A2 y A6; Lucía Guerra, A3 y A4. La primera versión de los siete bloques es de Alberto Guerrero.",
+        why: "Repartir de forma equilibrada la revisión y la defensa del diseño (27, 27 y 30 requisitos)."
+      },
+      {
+        date: "2026-11-12", who: "Lucía Guerra",
+        title: "Revisión cruzada de A3 y A4 y anexos actualizados",
+        what: "Se corrigieron nueve incidencias: estados de subpedido alineados con la decisión aprobada, decisiones ya cerradas que figuraban como abiertas y recuentos de enlaces. Se actualizaron los PDF de los siete bloques y del índice general para que coincidan con el documento v1.2.",
+        why: "Revisión obligatoria del Hito 3 por alguien distinto del autor antes de la entrega."
+      },
+      {
+        date: "2026-11-12", who: "Mikel Moriel",
+        title: "Revisión cruzada de A1, A2, A5, A6 y A7",
+        what: "Se actualizaron los supuestos de enlace de los cinco bloques, se precisó qué cuenta como subpedido confirmado en la comisión y el resumen de ventas, se incorporó la decisión de «Recordarme» (10 días) en A5, se aclaró que el reinicio de A7 borra y recarga en una sola transacción, y seis wireframes de A4, A5 y A6 pasaron a mostrar «Confirmado» en lugar de «Pendiente».",
+        why: "Revisión obligatoria del Hito 3 por alguien distinto del autor antes de la entrega."
       }
     ]
   },

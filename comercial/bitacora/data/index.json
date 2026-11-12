@@ -6,6 +6,13 @@
    "file": "alberto.json",
    "prompts": 29,
    "actions": 834
+  },
+  {
+   "id": "lucia",
+   "name": "Lucía Guerra",
+   "file": "lucia.json",
+   "prompts": 21,
+   "actions": 181
   }
  ]
 }

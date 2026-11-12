@@ -483,8 +483,8 @@ window.CONTENT_EN = {
   design: {
     "title": "System design (Milestone 3)",
     "intro": "Every functional block, A1 to A7, is designed with four views: processes (DFD), data (ER), architecture and interfaces (low-fidelity wireframes). The views are delivered as PDF and their diagrams are also available as editable .drawio files.",
-    "status": "Status on 9 November 2026: the per-block views, their editable sources and the design document (version 1.0) are delivered. Only the link from each deliverable to Asana is still in progress.",
-    "docLabel": "Open the design document (Word, 88 pages, in Spanish)",
+    "status": "Status on 12 November 2026: the per-block views, their editable sources and the design document (version 1.2, with the cross-review of A2, A3, A4 and A6) are delivered. Only the link from each deliverable to Asana is still in progress.",
+    "docLabel": "Open the design document (Word, version 1.2, in Spanish)",
     "docFile": "IndiConnect_Hito3_Documento_de_diseno.docx",
     "blocksCaption": "Design views per functional block",
     "blocksHeaders": [
@@ -592,7 +592,7 @@ window.CONTENT_EN = {
       [
         "Updated traceability matrix",
         "Entregado",
-        "Section 9 and Annex A: the full chain for the 84 FRs down to the screen. 72 FRs still have no linked need."
+        "Section 9 and Annex A: the full chain for the 84 FRs down to the screen. 50 FRs are linked to a need (33 directly and 17 indirectly); the other 34 are support or convenience."
       ],
       [
         "Glossary",
@@ -602,7 +602,7 @@ window.CONTENT_EN = {
       [
         "Editable source diagrams (.drawio)",
         "Entregado",
-        "37 diagrams in 8 files, downloadable in the table above."
+        "40 diagrams in 9 files: those in the table above plus IndiConnect_Alternativas-y-flujos.drawio (overall view)."
       ],
       [
         "Link to Asana and to this landing",
@@ -707,7 +707,7 @@ window.CONTENT_EN = {
           [
               "Editable source diagrams (.drawio)",
               "DFD, ER, architecture and navigation of blocks A1–A7 as .drawio files in the repository.",
-              "docs/hito3 folder: 8 files with 37 diagrams"
+              "docs/hito3 folder: 9 files with 40 diagrams"
           ],
           [
               "Milestone 3 Word document (analysis and architecture)",
@@ -1425,7 +1425,7 @@ window.CONTENT_EN = {
 
   evolution: {
     title: "Project evolution",
-    intro: "A log of the relevant changes during Milestone 2: what changed, who did it, when and why.",
+    intro: "A log of the relevant changes during Milestones 2 and 3: what changed, who did it, when and why.",
     entries: [
       {
         date: "2026-10-09", who: "Alberto Guerrero",
@@ -1492,6 +1492,36 @@ window.CONTENT_EN = {
         title: "Detailed use of AI and a more visual documentation",
         what: "The tool, the model and the rules that restrict and orient the AI were detailed. Indicators, charts, a sprint calendar and a progress panel synced with Asana were added.",
         why: "Transparency about the use of AI (R-06) and documentation that is easier to read at a glance."
+      },
+      {
+        date: "2026-11-10", who: "Lucía Guerra",
+        title: "Weighted evaluation of alternatives and overall flow view",
+        what: "The design document gained a fourth alternative (a monolith without modules), an elimination filter, a weighted matrix with sensitivity analysis and three overall diagrams: context DFD, level-1 purchase DFD and checkout flowchart, with their .drawio source.",
+        why: "To justify the chosen architecture against the discarded ones with explicit criteria and give an overall view of the purchase flow that the per-block DFDs lacked."
+      },
+      {
+        date: "2026-11-10", who: "Lucía Guerra",
+        title: "Traceability matrix: requirements linked to needs",
+        what: "The 72 requirements with no need were reviewed: 38 were linked (21 directly and 17 indirectly) and 34 were classed as support or convenience. 50 of the 84 are now linked.",
+        why: "So that the matrix states which need each requirement comes from or, if none, why it is in the project."
+      },
+      {
+        date: "2026-11-12", who: "Team",
+        title: "Block owners",
+        what: "Alberto Guerrero reviews and defends A1, A5 and A7; Mikel Moriel, A2 and A6; Lucía Guerra, A3 and A4. The first version of all seven blocks is by Alberto Guerrero.",
+        why: "To share the review and defence of the design evenly (27, 27 and 30 requirements)."
+      },
+      {
+        date: "2026-11-12", who: "Lucía Guerra",
+        title: "Cross-review of A3 and A4 and updated annexes",
+        what: "Nine issues were fixed: sub-order states aligned with the approved decision, closed decisions still shown as open and link counts. The PDFs of the seven blocks and the general index were updated to match document v1.2.",
+        why: "Mandatory Milestone 3 review by someone other than the author before delivery."
+      },
+      {
+        date: "2026-11-12", who: "Mikel Moriel",
+        title: "Cross-review of A1, A2, A5, A6 and A7",
+        what: "The link assumptions of the five blocks were updated, the meaning of a confirmed sub-order for commission and the sales summary was made precise, the «Remember me» decision (10 days) was added to A5, the A7 reset was clarified to delete and reload in a single transaction, and six wireframes of A4, A5 and A6 now show «Confirmed» instead of «Pending».",
+        why: "Mandatory Milestone 3 review by someone other than the author before delivery."
       }
     ]
   },
