@@ -111,7 +111,7 @@
     o3t: "A single seller towards the customer.",
     o3p: "The group sells; the brands share the fulfilment.",
     o4t: "No half-finished orders.",
-    o4p: "If one brand cannot confirm, no part is confirmed (proposal under review).",
+    o4p: "If one brand cannot confirm, no part is confirmed (approved decision).",
     flowAria: "Flow: a cart becomes an order and the order becomes one sub-order per brand",
     flowCart: "Unified cart",
     flowCartS: "Products from several brands",

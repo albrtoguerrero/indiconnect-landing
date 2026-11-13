@@ -242,7 +242,7 @@
 
     var sp = C.progress.sprints;
     var delivered = sp.filter(function (s) { return s.status === "Entregado"; }).length;
-    var unvalidated = C.requirements.hypotheses.filter(function (h) { return h.state === "Sin validar"; }).length;
+    var unvalidated = C.requirements.hypotheses.filter(function (h) { return h.state.indexOf("Validada") !== 0; }).length;
     var stats = [
       [String(C.team.members.length), t("statTeam")],
       [delivered + " " + t("ofWord") + " " + sp.length, t("statMilestones")],

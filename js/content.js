@@ -187,7 +187,7 @@ window.CONTENT = {
 
   decisions: {
     title: "Decisiones de diseño",
-    intro: "Cada decisión muestra su estado a 9 de noviembre de 2026. Aprobado: adoptada. Descartado: alternativa rechazada. Salen del backlog y del alcance del Hito 2; la Fase 2 solo se abre si el núcleo está verificado.",
+    intro: "Cada decisión muestra su estado a 12 de noviembre de 2026. Aprobado: adoptada. Descartado: alternativa rechazada. Salen del backlog y del alcance del Hito 2; la Fase 2 solo se abre si el núcleo está verificado.",
     legendLabel: "Estados posibles",
     legend: ["Borrador", "En revisión", "Aprobado", "Descartado"],
     items: [
@@ -240,6 +240,11 @@ window.CONTENT = {
         title: "Nombre del agrupador de subpedidos",
         status: "Aprobado",
         text: "«Pedido» para el padre y «Subpedido» para cada hijo, uno por marca. Son los términos que usa esta página y los que usará el glosario del Hito 4."
+      },
+      {
+        title: "Aceptación de condiciones en la Fase 1 (RC-09)",
+        status: "Aprobado",
+        text: "En la Fase 1 las condiciones de compra se muestran sin casilla de aceptación; en la Fase 2 se añade la casilla y se registra la versión aceptada (RF-43, A3·AD-05). Decidida el 12 de noviembre en la revisión cruzada del Hito 3."
       }
     ]
   },
@@ -295,8 +300,8 @@ window.CONTENT = {
         dates: "26 oct – 13 nov 2026",
         milestone: "Hito 3",
         text: "Análisis del problema, diseño estructurado y alternativas.",
-        status: "En curso",
-        note: "Documento de diseño y anexos subidos a Asana el 9 de noviembre. Falta el Sprint Review del 13 de noviembre."
+        status: "Entregado",
+        note: "Documento de diseño v1.2 y anexos entregados en Asana el 12 de noviembre, con la revisión cruzada de los siete bloques y criterios de aceptación en todos ellos. Sprint Review el 13 de noviembre."
       },
       {
         name: "Sprint 4",
@@ -460,6 +465,96 @@ window.CONTENT = {
         need: "N-09", reqs: "RF-63", id: "CA-07", title: "Comisión por subpedido (ejemplo ilustrativo)",
         gherkin: ["Dado un subpedido confirmado de 80 € y una comisión del 12 %", "Cuando se calcula la comisión", "Entonces el resultado es 9,60 €"],
         task: "Requisitos funcionales › Carrito, Checkout y Pagos"
+      },
+      {
+        need: "N-07", reqs: "RF-80, RF-90", id: "CA-08", title: "Cada marca solo ve lo suyo",
+        gherkin: ["Dado que la Marca A ha iniciado sesión y hay subpedidos de las marcas A y B", "Cuando abre su lista de subpedidos", "Entonces solo ve los de la Marca A; un subpedido de la Marca B responde «no encontrado» y las pantallas del operador le deniegan el acceso"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-07", reqs: "RF-81, RF-91", id: "CA-09", title: "Un cambio de estado válido queda en el historial",
+        gherkin: ["Dado un subpedido de la Marca A en estado «confirmado»", "Cuando la Marca A lo marca como «preparado»", "Entonces pasa a «preparado» sin cambiar su importe y el historial guarda el estado anterior, el nuevo, el usuario y el instante"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-07", reqs: "RF-81", id: "CA-10", title: "Una transición no permitida se rechaza",
+        gherkin: ["Dado un subpedido en estado «enviado»", "Cuando la marca intenta devolverlo a «preparado»", "Entonces se rechaza con el aviso «No se puede pasar de «Enviado» a «Preparado»» y sigue en «enviado»"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-09", reqs: "RF-85", id: "CA-11", title: "La comisión es válida y no cambia el pasado",
+        gherkin: ["Dado el operador en la configuración de la Marca A", "Cuando introduce una comisión del 120 % o del 12,345 %", "Entonces se rechaza indicando el rango (0 a 100) o el máximo de dos decimales; un cambio válido solo afecta a los subpedidos que se creen después"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-09", reqs: "RF-87, RF-88", id: "CA-12", title: "La comisión acumulada solo cuenta subpedidos válidos",
+        gherkin: ["Dado que la Marca A tiene una comisión del 10 % y subpedidos de 100 € (enviado), 50 € (preparado) y 30 € (cancelado)", "Cuando el operador consulta la comisión acumulada y las ventas", "Entonces las ventas son 150,00 € y la comisión 15,00 €; el cancelado no cuenta"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-06", reqs: "RF-84", id: "CA-13", title: "Dar de baja una marca",
+        gherkin: ["Dado que la Marca C está activa y tiene un subpedido «preparado»", "Cuando el operador la da de baja y confirma", "Entonces deja de aparecer en el catálogo sin borrarse, y sus subpedidos en curso se mantienen"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-08", reqs: "RF-89", id: "CA-14", title: "El operador ve los fallos de confirmación",
+        gherkin: ["Dado un checkout con productos de las marcas A y C", "Cuando la Marca C no confirma su subpedido", "Entonces no se crea ningún pedido y el operador ve el intento con el instante, la marca, la causa y el estado «Revertido»"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-08", reqs: "RF-83", id: "CA-15", title: "No se acepta stock negativo",
+        gherkin: ["Dado una variante de la Marca A con 5 unidades", "Cuando la marca introduce un stock de -3", "Entonces se rechaza con un mensaje de validación y el stock sigue en 5"],
+        task: "Documento de diseño › apartado 9.4 (Hito 3)"
+      },
+      {
+        need: "N-01", reqs: "RF-01, RF-02", id: "CA-16", title: "El catálogo une todas las marcas activas",
+        gherkin: ["Dado que hay productos de las marcas A y B, activas, y de la Marca C, dada de baja", "Cuando el cliente abre el catálogo", "Entonces ve los de A y B con el nombre de su marca, y ninguno de la Marca C"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Conveniencia", reqs: "RF-03 a RF-08", id: "CA-17", title: "Filtros sin resultados",
+        gherkin: ["Dado el catálogo con productos de varias marcas", "Cuando el cliente filtra por Marca A y talla XS y ningún producto cumple los dos filtros", "Entonces se muestra «No hay resultados con estos filtros» con «Quitar filtros», y los filtros siguen activos"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "N-03, N-05", reqs: "RF-10, RF-11, RF-12, RF-18", id: "CA-18", title: "La ficha muestra disponibilidad, plazo y condiciones",
+        gherkin: ["Dado un producto cuya talla M no tiene stock", "Cuando el cliente abre su ficha", "Entonces la talla M aparece como «Agotada» y se ven el plazo de entrega y las condiciones de envío y devolución de su marca"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "N-03", reqs: "RF-71, RF-72", id: "CA-19", title: "Cada cliente solo ve sus pedidos",
+        gherkin: ["Dado un cliente con dos pedidos y otro cliente con uno", "Cuando el primero abre «Mis pedidos»", "Entonces solo ve los suyos, del más reciente al más antiguo; el detalle de un pedido ajeno responde «no encontrado»"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Soporte", reqs: "RF-74", id: "CA-20", title: "El acceso no revela qué cuentas existen",
+        gherkin: ["Dado que hay una cuenta registrada con un correo", "Cuando alguien entra con una contraseña errónea o con un correo que no existe", "Entonces ve el mismo mensaje genérico; tras superar el número máximo de intentos (umbral por definir), se le bloquea temporalmente"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Soporte", reqs: "RF-74", id: "CA-21", title: "«Recordarme» dura 10 días",
+        gherkin: ["Dado un cliente que inicia sesión marcando «Recordarme»", "Cuando vuelve antes de que pasen 10 días", "Entonces sigue con la sesión iniciada; después de 10 días se le pide iniciar sesión de nuevo"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Soporte", reqs: "RF-93", id: "CA-22", title: "El reinicio solo se hace en la demo y con confirmación",
+        gherkin: ["Dado el entorno de demostración", "Cuando la persona responsable pide reiniciar la base de datos", "Entonces se pide confirmación explícita; fuera de la demo se rechaza y los datos no cambian"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Soporte", reqs: "RF-92", id: "CA-23", title: "Cargar la semilla es todo o nada",
+        gherkin: ["Dado una semilla con un error a mitad del fichero", "Cuando se carga", "Entonces se revierte toda la carga, se informa del fallo y la base de datos queda como estaba"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Soporte", reqs: "RF-92", id: "CA-24", title: "La misma semilla no duplica datos",
+        gherkin: ["Dado que la versión vigente de la semilla ya está cargada", "Cuando se vuelve a cargar", "Entonces no se duplica ningún dato y se informa de que ya está cargada"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
+      },
+      {
+        need: "Soporte", reqs: "RF-95", id: "CA-25", title: "La API responde a los errores con un formato único",
+        gherkin: ["Dado un endpoint interno del carrito", "Cuando recibe una petición con datos no válidos", "Entonces responde con el formato de error común (código y mensaje), sin detalles internos"],
+        task: "Documento de diseño › apartado 9.5 (Hito 3)"
       }
     ],
     asanaTitle: "Referencias en Asana",

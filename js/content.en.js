@@ -196,7 +196,7 @@ window.CONTENT_EN = {
 
   decisions: {
     title: "Design decisions",
-    intro: "Each decision shows its status as of 9 November 2026. Approved: adopted. Discarded: alternative rejected. They come from the Milestone 2 backlog and scope; Phase 2 only opens once the core is verified.",
+    intro: "Each decision shows its status as of 12 November 2026. Approved: adopted. Discarded: alternative rejected. They come from the Milestone 2 backlog and scope; Phase 2 only opens once the core is verified.",
     legendLabel: "Possible statuses",
     legend: ["Borrador", "En revisión", "Aprobado", "Descartado"],
     items: [
@@ -249,6 +249,11 @@ window.CONTENT_EN = {
         title: "Name of the sub-order grouping",
         status: "Aprobado",
         text: "“Order” for the parent and “Sub-order” for each child, one per brand. These are the terms used on this page and the ones the Milestone 4 glossary will use."
+      },
+      {
+        title: "Accepting terms in Phase 1 (RC-09)",
+        status: "Aprobado",
+        text: "In Phase 1 the purchase terms are shown without an acceptance checkbox; in Phase 2 the checkbox is added and the accepted version is recorded (RF-43, A3·AD-05). Decided on 12 November during the Milestone 3 cross-review."
       }
     ]
   },
@@ -304,8 +309,8 @@ window.CONTENT_EN = {
         dates: "26 Oct – 13 Nov 2026",
         milestone: "Milestone 3",
         text: "Problem analysis, structured design and alternatives.",
-        status: "En curso",
-        note: "Design document and annexes uploaded to Asana on 9 November. The 13 November Sprint Review is still to come."
+        status: "Entregado",
+        note: "Design document v1.2 and annexes delivered in Asana on 12 November, with the cross-review of all seven blocks and acceptance criteria in every one. Sprint Review on 13 November."
       },
       {
         name: "Sprint 4",
@@ -465,6 +470,96 @@ window.CONTENT_EN = {
         need: "N-09", reqs: "RF-63", id: "CA-07", title: "Commission per sub-order (illustrative example)",
         gherkin: ["Given a confirmed sub-order of €80 and a 12 % commission", "When the commission is calculated", "Then the result is €9.60"],
         task: "Functional requirements › Cart, Checkout and Payments"
+      },
+      {
+        need: "N-07", reqs: "RF-80, RF-90", id: "CA-08", title: "Each brand only sees its own",
+        gherkin: ["Given Brand A is logged in and there are sub-orders from brands A and B", "When it opens its sub-order list", "Then it only sees Brand A ones; a Brand B sub-order returns «not found» and operator screens deny access"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-07", reqs: "RF-81, RF-91", id: "CA-09", title: "A valid state change is logged",
+        gherkin: ["Given a Brand A sub-order in state «confirmed»", "When Brand A marks it as «prepared»", "Then it becomes «prepared» without changing its amount, and the history stores the old and new state, the user and the time"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-07", reqs: "RF-81", id: "CA-10", title: "A forbidden transition is rejected",
+        gherkin: ["Given a sub-order in state «shipped»", "When the brand tries to move it back to «prepared»", "Then it is rejected with the warning that «Shipped» cannot go back to «Prepared», and it stays «shipped»"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-09", reqs: "RF-85", id: "CA-11", title: "Commission is valid and does not change the past",
+        gherkin: ["Given the operator in Brand A settings", "When they enter a commission of 120 % or 12.345 %", "Then it is rejected showing the range (0 to 100) or the two-decimal limit; a valid change only affects sub-orders created afterwards"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-09", reqs: "RF-87, RF-88", id: "CA-12", title: "Accumulated commission only counts valid sub-orders",
+        gherkin: ["Given Brand A has a 10 % commission and sub-orders of €100 (shipped), €50 (prepared) and €30 (cancelled)", "When the operator checks accumulated commission and sales", "Then sales are €150.00 and commission €15.00; the cancelled one does not count"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-06", reqs: "RF-84", id: "CA-13", title: "Deactivating a brand",
+        gherkin: ["Given Brand C is active and has a «prepared» sub-order", "When the operator deactivates it and confirms", "Then it disappears from the catalogue without being deleted, and its sub-orders in progress are kept"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-08", reqs: "RF-89", id: "CA-14", title: "The operator sees confirmation failures",
+        gherkin: ["Given a checkout with products from brands A and C", "When Brand C does not confirm its sub-order", "Then no order is created and the operator sees the attempt with time, brand, cause and state «Reverted»"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-08", reqs: "RF-83", id: "CA-15", title: "Negative stock is not accepted",
+        gherkin: ["Given a Brand A variant with 5 units", "When the brand enters a stock of -3", "Then it is rejected with a validation message and stock stays at 5"],
+        task: "Design document › section 9.4 (Milestone 3)"
+      },
+      {
+        need: "N-01", reqs: "RF-01, RF-02", id: "CA-16", title: "The catalogue joins all active brands",
+        gherkin: ["Given products from active brands A and B and from deactivated Brand C", "When the customer opens the catalogue", "Then they see A and B products with their brand name, and none from Brand C"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Convenience", reqs: "RF-03 to RF-08", id: "CA-17", title: "Filters with no results",
+        gherkin: ["Given a catalogue with products from several brands", "When the customer filters by Brand A and size XS and no product matches both", "Then «No results with these filters» is shown with «Clear filters», and the filters stay active"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "N-03, N-05", reqs: "RF-10, RF-11, RF-12, RF-18", id: "CA-18", title: "The product page shows availability, lead time and terms",
+        gherkin: ["Given a product whose size M is out of stock", "When the customer opens its page", "Then size M shows as «Sold out» and the brand delivery time and shipping and return terms are shown"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "N-03", reqs: "RF-71, RF-72", id: "CA-19", title: "Each customer only sees their orders",
+        gherkin: ["Given one customer with two orders and another with one", "When the first opens «My orders»", "Then they only see their own, newest first; another customer order returns «not found»"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Support", reqs: "RF-74", id: "CA-20", title: "Login does not reveal which accounts exist",
+        gherkin: ["Given an account registered with an email", "When someone logs in with a wrong password or an unknown email", "Then they get the same generic message; after the maximum number of attempts (threshold to be defined) they are temporarily blocked"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Support", reqs: "RF-74", id: "CA-21", title: "«Remember me» lasts 10 days",
+        gherkin: ["Given a customer who logs in ticking «Remember me»", "When they come back within 10 days", "Then they are still logged in; after 10 days they must log in again"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Support", reqs: "RF-93", id: "CA-22", title: "Reset only in the demo and with confirmation",
+        gherkin: ["Given the demo environment", "When the person in charge asks to reset the database", "Then explicit confirmation is required; outside the demo it is rejected and data does not change"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Support", reqs: "RF-92", id: "CA-23", title: "Loading the seed is all or nothing",
+        gherkin: ["Given a seed with an error halfway through the file", "When it is loaded", "Then the whole load is reverted, the failure is reported and the database stays as it was"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Support", reqs: "RF-92", id: "CA-24", title: "The same seed does not duplicate data",
+        gherkin: ["Given the current seed version is already loaded", "When it is loaded again", "Then no data is duplicated and it reports it is already loaded"],
+        task: "Design document › section 9.5 (Milestone 3)"
+      },
+      {
+        need: "Support", reqs: "RF-95", id: "CA-25", title: "The API answers errors in a single format",
+        gherkin: ["Given an internal cart endpoint", "When it receives a request with invalid data", "Then it answers with the common error format (code and message) and no internal details"],
+        task: "Design document › section 9.5 (Milestone 3)"
       }
     ],
     asanaTitle: "References in Asana",
