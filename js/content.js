@@ -1661,7 +1661,7 @@ window.CONTENT = {
       { title: "Autoría y decisiones", text: "El equipo firma y responde de todo lo que entrega: commits y documentos no se atribuyen a la herramienta. Las decisiones de diseño las toma el equipo; la IA propone y redacta." },
       { title: "Revisión cruzada y trazabilidad", text: "Los tres miembros revisan lo generado (R-06, RNF-65), y la bitácora de prompts permite auditar qué se pidió y qué se adoptó." }
     ],
-    logLink: { label: "Ver la bitácora de prompts", href: "comercial/bitacora/" }
+    logLink: { label: "Ver la bitácora de prompts", href: "bitacora/" }
   }
 
 };

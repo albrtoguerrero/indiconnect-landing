@@ -6,7 +6,7 @@ instrucciones que el asistente emite para resolver cada tarea (órdenes,
 ediciones, consultas), y las enlaza con el entregable al que sirven
 (requisitos funcionales, riesgos, historias de usuario...).
 
-Cada autor escribe SOLO su propio archivo comercial/bitacora/data/<autor>.json,
+Cada autor escribe SOLO su propio archivo bitacora/data/<autor>.json,
 así que no hay conflictos de git entre compañeros.
 
 Uso:
@@ -34,8 +34,8 @@ from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))                  # raíz del repo
-DATA_DIR = os.path.join(ROOT, "comercial", "bitacora", "data")
-TOPICS_FILE = os.path.join(ROOT, "comercial", "bitacora", "topics.json")
+DATA_DIR = os.path.join(ROOT, "bitacora", "data")
+TOPICS_FILE = os.path.join(ROOT, "bitacora", "topics.json")
 HOME = os.path.expanduser("~")
 CONFIG_FILE = os.path.join(HOME, ".indiconnect-log.json")
 STATE_FILE = os.path.join(HOME, ".indiconnect-log-topic.json")

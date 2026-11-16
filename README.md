@@ -16,6 +16,7 @@ js/app.js           Lee content.js y construye el HTML; alterna el tema
 assets/favicon.svg  Icono propio en SVG
 assets/og.png        Imagen de vista previa al compartir el enlace (1200x630)
 comercial/           Landing comercial en tres páginas (ver abajo)
+bitacora/            Bitácora de prompts del equipo (datos en bitacora/data/, ver tools/prompt-log)
 .nojekyll           Evita que GitHub Pages procese el sitio con Jekyll
 ```
 

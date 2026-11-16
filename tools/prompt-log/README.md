@@ -1,10 +1,10 @@
 # Bitácora de prompts: guía para el equipo
 
 Cada autor registra sus prompts y las instrucciones que se emiten para resolver cada tarea. La web
-([comercial/bitacora](../../comercial/bitacora/)) los muestra juntos y se pueden filtrar por autor y por entregable
+([bitacora](../../bitacora/), dentro de la landing documental) los muestra juntos y se pueden filtrar por autor y por entregable
 (requisitos funcionales, riesgos, historias de usuario…).
 
-Cada persona escribe **solo su archivo** `comercial/bitacora/data/<autor>.json`, así que no hay conflictos de git.
+Cada persona escribe **solo su archivo** `bitacora/data/<autor>.json`, así que no hay conflictos de git.
 
 ## Instalación (una vez, 3 minutos)
 
@@ -58,7 +58,7 @@ Requisitos: Python 3 y el repositorio clonado.
 ## Publicar tu parte
 
 ```
-git add comercial/bitacora/data/<autor>.json comercial/bitacora/data/index.json
+git add bitacora/data/<autor>.json bitacora/data/index.json
 git commit -m "docs: update <autor> prompt log"
 git pull --rebase && git push
 ```

@@ -1666,6 +1666,6 @@ window.CONTENT_EN = {
       { title: "Authorship and decisions", text: "The team signs and answers for everything it delivers: commits and documents are not attributed to the tool. Design decisions are made by the team; the AI proposes and drafts." },
       { title: "Cross-review and traceability", text: "The three members review what is generated (R-06, RNF-65), and the prompt log makes it possible to audit what was asked and what was adopted." }
     ],
-    logLink: { label: "See the prompt log", href: "comercial/bitacora/" }
+    logLink: { label: "See the prompt log", href: "bitacora/" }
   }
 };
