@@ -1,9 +1,9 @@
 {
   "source": "asana",
   "project": "A- Universidad Europe ISW – Plantilla Base Scrum (Introducción Ingeniería del Software)",
-  "syncedAt": "2026-11-16T05:54:50.212Z",
+  "syncedAt": "2026-11-16T15:27:04.700Z",
   "total": 17,
-  "done": 5,
+  "done": 6,
   "sections": [
     {
       "key": "sprint-1",
@@ -18,7 +18,7 @@
     {
       "key": "sprint-3",
       "total": 3,
-      "done": 0
+      "done": 1
     },
     {
       "key": "sprint-4",
