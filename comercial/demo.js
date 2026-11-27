@@ -5,7 +5,6 @@
   var I = window.IC_I18N;
   if (!I || !window.ICArt) { return; }
   var t = I.t;
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var BRANDS = {
     A: { key: "brandA", color: "var(--sw-a)", ship: 3.95, freeFrom: 50, days: "days1", bd: "bd-a" },
@@ -100,35 +99,10 @@
         btn
       ]);
       btn.addEventListener("click", function () {
-        card.classList.remove("flash");
-        void card.offsetWidth;   // reinicia la animación
-        card.classList.add("flash");
-        fly(card.querySelector(".prod-img"));
         add(p.id);
       });
       ul.appendChild(card);
     });
-  }
-
-  // La miniatura del producto "vuela" hasta el carrito
-  function fly(from) {
-    var to = $("cart-title");
-    if (reduce || !from || !to || !from.animate) { return; }
-    var a = from.getBoundingClientRect(), b = to.getBoundingClientRect();
-    var ghost = from.cloneNode(true);
-    ghost.removeAttribute("id");
-    ghost.setAttribute("aria-hidden", "true");
-    ghost.className += " fly";
-    ghost.style.cssText = "position:fixed;z-index:80;pointer-events:none;margin:0;left:" + a.left + "px;top:" + a.top + "px;width:" + a.width + "px;height:" + a.height + "px";
-    document.body.appendChild(ghost);
-    var dx = b.left + b.width / 2 - (a.left + a.width / 2);
-    var dy = b.top + b.height / 2 - (a.top + a.height / 2);
-    var anim = ghost.animate([
-      { transform: "translate(0,0) scale(1)", opacity: 1 },
-      { transform: "translate(" + dx * 0.6 + "px," + (dy * 0.6 - 60) + "px) scale(.6)", opacity: .95, offset: .55 },
-      { transform: "translate(" + dx + "px," + dy + "px) scale(.12)", opacity: 0 }
-    ], { duration: 650, easing: "cubic-bezier(.5,0,.2,1)" });
-    anim.onfinish = function () { ghost.remove(); };
   }
 
   function add(id) { cart[id] = (cart[id] || 0) + 1; lastAdded = id; clearResult(); renderCart(); }
@@ -216,20 +190,6 @@
     if (!host.querySelector("input:checked")) { host.querySelector("input").checked = true; }
   }
 
-  // Confeti con elementos CSS; solo se genera si el usuario admite movimiento
-  function confetti(host) {
-    if (reduce) { return; }
-    var colors = ["#0f8193", "#e0533f", "#1f9d7a", "#f2c94c", "#e0673d", "#3b5b8c"];
-    var wrap = el("div", { "class": "confetti", "aria-hidden": "true" });
-    for (var i = 0; i < 26; i++) {
-      var p = el("i", {});
-      p.style.cssText = "--x:" + (Math.random() * 100).toFixed(1) + "%;--dx:" + ((Math.random() - .5) * 120).toFixed(0) + "px;--r:" + (Math.random() * 720 - 360).toFixed(0) + "deg;--d:" + (Math.random() * .25).toFixed(2) + "s;background:" + colors[i % colors.length];
-      wrap.appendChild(p);
-    }
-    host.appendChild(wrap);
-    setTimeout(function () { wrap.remove(); }, 2000);
-  }
-
   function pay() {
     var gs = groups();
     if (!gs.length) { return; }
@@ -291,7 +251,6 @@
       receipt
     ]);
     res.appendChild(box);
-    confetti(box);
     cart = {};
     renderCart();
   }

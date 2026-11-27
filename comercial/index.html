@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="description" content="IndiConnect reúne las marcas de un grupo textil en un único carrito. Para quien compra: un pago y plazos a la vista. Para quien vende: demanda cruzada y subpedidos por marca. Proyecto académico ficticio.">
-  <meta name="theme-color" content="#0b6e80" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0c1b20" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="IndiConnect · Un solo carrito para todas las marcas del grupo">
@@ -19,7 +19,6 @@
   <title>IndiConnect · Un solo carrito para todas las marcas</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="extras.css">
   <script>
     // Enlaces antiguos (#comprador, #empresario, #demo, #c-*, #e-*) -> páginas separadas
@@ -74,7 +73,6 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="inicio">
-      <div class="hero-glow" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="eyebrow" data-i18n="heroEyebrow">Moda multimarca · un solo pedido</p>
@@ -92,7 +90,6 @@
         </div>
 
         <div class="hero-visual" aria-hidden="true">
-          <div class="orbs" id="orbs"></div>
           <div class="mock" id="mock">
             <div class="mock-head"><span data-i18n="mockCart">Tu carrito</span><span class="chip" data-i18n="mockBrands">3 marcas</span></div>
             <div class="mock-row"><span class="thumb bd-a" data-art="tee:#2a9fb0"></span><b data-i18n="brandA">Marca A</b><span data-i18n="mockP1">Camiseta básica</span><em data-i18n="mockPr1">19,95 €</em></div>
@@ -101,8 +98,6 @@
             <div class="mock-total"><span data-i18n="total">Total</span><strong data-i18n="mockTotal">129,85 €</strong></div>
             <div class="mock-pay" data-i18n="mockPay">Pagar una vez</div>
           </div>
-          <div class="float float--1"><span class="dot"></span><span data-i18n="chip1">1 pedido</span></div>
-          <div class="float float--2"><span class="dot dot--2"></span><span data-i18n="chip2">3 subpedidos</span></div>
         </div>
       </div>
 
@@ -199,8 +194,6 @@
     </div>
 
     <section class="final">
-      <div class="final-orb final-orb--1" aria-hidden="true"></div>
-      <div class="final-orb final-orb--2" aria-hidden="true"></div>
       <div class="wrap">
         <h2 data-i18n="finalTitle">Una sola compra, todas las marcas</h2>
         <p data-i18n="finalSub">Pruébalo en menos de un minuto o revisa cómo está especificado.</p>

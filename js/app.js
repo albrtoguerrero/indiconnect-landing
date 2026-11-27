@@ -187,7 +187,7 @@
   function renderDiagram(d, title, desc) {
     function box(x, y, w, h, t, s, cls) {
       var kids = [
-        svg("rect", { x: x, y: y, width: w, height: h, rx: 10, "class": "dg-box " + (cls || "") }),
+        svg("rect", { x: x, y: y, width: w, height: h, "class": "dg-box " + (cls || "") }),
         svg("text", { x: x + w / 2, y: y + (s ? h / 2 - 3 : h / 2 + 5), "class": "dg-title", "text-anchor": "middle", text: t })
       ];
       if (s) {

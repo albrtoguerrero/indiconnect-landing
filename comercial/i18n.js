@@ -53,8 +53,6 @@
     total: "Total",
     mockTotal: "€129.85",
     mockPay: "Pay once",
-    chip1: "1 order",
-    chip2: "3 sub-orders",
     part1: "Part 1",
     doorBuyT: "For shoppers",
     doorBuyP: "One cart, one payment, and every brand's delivery times and conditions on one screen. Try it with the demo.",

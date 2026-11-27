@@ -26,7 +26,7 @@ bitacora/            Bitácora de prompts del equipo (datos en bitacora/data/, v
 comercial/index.html             Portada: hero, dos puertas, marcas y «Quiénes somos»
 comercial/comprador/index.html   Parte del comprador: problema, cómo funciona, demo, ventajas, preguntas
 comercial/empresario/index.html  Parte del empresario: propuesta, modelo, alcance, riesgos, requisitos, trazabilidad
-comercial/{styles,animations,extras}.css, app.js, i18n.js, art.js   Compartidos por las tres páginas
+comercial/{styles,extras}.css, app.js, i18n.js, art.js              Compartidos por las tres páginas
 comercial/demo.js                Solo se carga en la página del comprador
 ```
 

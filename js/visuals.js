@@ -13,7 +13,6 @@
   if (!window.CONTENT) { return; }
 
   var SVG_NS = "http://www.w3.org/2000/svg";
-  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var DATA = {
     rf:  { p1: 36, p2: 48, out: 15 },          // 36 + 48 = 84 dentro; 99 candidatos
@@ -175,28 +174,6 @@
       el("ul", {}, items)
     ]);
     c.appendChild(strip);
-    countUp(strip);
-  }
-
-  function countUp(root) {
-    if (REDUCED || !("IntersectionObserver" in window)) { return; }
-    var nums = root.querySelectorAll(".kpi-num");
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) { return; }
-        io.unobserve(e.target);
-        var node = e.target, to = parseInt(node.getAttribute("data-to"), 10), t0 = null;
-        function step(ts) {
-          if (t0 === null) { t0 = ts; }
-          var k = Math.min(1, (ts - t0) / 900);
-          node.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3))));
-          if (k < 1) { requestAnimationFrame(step); } else { node.textContent = String(to); }
-        }
-        node.textContent = "0";
-        requestAnimationFrame(step);
-      });
-    }, { threshold: 0.4 });
-    Array.prototype.forEach.call(nums, function (n) { io.observe(n); });
   }
 
   function flow() {
@@ -209,7 +186,7 @@
     var g = [];
 
     function box(x, y, w, h, title, sub, cls) {
-      g.push(svg("rect", { x: x, y: y, width: w, height: h, rx: 12, "class": "fl-box " + (cls || "") }));
+      g.push(svg("rect", { x: x, y: y, width: w, height: h, "class": "fl-box " + (cls || "") }));
       g.push(svg("text", { x: x + w / 2, y: y + h / 2 - (sub ? 4 : -5), "text-anchor": "middle", "class": "fl-t", text: title }));
       if (sub) { g.push(svg("text", { x: x + w / 2, y: y + h / 2 + 15, "text-anchor": "middle", "class": "fl-s", text: sub })); }
     }
@@ -230,20 +207,8 @@
     brands.slice(0, 3).forEach(function (b, i) {
       paths.push(svg("path", { d: "M442 110 C485 110 485 " + (ys[i] + 26) + " 528 " + (ys[i] + 26), "class": "fl-line", id: "fl-p" + (i + 1) }));
     });
-    var moving = [];
-    if (!REDUCED) {
-      [0, 1, 2].forEach(function (i) {
-        moving.push(svg("circle", { r: 6, "class": "fl-dot " + colors[i] }, [
-          svg("animateMotion", { dur: "3.2s", begin: (i * 0.5) + "s", repeatCount: "indefinite", path: "M186 110 H272" })
-        ]));
-        moving.push(svg("circle", { r: 6, "class": "fl-dot " + colors[i] }, [
-          svg("animateMotion", { dur: "3.2s", begin: (1.6 + i * 0.5) + "s", repeatCount: "indefinite",
-            path: "M442 110 C485 110 485 " + (ys[i] + 26) + " 528 " + (ys[i] + 26) })
-        ]));
-      });
-    }
     var s = svg("svg", { viewBox: "0 0 720 220", role: "img", "aria-label": t.flowAria, "class": "flow-svg" },
-      paths.concat(g).concat(moving));
+      paths.concat(g));
     c.appendChild(panel(t.flowTitle, "viz--flow", [s]));
   }
 
@@ -664,7 +629,6 @@
       done: "Sprints finished"
     }
   };
-  var readBound = false;
 
   function sideIcon(id) {
     var s = svg("svg", { viewBox: "0 0 24 24", "class": "nav-ico", "aria-hidden": "true", focusable: "false" }, [
@@ -723,24 +687,6 @@
     ]);
     var brand = inner.querySelector(".brand");
     if (brand && brand.nextSibling) { inner.insertBefore(card, brand.nextSibling); } else { inner.appendChild(card); }
-
-    // Progreso de lectura de la página
-    var header = document.getElementById("site-header");
-    if (header) { header.appendChild(el("div", { "class": "side-progress", "data-viz": "1", "aria-hidden": "true" }, [el("span", {})])); }
-    paintRead();
-    if (!readBound) {
-      readBound = true;
-      window.addEventListener("scroll", paintRead, { passive: true });
-      window.addEventListener("resize", paintRead);
-    }
-  }
-
-  function paintRead() {
-    var bar = document.querySelector(".side-progress span");
-    if (!bar) { return; }
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h > 0 ? Math.min(100, Math.max(0, window.scrollY / h * 100)) : 0;
-    bar.style.width = p.toFixed(1) + "%";
   }
 
   /* ---------- arranque ---------- */

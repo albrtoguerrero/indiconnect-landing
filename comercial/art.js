@@ -1,10 +1,9 @@
-/* Ilustraciones de producto originales (SVG), con luz, sombra y detalles de costura.
+/* Ilustraciones de producto originales (SVG), planas, en gris y con detalles de costura.
    Sirven de "foto" por defecto: sin imágenes de terceros ni marcas reales.
    Si existe una foto propia (ver PHOTOS en demo.js), se usa en su lugar. */
 (function () {
   "use strict";
   var NS = "http://www.w3.org/2000/svg";
-  var uid = 0;
 
   function s(tag, attrs, kids) {
     var n = document.createElementNS(NS, tag);
@@ -37,7 +36,7 @@
         s("path", { d: "M28 17 H72", stroke: edge, "stroke-width": 1.6, fill: "none" }),
         s("path", { d: "M50 17 V42", stroke: "#fff", "stroke-opacity": ".4", "stroke-width": 1, "stroke-dasharray": "2 2", fill: "none" }),
         s("path", { d: "M31 20 Q38 30 46 22 M69 20 Q62 30 54 22", stroke: "#fff", "stroke-opacity": ".45", "stroke-width": 1, "stroke-dasharray": "2 2", fill: "none" }),
-        s("rect", { x: 47, y: 9, width: 6, height: 6, rx: 1.5, fill: "#f2c94c", stroke: edge, "stroke-width": .6 }),
+        s("rect", { x: 47, y: 9, width: 6, height: 6, rx: 1.5, fill: "#d9d9d9", stroke: edge, "stroke-width": .6 }),
         s("path", { d: "M33 30 L28 84", stroke: "#fff", "stroke-opacity": ".15", "stroke-width": 5, fill: "none", "stroke-linecap": "round" })
       ];
     },
@@ -75,27 +74,26 @@
         s("path", { d: "M34 38 V28 Q50 6 66 28 V38", fill: "none", stroke: edge, "stroke-width": 3, "stroke-linecap": "round" }),
         s("path", { d: "M18 38 H82 L90 88 H10Z", fill: fill, stroke: edge, "stroke-width": 1.2, "stroke-linejoin": "round" }),
         s("path", { d: "M18 38 H82 L84 52 Q50 62 16 52Z", fill: shade(fill, .16), stroke: edge, "stroke-width": 1 }),
-        s("circle", { cx: 50, cy: 55, r: 4.2, fill: "#f2c94c", stroke: edge, "stroke-width": .8 }),
+        s("circle", { cx: 50, cy: 55, r: 4.2, fill: "#d9d9d9", stroke: edge, "stroke-width": .8 }),
         s("path", { d: "M24 62 L20 84", stroke: "#fff", "stroke-opacity": ".22", "stroke-width": 4, fill: "none", "stroke-linecap": "round" })
       ];
     }
   };
 
-  /* shape: tee | jeans | jacket | dress | shoe | bag ; color: #rrggbb */
+  // Gris equivalente de un color #rrggbb, acotado para que las prendas se distingan del fondo
+  function gris(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    var l = .3 * ((n >> 16) & 255) + .59 * ((n >> 8) & 255) + .11 * (n & 255);
+    var g = Math.round(Math.max(40, Math.min(150, l)));
+    return "#" + ((1 << 24) + (g << 16) + (g << 8) + g).toString(16).slice(1);
+  }
+
+  /* shape: tee | jeans | jacket | dress | shoe | bag ; color: #rrggbb (se dibuja en gris) */
   function draw(shape, color) {
-    var id = "g" + (++uid);
-    var edge = shade(color, .35);
-    var svg = s("svg", { viewBox: "0 0 100 100", "aria-hidden": "true", focusable: "false", "class": "art" }, [
-      s("defs", {}, [
-        s("linearGradient", { id: id, x1: "0", y1: "0", x2: "1", y2: "1" }, [
-          s("stop", { offset: "0", "stop-color": shade(color, -0.0) }),
-          s("stop", { offset: "1", "stop-color": shade(color, .28) })
-        ])
-      ]),
-      s("ellipse", { cx: 50, cy: 91, rx: 30, ry: 4, fill: "#000", "fill-opacity": ".16", "class": "art-shadow" })
-    ]);
+    var fill = gris(color);
+    var svg = s("svg", { viewBox: "0 0 100 100", "aria-hidden": "true", focusable: "false", "class": "art" });
     var g = s("g", { "class": "art-body" });
-    SHAPES[shape]("url(#" + id + ")", edge).forEach(function (p) { g.appendChild(p); });
+    SHAPES[shape](fill, shade(fill, .35)).forEach(function (p) { g.appendChild(p); });
     svg.appendChild(g);
     return svg;
   }

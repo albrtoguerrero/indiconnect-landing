@@ -6,7 +6,6 @@
   if (!window.CONTENT || !I) { return; }
   var t = I.t;
   var C = I.content();
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function el(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -44,12 +43,6 @@
       var a = n.getAttribute("data-art").split(":");
       n.appendChild(window.ICArt.draw(a[0], a[1]));
     });
-    var orbs = $("orbs");
-    if (orbs && !orbs.firstChild) {
-      [["tee", "#2a9fb0", "a"], ["dress", "#1f9d7a", "b"], ["bag", "#b9783f", "c"], ["jeans", "#3b5b8c", "a"]].forEach(function (o, i) {
-        orbs.appendChild(el("span", { "class": "orb orb--" + (i + 1) + " bd-" + o[2] }, [window.ICArt.draw(o[0], o[1])]));
-      });
-    }
   }
 
   /* ---------- Parte 1: comprador ---------- */
@@ -285,100 +278,6 @@
     Object.keys(links).forEach(function (id) { var s = $(id); if (s) { spyIO.observe(s); } });
   }
 
-  function countUp(node) {
-    var m = /^(\d+)(.*)$/.exec(node.textContent);
-    if (!m) { return; }
-    var end = +m[1], rest = m[2], t0 = null;
-    function step(ts) {
-      if (t0 === null) { t0 = ts; }
-      var k = Math.min((ts - t0) / 1100, 1);
-      node.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + rest;
-      if (k < 1) { requestAnimationFrame(step); }
-    }
-    node.textContent = "0" + rest;
-    requestAnimationFrame(step);
-  }
-
-  var revealIO = null;
-  function initReveal() {
-    var items = document.querySelectorAll(".reveal");
-    if (reduce || !("IntersectionObserver" in window)) {
-      [].forEach.call(items, function (n) { n.classList.add("in"); n.classList.remove("reveal"); });
-      return;
-    }
-    if (revealIO) { revealIO.disconnect(); }
-    [].forEach.call(items, function (n) {
-      var sibs = [].filter.call(n.parentElement.children, function (c) { return c.classList.contains("reveal"); });
-      var i = Math.min(sibs.indexOf(n), 8);
-      n.style.transitionDelay = (i * 90) + "ms";
-      n._delay = i * 90;
-    });
-    revealIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) { return; }
-        var n = en.target;
-        n.classList.add("in");
-        revealIO.unobserve(n);
-        var num = n.classList.contains("stat") ? n.querySelector("strong") : null;
-        if (num) { setTimeout(function () { countUp(num); }, n._delay); }
-        // Al terminar la entrada se retira .reveal para que los efectos hover funcionen
-        setTimeout(function () { n.classList.remove("reveal"); n.style.transitionDelay = ""; }, n._delay + 900);
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    [].forEach.call(items, function (n) { revealIO.observe(n); });
-  }
-
-  function initProgress() {
-    var bar = el("div", { "class": "scroll-progress", "aria-hidden": "true" });
-    document.body.appendChild(bar);
-    var ticking = false;
-    function update() {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.setProperty("--p", max > 0 ? Math.min(window.scrollY / max, 1).toFixed(4) : 0);
-      ticking = false;
-    }
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-  }
-
-  function initMarquee() {
-    var list = document.querySelector(".brands-list");
-    if (!list || reduce || list.classList.contains("marquee")) { return; }
-    var items = [].slice.call(list.children);
-    for (var r = 0; r < 2; r++) {
-      items.forEach(function (li) {
-        var c = li.cloneNode(true);
-        c.setAttribute("aria-hidden", "true");
-        list.appendChild(c);
-      });
-    }
-    list.classList.add("marquee");
-  }
-
-  // Inclinación 3D de la maqueta y foco de luz que sigue al ratón en el hero
-  function initPointerFx() {
-    var hero = $("inicio");
-    var vis = document.querySelector(".hero-visual");
-    if (!hero || reduce || !window.matchMedia("(hover: hover)").matches) { return; }
-    hero.addEventListener("pointermove", function (e) {
-      var r = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", (e.clientX - r.left) + "px");
-      hero.style.setProperty("--my", (e.clientY - r.top) + "px");
-      if (vis) {
-        var v = vis.getBoundingClientRect();
-        var dx = (e.clientX - (v.left + v.width / 2)) / window.innerWidth;
-        var dy = (e.clientY - (v.top + v.height / 2)) / window.innerHeight;
-        vis.style.setProperty("--ry", (dx * 14).toFixed(2) + "deg");
-        vis.style.setProperty("--rx", (-dy * 12).toFixed(2) + "deg");
-      }
-    });
-    hero.addEventListener("pointerleave", function () {
-      if (vis) { vis.style.setProperty("--ry", "0deg"); vis.style.setProperty("--rx", "0deg"); }
-    });
-  }
-
   /* ---------- arranque e idioma ---------- */
 
   function renderAll() {
@@ -395,10 +294,6 @@
   renderAll();
   paintArt();
   initSpy();
-  initReveal();
-  initProgress();
-  initMarquee();
-  initPointerFx();
 
   var btn = $("lang-toggle");
   if (btn && window.IC_LANG) {
@@ -406,7 +301,6 @@
     window.addEventListener("iclangchange", function () {
       var y = window.scrollY;
       renderAll();
-      initReveal();
       window.scrollTo(0, y);
     });
   }
